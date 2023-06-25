@@ -1,0 +1,50 @@
+{
+    "pages": [
+        "pages/map/map",
+        "pages/register/register",
+        "pages/login/login",
+        "pages/message/message",
+        "pages/my/my",
+        "pages/index/index",
+        "pages/liaotian/liaotian"
+
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置展示"
+        }
+    },
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "大学生互助小程序",
+        "navigationBarTextStyle": "black"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "color": "#616161",
+        "selectedColor": "#2E312F",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/message/message",
+                "text": "消息",
+                "iconPath": "image/_消息 (1).png",
+                "selectedIconPath": "image/_消息.png"
+            },
+            {
+                "pagePath": "pages/map/map",
+                "text": "地图",
+                "iconPath": "image/_定位小 (1).png",
+                "selectedIconPath": "image/_定位小.png"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "我的",
+                "iconPath": "image/_我的 (1).png",
+                "selectedIconPath": "image/_我的.png"
+            }
+        ]
+    }
+}
