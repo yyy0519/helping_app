@@ -1,0 +1,7 @@
+/* pages/message/message.wxss */
+.box{
+    width: 600rpx;
+    height: 80rpx;
+    display:flex;
+    flex-direction: row;
+}
