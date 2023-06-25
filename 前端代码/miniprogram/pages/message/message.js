@@ -1,24 +1,37 @@
 // pages/message/message.js
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+       
 
+    },
+    register(){
+        wx.navigateTo({
+          url: '../register/register',
+        })
+    },
+    login(){
+        wx.navigateTo({
+          url: '../login/login',
+        })
     },
     getxinxi(){
         let userlist
-        let that=this
-        wx.cloud.database().collection('chat_users').get({
+        var that=this
+        wx.cloud.database().collection('user_info').get({
             success(res){
-                console.log(res.data)
-                userlist.list=res.data
-                that.setDate({
-                    userlist
-                })
+                console.log("获取数据成功",res.data),
+                userlist=res.data
+               that.setDate({
+                   userlist
+            })
             }
         })
+     
     },
     go_liaotian(){
         wx.navigateTo({

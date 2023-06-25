@@ -1,1 +1,7 @@
 /* pages/message/message.wxss */
+.for {
+    background: blueviolet;
+    border: solid 1px blue;
+    color: white;
+  }
+  

@@ -1,4 +1,5 @@
 App({
+ 
   flag: false,
   async onLaunch (e) {
     this.initcloud()

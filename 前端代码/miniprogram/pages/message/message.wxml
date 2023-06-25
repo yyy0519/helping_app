@@ -1,12 +1,2 @@
-<!--pages/message/message.wxml-->
-<view class="big">
-  <view></view>
-  <view>
-    <view class="box" bindtap="go_liaotian" wx:for="{{userlist}}"wx:key="_id">
-        <image src="{{item.Img}}"></image>
-        <view class="nicheng">微信昵称:{{item.nickName}}</view>
-    </view>
-    <view class="tubiao">+</view>
-  </view>
-  <view></view>
-</view>
+<button bindtap="register">注册</button>
+<button bindtap="login">登录</button>

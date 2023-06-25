@@ -43,6 +43,7 @@ Page({
                 title: '注册成功！',
                 icon: "none"
               })
+              
         }
         else{
             wx.showToast({
