@@ -7,7 +7,41 @@ Page({
     data: {
 
     },
+    
 
+
+    formSubmit(e){
+        let that=this
+        wx.cloud.database().collection('user_info').where({
+            zhanghao:that.data.zhanghao,
+            mima1:that.data.mima1
+            }).get({
+                success(res){
+                    console.log(res)
+                    if(res.data.length>0){
+                        wx.showToast({
+                          title: '登录成功',
+                          icon:'none'
+                        })
+                        setTimeout(()=>{
+                                wx.reLaunch({
+                                  url: '../message/message',
+                                })
+                        },800)
+                    }else{
+                        wx.showToast({
+                          title: '您还未注册,请注册后登录',
+                          icon:'none'
+                        })
+                    }
+                }
+            })
+              
+      //console.log(e.detail.value)
+      
+
+    },
+    
     /**
      * 生命周期函数--监听页面加载
      */
