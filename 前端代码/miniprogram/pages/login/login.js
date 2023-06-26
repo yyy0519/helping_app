@@ -1,4 +1,5 @@
 // pages/login/login.js
+const app = getApp()
 Page({
 
     /**
@@ -7,14 +8,17 @@ Page({
     data: {
 
     },
-    
+    register(){
+        wx.navigateTo({
+          url: '../register/register',
+        })
+    },
 
 
     formSubmit(e){
-        let that=this
         wx.cloud.database().collection('user_info').where({
-            zhanghao:that.data.zhanghao,
-            mima1:that.data.mima1
+            ID:e.detail.value.ID,
+            password:e.detail.value.password
             }).get({
                 success(res){
                     console.log(res)
@@ -23,6 +27,7 @@ Page({
                           title: '登录成功',
                           icon:'none'
                         })
+                        app.globalData.userInfo=res.data
                         setTimeout(()=>{
                                 wx.reLaunch({
                                   url: '../message/message',
@@ -30,7 +35,7 @@ Page({
                         },800)
                     }else{
                         wx.showToast({
-                          title: '您还未注册,请注册后登录',
+                          title: '您还未注册,请注册后登录!',
                           icon:'none'
                         })
                     }

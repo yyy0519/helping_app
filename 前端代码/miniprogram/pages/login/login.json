@@ -1,3 +1,10 @@
 {
+<<<<<<< Updated upstream
     "navigationBarTitleText": "登录页面"
+=======
+    
+    "navigationBarTitleText": "登录页面",
+    "navigationBarTextStyle": "black"    
+
+>>>>>>> Stashed changes
 }

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!--pages/message/message.wxml-->
 <view class="big">
   <view></view>
@@ -10,3 +11,6 @@
   </view>
   <view></view>
 </view>
+=======
+<button wx:if="{{!userInfo}}" bindtap="login">登录</button>
+>>>>>>> Stashed changes

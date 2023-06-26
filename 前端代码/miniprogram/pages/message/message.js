@@ -1,4 +1,8 @@
 // pages/message/message.js
+<<<<<<< Updated upstream
+=======
+const app=getApp()
+>>>>>>> Stashed changes
 Page({
 
     /**
@@ -7,6 +11,14 @@ Page({
     data: {
 
     },
+<<<<<<< Updated upstream
+=======
+    login(){
+        wx.navigateTo({
+          url: '../login/login',
+        })
+    },
+>>>>>>> Stashed changes
     getxinxi(){
         let userlist
         let that=this
@@ -43,7 +55,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.getxinxi()
+        this.getxinxi(),
+        this.setData({
+            userInfo:app.globalData.userInfo
+        })
     },
 
     /**

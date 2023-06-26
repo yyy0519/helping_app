@@ -37,8 +37,12 @@ App({
           throw '当前小程序没有配置云开发环境，请在 envList.js 中配置你的云开发环境'
         }
       }
+
     }
   },
+  globalData:{
+    userInfo:null
+},
   /**
    * 封装的云函数调用方法
    * @param {*} obj 传入对象
