@@ -43,6 +43,14 @@ Page({
                 title: '注册成功！',
                 icon: "none"
               })
+
+              setTimeout(()=>{
+                wx.navigateTo({
+                  url: '../login/login',
+                })
+              },500)
+              
+
         }
         else{
             wx.showToast({

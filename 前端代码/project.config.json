@@ -44,7 +44,7 @@
         "condition": false
     },
     "compileType": "miniprogram",
-    "libVersion": "2.19.1",
+    "libVersion": "2.25.3",
     "appid": "wx51eac718fb19eb0c",
     "projectname": "LBS%E5%AE%9A%E4%BD%8D%E6%8F%92%E4%BB%B6",
     "condition": {},
