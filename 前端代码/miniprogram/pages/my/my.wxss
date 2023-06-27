@@ -1,1 +1,15 @@
-/* pages/my/my.wxss */
+image{
+    width: 210rpx;
+    height:210rpx;
+    border-radius: 25rpx;
+
+}
+.box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.nicheng{
+    font-size: 50rpx;
+    color:black;
+}

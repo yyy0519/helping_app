@@ -1,1 +1,42 @@
+<<<<<<< Updated upstream
 /* pages/message/message.wxss */
+=======
+/* pages/message/message.wxss */
+.for {
+    background: blueviolet;
+    border: solid 1px blue;
+    color: white;
+  }
+.box{
+    display: flex;
+    flex-direction: row;
+}
+.nicheng{
+    font-size: 26rpx;
+    margin-top:26rpx;
+}
+.imageformat{
+    width: 50px;
+    height: 50px;
+    border-radius: 7px;
+}
+.tishi{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative; 
+    left: 0rpx; 
+    top: 278rpx
+}
+.denglu{
+    position: relative; 
+    left: 0rpx; 
+    top: 310rpx;
+    width: 80%;
+    margin-top: 20rpx;
+    background-color: #355C7D;
+    color: white;
+    border-radius: 98rpx; 
+}
+  
+>>>>>>> Stashed changes

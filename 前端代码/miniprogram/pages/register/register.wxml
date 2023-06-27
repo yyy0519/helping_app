@@ -2,7 +2,7 @@
     <view></view>
     <view class="box">
     
-        <image src="{{Img}}"></image>
+        <image src="{{Img}}" class="image"></image>
         <view>{{nickname}}</view>
     </view>
     <view></view>
