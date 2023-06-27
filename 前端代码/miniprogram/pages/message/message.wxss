@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-/* pages/message/message.wxss */
-=======
-/* pages/message/message.wxss */
+
 .for {
     background: blueviolet;
     border: solid 1px blue;
@@ -25,8 +22,8 @@
     flex-direction: row;
     justify-content: space-around;
     position: relative; 
-    left: 0rpx; 
-    top: 278rpx
+    left: 7rpx; 
+    top: 295rpx
 }
 .denglu{
     position: relative; 
@@ -39,4 +36,3 @@
     border-radius: 98rpx; 
 }
   
->>>>>>> Stashed changes

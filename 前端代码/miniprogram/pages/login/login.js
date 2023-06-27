@@ -1,4 +1,5 @@
 // pages/login/login.js
+const app = getApp()
 Page({
 
     /**
@@ -7,24 +8,22 @@ Page({
     data: {
 
     },
+    register(){
+        wx.navigateTo({
+          url: '../register/register',
+        })
+    },
 
 
     formSubmit(e){
-        let that=this
+        if(!e.detail.value.ID||!e.detail.value.password){
+            wx.showToast({
+              title: '请输入账号或密码',
+              icon:'none'
+            })
+            return
+        }
         wx.cloud.database().collection('user_info').where({
-<<<<<<< Updated upstream
-            ID:that.data.ID,
-            password:that.data.password
-            }).get({
-                success(res){
-                    console.log(res)
-                    if(res.data.length>0){
-                        wx.showToast({
-                          title: '登录成功',
-                          icon:'none'
-                        })
-                        setTimeout(()=>{
-=======
             ID:e.detail.value.ID,
             //password:e.detail.value.password
         }).get({
@@ -55,26 +54,26 @@ Page({
                                 })
                                 app.globalData.userInfo=res.data[0]
                                 setTimeout(()=>{
->>>>>>> Stashed changes
                                 wx.reLaunch({
                                   url: '../message/message',
-                                })
-                        },800)
-                    }else{
-                        wx.showToast({
-                          title: '您还未注册,请注册后登录',
-                          icon:'none'
-                        })
+                                })},800)
                     }
                 }
             })
+        }
               
       //console.log(e.detail.value)
       
 
+    }
+})
     },
-    
-
+    onfocus: function() {
+        this.setData({isScroll: false})
+      },
+      onblur: function () {
+        this.setData({isScroll: true})
+      },
     /**
      * 生命周期函数--监听页面加载
      */

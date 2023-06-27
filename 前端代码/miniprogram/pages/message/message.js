@@ -1,24 +1,48 @@
-// pages/message/message.js
+const app=getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        userlist:[
+            {
+                _id:null,
+                ID:null,
+                Img:null,
+                _openid:null,
+                confirmpassword:null,
+                nickname:null,
+                password:null,
+                time:null
+
+            }
+        ]
 
     },
+    register(){
+        wx.navigateTo({
+          url: '../register/register',
+        })
+    },
+    login(){
+        wx.navigateTo({
+          url: '../login/login',
+        })
+    },
     getxinxi(){
-        let userlist
-        let that=this
-        wx.cloud.database().collection('chat_users').get({
-            success(res){
-                console.log(res.data)
-                userlist.list=res.data
-                that.setDate({
-                    userlist
-                })
+        //let userlist
+        var that=this
+        wx.cloud.database().collection('user_info').get({
+            success:(res)=>{
+                console.log("获取数据成功",res.data),
+                //userlist=res.data
+               that.setData({
+                userlist:res.data
+            })
             }
         })
+     
     },
     go_liaotian(){
         wx.navigateTo({
@@ -43,7 +67,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.getxinxi()
+        this.getxinxi(),
+        this.setData({
+            userInfo:app.globalData.userInfo
+        })
     },
 
     /**
@@ -81,3 +108,4 @@ Page({
 
     }
 })
+

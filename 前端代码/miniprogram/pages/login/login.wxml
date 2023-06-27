@@ -1,8 +1,16 @@
-<!--pages/login/login.wxml-->
-<form bindsubmit="formSubmit">
-    <input name="ID" placeholder="请输入账号"/>
-    <input name="password" placeholder="请输入密码"/>
-    <button form-type="submit" class="register">登录</button>
-   
-</form>
+<view>
+    <view>
+        <view class="dengluformat" >登录</view>
+    </view>
+</view>
 
+<form bindsubmit="formSubmit">
+    <view >
+      <scroll-view scroll-y="{{isScroll}}">
+        <input bindfocus="onfocus" bindblur="onblur" type="text" placeholder="placeholder"  name="ID" placeholder="请输入账号"/>
+      </scroll-view>
+    <input  name="password" placeholder="请输入密码"/>
+    <button form-type="submit" class="register" style="position: relative; left: 0rpx; top: 206rpx">登录</button>   
+    </view>
+</form>
+<button bindtap="register" style="position: relative; left: 0rpx; top: 218rpx">注册</button>
