@@ -1,4 +1,5 @@
 // pages/login/login.js
+const app=getApp()
 Page({
 
     /**
@@ -36,17 +37,24 @@ Page({
                         ...info,
                         Img:that.data.Img,
                         nickname:that.data.nickname
+                    },success(res){
+                        wx.cloud.database().collection('user_info').doc(res._id).get({
+                            success(res){
+                                console.log(res)
+                                app.globalData.userInfo=res.data
+                            }
+                        })
                     }
                 }
             )
             wx.showToast({
                 title: '注册成功！',
-                icon: "none"
+                icon: 'none'
               })
 
               setTimeout(()=>{
-                wx.navigateTo({
-                  url: '../login/login',
+                wx.reLaunch({
+                  url: '../message/message',
                 })
               },500)
               

@@ -1,5 +1,5 @@
 // pages/message/message.js
-
+const app=getApp()
 Page({
 
     /**
@@ -8,11 +8,6 @@ Page({
     data: {
        
 
-    },
-    register(){
-        wx.navigateTo({
-          url: '../register/register',
-        })
     },
     login(){
         wx.navigateTo({
@@ -56,7 +51,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.getxinxi()
+        this.getxinxi(),
+        this.setData({
+            userInfo:app.globalData.userInfo
+        })
     },
 
     /**
