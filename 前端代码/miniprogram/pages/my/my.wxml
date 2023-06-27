@@ -1,9 +1,2 @@
-<view>
-  <view class="box">
-    <image src="{{userInfo.Img}}"></image>
-  </view>
-</view>
-
-<view>
-  <view class="nicheng">{{userInfo.nickname}}</view>
-</view>
+<!--pages/my/my.wxml-->
+<text>pages/my/my.wxml</text>

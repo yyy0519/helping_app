@@ -12,7 +12,6 @@ Page({
     formSubmit(e){
         let that=this
         wx.cloud.database().collection('user_info').where({
-<<<<<<< Updated upstream
             ID:that.data.ID,
             password:that.data.password
             }).get({
@@ -24,38 +23,6 @@ Page({
                           icon:'none'
                         })
                         setTimeout(()=>{
-=======
-            ID:e.detail.value.ID,
-            //password:e.detail.value.password
-        }).get({
-            success(res){
-                console.log(res)
-                if(res.data.length==0){
-                    wx.showToast({
-                        title: '账号未注册',
-                        icon:'none'
-                    })
-                }
-                else{
-                    wx.cloud.database().collection('user_info').where({
-                        ID:e.detail.value.ID,
-                        password:e.detail.value.password
-                    }).get({
-                        success(res){
-                            if(res.data.length==0){
-                                wx.showToast({
-                                    title: '密码错误',
-                                    icon:'none'
-                                })
-                            }
-                            else{
-                                wx.showToast({
-                                    title: '登录成功!',
-                                    icon:'none'
-                                })
-                                app.globalData.userInfo=res.data[0]
-                                setTimeout(()=>{
->>>>>>> Stashed changes
                                 wx.reLaunch({
                                   url: '../message/message',
                                 })
