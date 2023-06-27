@@ -8,7 +8,7 @@
         <view class="nicheng">{{item.nickname}}</view>
         <!-- <view class="tubiao">+</view> -->
     </view>
-    <view class="tubiao">+</view>
+
   </view>
   <view></view>
   </view>
