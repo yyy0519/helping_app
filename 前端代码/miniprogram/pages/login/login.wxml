@@ -1,2 +1,8 @@
 <!--pages/login/login.wxml-->
-<text>pages/login/login.wxml</text>
+<form bindsubmit="formSubmit">
+    <input name="ID" placeholder="请输入账号"/>
+    <input name="password" placeholder="请输入密码"/>
+    <button form-type="submit" class="register">登录</button>
+   
+</form>
+
