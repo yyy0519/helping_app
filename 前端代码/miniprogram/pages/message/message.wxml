@@ -3,10 +3,11 @@
   <view></view>
   <view>
     <view class="box" bindtap="go_liaotian" wx:for="{{userlist}}"wx:key="_id">
-        <image src="{{item.Img}}"></image>
-        <view class="nicheng">微信昵称:{{item.nickName}}</view>
+        
+        <view class="nicheng">微信昵称:{{item.nickname}}</view>
+        <view class="tubiao">+</view>
     </view>
-    <view class="tubiao">+</view>
+    
   </view>
   <view></view>
 </view>

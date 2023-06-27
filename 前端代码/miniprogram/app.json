@@ -1,13 +1,13 @@
 {
     "pages": [
-        "pages/login/login",
+        
         "pages/map/map",
         "pages/register/register",
         "pages/message/message",
         "pages/my/my",
         "pages/index/index",
-        "pages/liaotian/liaotian"
-
+        "pages/liaotian/liaotian",
+        "pages/login/login"
     ],
     "permission": {
         "scope.userLocation": {

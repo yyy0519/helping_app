@@ -6,8 +6,25 @@ Page({
      * 页面的初始数据
      */
     data: {
-       
+        userlist:[
+            {
+                _id:null,
+                ID:null,
+                Img:null,
+                _openid:null,
+                confirmpassword:null,
+                nickname:null,
+                password:null,
+                time:null
 
+            }
+        ]
+
+    },
+    register(){
+        wx.navigateTo({
+          url: '../register/register',
+        })
     },
     login(){
         wx.navigateTo({
@@ -15,14 +32,14 @@ Page({
         })
     },
     getxinxi(){
-        let userlist
+        //let userlist
         var that=this
         wx.cloud.database().collection('user_info').get({
-            success(res){
+            success:(res)=>{
                 console.log("获取数据成功",res.data),
-                userlist=res.data
-               that.setDate({
-                   userlist
+                //userlist=res.data
+               that.setData({
+                userlist:res.data
             })
             }
         })
