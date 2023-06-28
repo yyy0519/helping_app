@@ -52,7 +52,7 @@ Page({
                                     title: '登录成功!',
                                     icon:'none'
                                 })
-                                app.globalData.userInfo=res.data
+                                app.globalData.userInfo=res.data[0]
                                 setTimeout(()=>{
                                 wx.reLaunch({
                                   url: '../message/message',
@@ -68,7 +68,12 @@ Page({
     }
 })
     },
-    
+    onfocus: function() {
+        this.setData({isScroll: false})
+      },
+      onblur: function () {
+        this.setData({isScroll: true})
+      },
     /**
      * 生命周期函数--监听页面加载
      */

@@ -25,7 +25,21 @@ Page({
   /**
    * 页面装载回调
    */
+  onShow() {
+    
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+
+        this.getTabBar().setData({
+
+            selected: 0
+
+        })
+
+    }
+},
+
   onLoad () {
+     
     that = this // 设置页面this指针到全局that
     wx.getLocation({ // 获取当前位置
       type: 'gcj02', // gcj02火星坐标系，用于地图标记点位

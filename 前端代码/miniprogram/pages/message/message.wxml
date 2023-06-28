@@ -1,14 +1,28 @@
 <!--pages/message/message.wxml-->
 <view class="big">
-  <view></view>
+  <view wx:if="{{userInfo}}">
   <view>
     <view class="box" bindtap="go_liaotian" wx:for="{{userlist}}"wx:key="_id">
-        
-        <view class="nicheng">微信昵称:{{item.nickname}}</view>
-        <view class="tubiao">+</view>
+      
+        <image src="{{item.Img}}" class="imageformat"></image>
+        <view class="nicheng">{{item.nickname}}</view>
+        <!-- <view class="tubiao">+</view> -->
     </view>
-    
+
   </view>
   <view></view>
+  </view>
 </view>
-<button wx:if="{{!userInfo}}" bindtap="login">登录</button>
+
+
+<view class="tishi">
+<view wx:if="{{!userInfo}}" >您还未登录,确认登录？</view>
+</view>
+<view>
+<button wx:if="{{!userInfo}}" bindtap="login" class="denglu">
+    <image wx:if='{{customerLevel.value}}' class="iconLevel" src='../image/login.png'></image>
+    <view>登录</view>
+</button>
+</view>
+
+

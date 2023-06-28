@@ -23,7 +23,21 @@
                 },
                 {
                     "name": "",
-                    "pathName": "pages/register/register",
+                    "pathName": "pages/login/login",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/add/add",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/map/map",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

@@ -1,1 +1,21 @@
-/* pages/login/login.wxss */
+.dengluformat{
+    font-size: 75rpx;
+    color:#49315c;
+    font-weight: bold;
+    position: relative; 
+    left: 38rpx; 
+    top: 0rpx; 
+    width: 154rpx; 
+    height: 98rpx; 
+    display: block; 
+    box-sizing: border-box;
+
+}
+.tishi{
+    font-size: 35rpx;
+    left: 38rpx; 
+    width: 106rpx; 
+    height: 46rpx; 
+    display: block; 
+    box-sizing: border-box
+}
