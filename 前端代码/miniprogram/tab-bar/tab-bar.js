@@ -1,5 +1,4 @@
-// pages/my/my.js
-const app=getApp()
+// tab-bar/tab-bar.js
 Page({
 
     /**
@@ -13,7 +12,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        
 
     },
 
@@ -28,19 +26,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.setData({
-            userInfo:app.globalData.userInfo
-            
-        })
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-
-            this.getTabBar().setData({
-
-                selected: 4
-
-            })
-
-        }
 
     },
 

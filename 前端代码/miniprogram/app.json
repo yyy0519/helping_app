@@ -6,8 +6,10 @@
         "pages/message/message",
         "pages/my/my",
         "pages/index/index",
-        "pages/liaotian/liaotian"
-
+        "pages/liaotian/liaotian",
+        "tab-bar/tab-bar",
+        "pages/search/search",
+        "pages/add/add"
     ],
     "permission": {
         "scope.userLocation": {
@@ -22,28 +24,28 @@
     },
     "style": "v2",
     "sitemapLocation": "sitemap.json",
+    "usingComponents": {},
     "tabBar": {
+        "custom": true,
         "color": "#616161",
         "selectedColor": "#2E312F",
         "borderStyle": "black",
         "list": [
             {
-                "pagePath": "pages/message/message",
-                "text": "消息",
-                "iconPath": "image/_消息 (1).png",
-                "selectedIconPath": "image/_消息.png"
+                "pagePath": "pages/map/map"
+                
             },
             {
-                "pagePath": "pages/map/map",
-                "text": "地图",
-                "iconPath": "image/_定位小 (1).png",
-                "selectedIconPath": "image/_定位2小.png"
+                "pagePath": "pages/search/search"
             },
             {
-                "pagePath": "pages/my/my",
-                "text": "我的",
-                "iconPath": "image/_我的 (1).png",
-                "selectedIconPath": "image/_我的.png"
+                "pagePath": "pages/add/add"
+            },
+            {
+                "pagePath": "pages/message/message"
+            },
+            {
+                "pagePath": "pages/my/my"
             }
         ]
     }

@@ -42,7 +42,8 @@ App({
       }
     },
     globalData:{
-      userInfo:null
+      userInfo:null,
+      selected:0
   },
     /**
      * 封装的云函数调用方法

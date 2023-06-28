@@ -1,6 +1,6 @@
 .dengluformat{
     font-size: 75rpx;
-    color:#005AA7;
+    color:#49315c;
     font-weight: bold;
     position: relative; 
     left: 38rpx; 
