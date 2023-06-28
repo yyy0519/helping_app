@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/add/add",
         "pages/login/login",
         "pages/map/map",
         "pages/register/register",
@@ -8,8 +9,7 @@
         "pages/index/index",
         "pages/liaotian/liaotian",
         "tab-bar/tab-bar",
-        "pages/search/search",
-        "pages/add/add"
+        "pages/search/search"
     ],
     "permission": {
         "scope.userLocation": {

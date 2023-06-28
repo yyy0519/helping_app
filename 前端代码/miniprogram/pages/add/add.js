@@ -1,39 +1,68 @@
 // pages/add/add.js
+const app = getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        address:""
+        tip:'',
+        details:'',
     },
-    getloca(){
-        wx.navigateTo({
-          url: '../map/map',
-        })
-    },
-    getLocation: function() {
-        var that = this;
-        wx.getLocation({
-            type: 'gcj02', // gcj02火星坐标系，用于地图标记点位
-      success (res) { // 获取成功
-        that.setInfo([parseFloat(res.latitude), parseFloat(res.longitude)]) // 设置经纬度信息
-        that.getLocation() // 获取当前位置点
+    inputBind1: function (e) {
+        this.setData({
+          tip:e.detail.value.trim(),
+        });
+        console.log('tip:',e.detail.value.trim());
       },
-      fail (e) { // 获取失败
-        if (e.errMsg.indexOf('auth deny') !== -1) { // 如果是权限拒绝
-          wx.showModal({ // 显示提示
-            content: '你已经拒绝了定位权限，将无法获取到你的位置信息，可以选择前往开启',
-            success (res) {
-              if (res.confirm) { // 确认后
-                wx.openSetting() // 打开设置页，方便用户开启定位
-              }
+      inputBind2: function (e) {
+        this.setData({
+          details:e.detail.value.trim(),
+        });
+        console.log('details:',e.detail.value.trim());
+      },
+      getLocation:function () {
+          
+      },
+    submit:function (){
+        const tip = this.data.tip.trim();
+        const details = this.data.details.trim();
+        if (tip == '' || details == '') {
+          wx.showToast({
+            title: '请输入标题或详情',
+            icon: 'none'
+          });
+        } else {
+          // 将输入框的内容存到forhelp数据库中
+          wx.cloud.database().collection('forhelp_info').add({
+            data: {
+              tip: tip,
+              details: details,
+              time:Date.now(),
+            },
+            success: function(res) {
+              wx.showToast({
+                title: '提交成功',
+                icon:'success',
+                success:function () {
+                    setTimeout(function () {                        
+                         wx.reLaunch({
+                        url: '../map/map',
+                 });
+                },1000);
             }
-          })
+              });
+              // 跳转到其他页面
+            },    
+            fail: function(res) {
+              wx.showToast({
+                icon: 'none',
+                title: '提交失败',
+              });
+            }
+          });
         }
-      }
-    })
-},
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -53,15 +82,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-
-            this.getTabBar().setData({
-
-                selected: 2
-
-            })
-
-        }
     },
 
     /**
