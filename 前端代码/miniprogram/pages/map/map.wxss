@@ -24,7 +24,11 @@ map{
 	font-size: 34rpx;
 	margin-top: 12rpx;
 	color: var(--mb-color);
-	font-weight: 300;
+    font-weight: 300;
+    width: 508rpx; 
+    height: 46rpx; 
+    display: block; 
+    box-sizing: border-box;
 }
 .fixed_model .btn{
 	position: absolute;
