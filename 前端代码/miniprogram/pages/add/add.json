@@ -1,3 +1,6 @@
 {
-    "usingComponents": {}
-}
+        "usingComponents": {},
+        "permission": {
+          "scope.userLocation": {}
+        }
+      }

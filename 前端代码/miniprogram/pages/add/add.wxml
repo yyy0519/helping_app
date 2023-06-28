@@ -1,2 +1,14 @@
 <!--pages/add/add.wxml-->
-<text>pages/add/add.wxml</text>
+<view class="page-container">
+    <view class="form-group">
+        <view class="label">求助标题：</view>
+        <input class="input" placeholder="请输入求助标题" />
+    </view>
+    <view class="form-group">
+        <view class="label">求助描述：</view>
+        <textarea class="textarea" placeholder="请输入求助描述" maxlength="9999"></textarea>
+    </view>
+    <button class="btn" bindtap="getloca">获取位置</button>
+    <button class="btn" bindtap="submit">提交</button>
+  
+</view>
