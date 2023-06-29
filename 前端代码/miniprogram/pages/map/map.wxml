@@ -5,7 +5,7 @@
 </view>
 <view class="fixed_model">
 	<view class="title">{{model==0?'地址':'经纬度'}}</view>
-	<input class="in" bindinput="oninput" value="{{model==0?address:location}}" data-key="{{model==0?'address':'location'}}" placeholder="{{model==0?'拖动地图定位位置或输入地址':'如：22.5401,113.9345'}}" cursor-spacing="20"/>
+	<input style="" class="in" bindinput="oninput" value="{{model==0?address:location}}" data-key="{{model==0?'address':'location'}}" placeholder="{{model==0?'拖动地图定位位置或输入地址':'如：22.5401,113.9345'}}" cursor-spacing="20"/>
 	<view class="btn" bindtap="query">
 		<image src="../../asset/local.svg"></image>
 	</view>

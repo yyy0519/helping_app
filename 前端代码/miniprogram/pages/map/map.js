@@ -39,6 +39,15 @@ Page({
 },
 
   onLoad () {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+
+        this.getTabBar().setData({
+
+            selected: 0
+
+        })
+
+    }
      
     that = this // 设置页面this指针到全局that
     wx.getLocation({ // 获取当前位置

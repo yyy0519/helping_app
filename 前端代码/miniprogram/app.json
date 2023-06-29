@@ -7,9 +7,13 @@
         "pages/my/my",
         "pages/index/index",
         "pages/liaotian/liaotian",
+<<<<<<< Updated upstream
         "tab-bar/tab-bar",
         "pages/search/search",
         "pages/add/add"
+=======
+        "pages/search/search"
+>>>>>>> Stashed changes
     ],
     "permission": {
         "scope.userLocation": {
@@ -22,6 +26,8 @@
         "navigationBarTitleText": "大学生互助小程序",
         "navigationBarTextStyle": "black"
     },
+    "requiredPrivateInfos": ["getLocation", "chooseLocation", "chooseAddress"],
+
     "style": "v2",
     "sitemapLocation": "sitemap.json",
     "usingComponents": {},
