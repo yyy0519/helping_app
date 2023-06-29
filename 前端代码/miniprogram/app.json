@@ -1,19 +1,14 @@
 {
     "pages": [
+        "pages/add/add",
+        "pages/login/login",
         "pages/map/map",
         "pages/register/register",
-        "pages/login/login",
         "pages/message/message",
         "pages/my/my",
         "pages/index/index",
         "pages/liaotian/liaotian",
-<<<<<<< Updated upstream
-        "tab-bar/tab-bar",
-        "pages/search/search",
-        "pages/add/add"
-=======
         "pages/search/search"
->>>>>>> Stashed changes
     ],
     "permission": {
         "scope.userLocation": {

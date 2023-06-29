@@ -1,7 +1,4 @@
 <!--pages/add/add.wxml-->
-<<<<<<< Updated upstream
-<text>pages/add/add.wxml</text>
-=======
 <view class="page-container">
     <view class="form-group">
         <view class="label">求助标题：</view>
@@ -33,4 +30,3 @@
     <button class="btn" bindtap="submit">发布</button>
 </view>
 
->>>>>>> Stashed changes

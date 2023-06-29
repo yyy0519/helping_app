@@ -1,20 +1,12 @@
 // pages/add/add.js
-<<<<<<< Updated upstream
-=======
 const app = getApp()
 let that = null // 页面this指针变量
->>>>>>> Stashed changes
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-<<<<<<< Updated upstream
-
-    },
-
-=======
         loc:'',
         tip:'',
         details:'',
@@ -169,7 +161,6 @@ Page({
           })
         })
       },
->>>>>>> Stashed changes
     /**
      * 生命周期函数--监听页面加载
      */
@@ -189,15 +180,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-
-            this.getTabBar().setData({
-
-                selected: 2
-
-            })
-
-        }
     },
 
     /**
