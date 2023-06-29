@@ -8,7 +8,25 @@
         <view class="label">求助描述：</view>
         <textarea class="textarea" name="details"placeholder="请输入求助描述" maxlength="9999" bindinput="inputBind2" auto-focus="true"></textarea>
     </view>
-    <button class="btn" name="location"bindtap="getLocation">获取位置</button>
-    <button class="btn" bindtap="submit">提交</button>
-  
+    
+
+  <view class="location">
+    <view class="huoqu" bindtap="huoqulocation">
+    <view>获取位置</view>
+    </view>
+    <view>{{info.formatted}}</view>
+    <!-- <view class="info_item">
+		<input class="inputloc" name="loc" bindinput="inputBind3" />
+	</view> -->  
+  </view>
+
+  <view class="dingwei" >定位不准确？试试手动输入</view>
+ <view class="shuruweizhi">
+    <view>位置：</view>
+    <input class="inputloc" name="loc" bindinput="inputBind3" />
 </view>
+
+
+    <button class="btn" bindtap="submit">发布</button>
+</view>
+
