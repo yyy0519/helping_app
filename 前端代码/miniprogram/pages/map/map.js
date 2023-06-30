@@ -20,12 +20,39 @@ Page({
       adinfo: '-', // 行政区
       formatted: '-', // 推荐地址
       location: '-' // 经纬度
-    }
+    },
+    helplist:[
+        {
+            _id:null,
+            ID:null,
+            Img:null,
+            _openid:null,
+            date:null,
+            details:null,
+            loc:null,
+            nickname:null,
+            tip:null
+           
+        }
+    ]
   },
+  gethelpxinxi(){
+    var that=this
+    wx.cloud.database().collection('forhelp_info').orderBy('date', 'desc').get({//按照发布时间从小到大排序，最新发布的在最上面
+        success:(res)=>{
+            console.log("获取数据成功",res.data),
+           that.setData({
+            helplist:res.data
+        })
+        }
+    })
+ 
+},
   /**
    * 页面装载回调
    */
   onShow() {
+    this.gethelpxinxi()
     
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 
@@ -39,6 +66,7 @@ Page({
 },
 
   onLoad () {
+    this.gethelpxinxi()
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 
         this.getTabBar().setData({

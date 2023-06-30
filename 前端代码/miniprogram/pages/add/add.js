@@ -108,10 +108,12 @@ Page({
               });
         }
         else {
+            
           // 将输入框的内容存到forhelp数据库中
           wx.cloud.database().collection('forhelp_info').add({
             data: {
               tip: tip,
+              date:new Date().toJSON().substring(0, 10) + ' ' + new Date().toTimeString().substring(0,8),
               details: details,
               loc:location,
               nickname:userInfo.nickname,
@@ -119,9 +121,10 @@ Page({
               ID:userInfo.ID,
               time:Date.now(),
             },
+            
             success: function(res) {
               wx.showToast({
-                title: '提交成功',
+                title: '发布成功',
                 icon:'success',
                 success:function () {
                     setTimeout(function () {                        

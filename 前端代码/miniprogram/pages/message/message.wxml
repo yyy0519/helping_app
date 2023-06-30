@@ -14,7 +14,7 @@
 </view>
 
 
-<view class="tishi">
+<!-- <view class="tishi">
 <view wx:if="{{!userInfo}}" >您还未登录,确认登录？</view>
 </view>
 <view>
@@ -22,6 +22,6 @@
     <image wx:if='{{customerLevel.value}}' class="iconLevel" src='../image/login.png'></image>
     <view>登录</view>
 </button>
-</view>
+</view> -->
 
 

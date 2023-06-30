@@ -1,10 +1,11 @@
+<scroll-view class="scroll_view_vertical" scroll-y>
 <map longitude="{{longitude}}" enable-3D="true" enable-building="true" latitude="{{latitude}}" bindregionchange="changeMap" bindtap="clickMap" show-location="true" markers="{{[marker]}}"></map>
 <view class="change_model" bindtap="changemodel">
 	<image src="../../asset/change.svg"></image>
 	<view>{{model==0?'转经纬度':'转地址'}}</view>
 </view>
 <view class="fixed_model">
-	<view class="title">{{model==0?'地址':'经纬度'}}</view>
+	<view class="title">{{model==0?'输入地址':'输入经纬度'}}</view>
 	<input style="" class="in" bindinput="oninput" value="{{model==0?address:location}}" data-key="{{model==0?'address':'location'}}" placeholder="{{model==0?'拖动地图定位位置或输入地址':'如：22.5401,113.9345'}}" cursor-spacing="20"/>
 	<view class="btn" bindtap="query">
 		<image src="../../asset/local.svg"></image>
@@ -13,12 +14,28 @@
 <view class="info_model">
 	
 	<view class="info_item">
-		<view>推荐地址</view>
+		<view>地址</view>
 		<view>{{info.formatted}}</view>
 	</view>
-	<view class="info_item">
+	<!-- <view class="info_item">
 		<view>常规地址</view>
 		<view>{{info.address}}</view>
-	</view>
+	</view> -->
 	
 </view>
+
+<view>
+    <!-- <view wx:if="{{userInfo}}"> -->
+    <view class="box" bindtap="" wx:for="{{helplist}}"wx:key="_id">
+      <view class='xinxi'>
+        <image class="img" src="{{item.Img}}" ></image>
+        <view class="nicheng">{{item.nickname}}</view>
+      </view>
+      <view>{{item.date}}</view>
+      <view>{{item.tip}}</view>
+      <view>{{item.details}}</view>
+    </view>
+</view>
+</scroll-view>
+<view style="padding-bottom: 25%;"></view>
+<!-- 为了让最后的一条信息显示出来，否则滑动最后一条不显示 -->

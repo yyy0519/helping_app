@@ -1,5 +1,6 @@
 {
     "pages": [
+        "pages/start/start",
         "pages/add/add",
         "pages/login/login",
         "pages/map/map",
@@ -9,6 +10,7 @@
         "pages/index/index",
         "pages/liaotian/liaotian",
         "pages/search/search"
+        
     ],
     "permission": {
         "scope.userLocation": {
@@ -21,8 +23,11 @@
         "navigationBarTitleText": "大学生互助小程序",
         "navigationBarTextStyle": "black"
     },
-    "requiredPrivateInfos": ["getLocation", "chooseLocation", "chooseAddress"],
-
+    "requiredPrivateInfos": [
+        "getLocation",
+        "chooseLocation",
+        "chooseAddress"
+    ],
     "style": "v2",
     "sitemapLocation": "sitemap.json",
     "usingComponents": {},
@@ -34,7 +39,6 @@
         "list": [
             {
                 "pagePath": "pages/map/map"
-                
             },
             {
                 "pagePath": "pages/search/search"
