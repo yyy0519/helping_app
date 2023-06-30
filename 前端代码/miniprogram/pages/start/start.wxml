@@ -1,0 +1,9 @@
+<view class="tishi">
+<view wx:if="{{!userInfo}}" >您还未登录,确认登录？</view>
+</view>
+<view>
+<button wx:if="{{!userInfo}}" bindtap="login" class="denglu">
+    <image wx:if='{{customerLevel.value}}' class="iconLevel" src='../image/login.png'></image>
+    <view>登录</view>
+</button>
+</view>

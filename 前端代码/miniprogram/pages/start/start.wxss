@@ -1,0 +1,18 @@
+.tishi{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative; 
+    left: 7rpx; 
+    top: 295rpx
+}
+.denglu{
+    position: relative; 
+    left: 0rpx; 
+    top: 310rpx;
+    width: 80%;
+    margin-top: 20rpx;
+    background-color: #49315c;
+    color: white;
+    border-radius: 98rpx; 
+}

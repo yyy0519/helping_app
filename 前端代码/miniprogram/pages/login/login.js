@@ -57,6 +57,7 @@ Page({
                                 wx.reLaunch({
                                   url: '../message/message',
                                 })},800)
+                                app.globalData.selected=3
                     }
                 }
             })
