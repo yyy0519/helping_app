@@ -46,7 +46,7 @@ Page({
     },
     go_liaotian(){
         wx.navigateTo({
-          url: '../chat/chat',
+          url: '../liaotian/liaotian',
         })
     },
     /**

@@ -9,8 +9,7 @@
         "pages/my/my",
         "pages/index/index",
         "pages/liaotian/liaotian",
-        "pages/search/search",
-        "pages/chat/chat"
+        "pages/search/search"
         
     ],
     "permission": {
