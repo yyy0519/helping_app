@@ -45,65 +45,20 @@ Page({
        success:(res)=>{
            console.log("res",res.data)
            console.log("total2",total)
-for(i=0;i<3;i++){
-    console.log("iii")
+// for(i=0;i<3;i++){
+//     console.log("iii")
     for (let item of res.data) {
         
       let marker = this.createMarker(item);
       console.log("marker",marker)
       markers.push(marker)
     }
-    }
+    // }
+    console.log("premark",markers)
 }
     })
     return markers;
-    // var that=this
-    // var total=null
-    // wx.cloud.database().collection('forhelp_info').count({
-    //   success: function (res) {
-    //     console.log("res",res.total);
-    //     total=res.total
-    //     console.log("num",total);
-    //   }
-    // })
-    // wx.cloud.database().collection('forhelp_info').get({
-    //   success:(res)=>{
-    //     var arr=res.data
-    //     var arr2=[];
-    //     console.log("row",total);
-    //     var temp1=[
-    //       {
-    //         id: 0, // 标记点ID，不用变更
-    //         latitude: 39.9086, // 标记点所在纬度
-    //         longitude: 116.3974, // 标记点所在经度
-    //         iconPath: '../../asset/local.png', // 标记点图标，png或jpg类型
-    //         width: '20', // 标记点图标宽度
-    //         height: '20' // 标记点图标高度
-    //       }
-    //     ]
-    //     arr2.push(temp1);
-    //     for(var i=0;i<total;i++){
-    //       console.log("helpno",res.data[i].helpno);
-    //       var temp={
-    //         id: arr[i].helpno,
-    //         iconPath:'../../asset/location.png',
-    //         latitude: arr[i].latitude,
-    //         longitude: arr[i].longitude,
-    //         width: '20',
-    //         height: '20'
-    //       }
-    //       console.log("longitude",res.data[i].latitude);
-    //       arr2.push(temp);
-    //       console.log("longitude",res.data[i].longitude);
-    //       console.log("arr2",arr2);
-    //     }
-    //     that.setData({
-    //       markers:arr2
-    //     })
 
- 
-    // }
-   
   },
   createMarker(point) {
     let latitude = point.latitude;
@@ -113,8 +68,8 @@ for(i=0;i<3;i++){
       iconPath: "../../asset/location.png",
       id: point.helpno || 0,
     //   name: point.name || '',
-      latitude: latitude,
-      longitude: longitude,
+      latitude: "32.049534",
+      longitude: "118.669223",
       width: 30,
       height: 30,
       
@@ -170,10 +125,9 @@ for(i=0;i<3;i++){
         that.getLocation() // 获取当前位置点
         let marker = this.createMarker(res);
         console.log("marker111",marker)
-        that.setData({
-            markers: this.getMarkers(),
+        this.setData({
+            markers: this.getMarkers()
           })
-          console.log("markers",markers)
       },
       fail (e) { // 获取失败
         if (e.errMsg.indexOf('auth deny') !== -1) { // 如果是权限拒绝

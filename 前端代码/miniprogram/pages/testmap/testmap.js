@@ -72,6 +72,7 @@ Page({
       console.log("marker",marker)
       markers.push(marker)
     }
+    console.log("premarker",markers)
     return markers;
   },
   // moveToLocation: function () {
@@ -85,8 +86,8 @@ Page({
       iconPath: "../../asset/location.png",
       id: point.id || 0,
       name: point.name || '',
-      latitude: latitude,
-      longitude: longitude,
+      latitude: "32.049534",
+      longitude: "118.669223",
       width: 30,
       height: 30,
       
