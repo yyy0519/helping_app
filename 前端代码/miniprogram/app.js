@@ -47,7 +47,8 @@ App({
     },
     globalData:{
       userInfo:null,
-      selected:0
+      selected:0,
+      helpnum:0
   },
     /**
      * 封装的云函数调用方法
