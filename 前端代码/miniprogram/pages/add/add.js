@@ -48,6 +48,10 @@ Page({
             success: (res) => {
              
              that.setInfo([parseFloat(res.latitude), parseFloat(res.longitude)]) // 设置经纬度信息
+             that.setData({
+               latitude:res.latitude,
+               longitude:res.longitude
+             })
              that.getLocation() // 获取当前位置点
              console.log(res)
             },
@@ -87,6 +91,8 @@ Page({
         const loc=this.data.loc.trim();
         const loction=null;
         const userInfo=app.globalData.userInfo;
+        const latitude=this.data.latitude;
+        const longitude=this.data.longitude;
             if(loc!=''){
                 location=loc;
             }
@@ -120,9 +126,16 @@ Page({
               Img:userInfo.Img,
               ID:userInfo.ID,
               time:Date.now(),
+              latitude:latitude,
+              longitude:longitude,
+              helpno:app.globalData.helpnum+1
             },
             
+             
+          
+            
             success: function(res) {
+
               wx.showToast({
                 title: '发布成功',
                 icon:'success',
@@ -133,6 +146,7 @@ Page({
                  });
                 },1000);
                 app.globalData.selected=0
+                app.globalData.helpnum=app.globalData.helpnum+1
         
             }
               });
