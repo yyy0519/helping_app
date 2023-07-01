@@ -9,7 +9,10 @@
         "pages/my/my",
         "pages/index/index",
         "pages/liaotian/liaotian",
-        "pages/search/search"
+        "pages/search/search",
+        "pages/yifabu/yifabu",
+        "pages/yibangzhu/yibangzhu",
+        "pages/xunzhang/xunzhang"
         
     ],
     "permission": {
