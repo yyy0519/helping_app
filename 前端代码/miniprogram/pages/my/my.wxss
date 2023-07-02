@@ -73,8 +73,8 @@ page {
 }
 
 image{
-    width: 210rpx;
-    height:210rpx;
+    width: 100rpx;
+    height:100rpx;
     border-radius: 25rpx;
 }
 .box{
