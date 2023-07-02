@@ -1,5 +1,6 @@
 App({
  
+<<<<<<< Updated upstream
   flag: false,
   async onLaunch (e) {
     this.initcloud()
@@ -28,6 +29,26 @@ App({
         wx.cloud.init({ // 初始化云开发环境
           traceUser: true,
           env: normalinfo[0].envId
+=======
+    flag: false,
+    async onLaunch (e) {
+      this.initcloud()
+      if(wx.getStorageSync('userInfo')){
+        this.globalData.userInfo = wx.getStorageSync('userInfo')
+        console.log('get storage')
+      }
+    },
+    /**
+     * 初始化云开发环境（支持环境共享和正常两种模式）
+     */
+    async initcloud () {
+      const shareinfo = wx.getExtConfigSync() // 检查 ext 配置文件
+      const normalinfo = require('./envList.js').envList || [] // 读取 envlist 文件
+      if (shareinfo.envid != null) { // 如果 ext 配置文件存在，环境共享模式
+        this.c1 = new wx.cloud.Cloud({ // 声明 cloud 实例
+          resourceAppid: shareinfo.appid,
+          resourceEnv: shareinfo.envid
+>>>>>>> Stashed changes
         })
         // 装载云函数操作对象返回方法
         this.cloud = () => {

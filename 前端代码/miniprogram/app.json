@@ -1,13 +1,31 @@
 {
     "pages": [
+<<<<<<< Updated upstream
+=======
+        
+        "pages/start/start",
+        
+        "pages/add/add",
+>>>>>>> Stashed changes
         "pages/login/login",
         "pages/map/map",
         "pages/register/register",
         "pages/message/message",
         "pages/my/my",
         "pages/index/index",
+<<<<<<< Updated upstream
         "pages/liaotian/liaotian"
 
+=======
+        "pages/liaotian/liaotian",
+        "pages/search/search",
+        "pages/yifabu/yifabu",
+        "pages/yibangzhu/yibangzhu",
+        "pages/xunzhang/xunzhang",
+        "pages/chat/chat",
+        "pages/friends/friends"
+        
+>>>>>>> Stashed changes
     ],
     "permission": {
         "scope.userLocation": {
@@ -40,10 +58,20 @@
                 "selectedIconPath": "image/_定位小.png"
             },
             {
+<<<<<<< Updated upstream
                 "pagePath": "pages/my/my",
                 "text": "我的",
                 "iconPath": "image/_我的 (1).png",
                 "selectedIconPath": "image/_我的.png"
+=======
+                "pagePath": "pages/add/add"
+            },
+            {
+                "pagePath": "pages/friends/friends"
+            },
+            {
+                "pagePath": "pages/my/my"
+>>>>>>> Stashed changes
             }
         ]
     }

@@ -17,9 +17,13 @@ Page({
               console.log(res)
               that.setData({
                   Img:res.userInfo.avatarUrl,
-                  nickname:res.userInfo.nickName
+                  nickname:res.userInfo.nickName,
+                  userInfo: res.userInfo
               })
+              app.globalData.userInfo = res.userInfo
+              console.log(app.globalData.userInfo)
           })
+          
         })
 
         //获取用户微信的头像
@@ -35,7 +39,22 @@ Page({
                         time:Date.now(),
                         ...info,
                         Img:that.data.Img,
+<<<<<<< Updated upstream
                         nickname:that.data.nickname
+=======
+                        nickname:that.data.nickname,
+                        avatarUrl: that.data.userInfo.avatarUrl,
+                        friends: [],
+                        new_friends: []
+        
+                    },success(res){
+                        wx.cloud.database().collection('user_info').doc(res._id).get({
+                            success(res){
+                                console.log(res)
+                                app.globalData.userInfo=res.data
+                            }
+                        })
+>>>>>>> Stashed changes
                     }
                 }
             )
@@ -60,7 +79,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        console.log(app.globalData.userInfo);
+        this.setData({
+            userInfo: app.globalData.userInfo
+        })
     },
 
     /**
