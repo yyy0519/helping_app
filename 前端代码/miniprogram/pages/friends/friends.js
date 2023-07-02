@@ -65,11 +65,11 @@ Page({
         wx.cloud.database().collection('chat_record').add({
             data:{
                 userA_id : that.data.userInfo._id,
-                userA_account_id : that.data.userInfo.account_id,
+                userA_ID : that.data.userInfo.ID,
                 userA_avatarUrl : that.data.userInfo.avatarUrl,
 
                 userB_id : that.data.user_list[index]._id,
-                userB_account_id : that.data.user_list[index].account_id,
+                userB_ID : that.data.user_list[index].ID,
                 userB_avatarUrl : that.data.user_list[index].avatarUrl,
 
                 record : [],
@@ -122,7 +122,7 @@ Page({
         })
 
         // AB成为朋友
-        wx.cloud.database().collection('chat_user').where({
+        wx.cloud.database().collection('user_info').where({
             _id : that.data.userInfo._id
         }).get({
             success(res) {
@@ -130,7 +130,7 @@ Page({
                 var my_friends = res.data[0].friends;
                 my_friends.push(that.data.new_friends[index].userA_id)
                 app.globalData.userInfo.friends = my_friends                
-                wx.cloud.database().collection('chat_user').where({
+                wx.cloud.database().collection('user_info').where({
                     _id : that.data.userInfo._id
                 }).update({
                     data : {
@@ -142,14 +142,14 @@ Page({
 
     
 
-        wx.cloud.database().collection('chat_user').where({
+        wx.cloud.database().collection('user_info').where({
             _id : that.data.new_friends[index].userA_id
         }).get({
             success(res) {
                 //console.log(res)
                 var A_friends = res.data[0].friends;
                 A_friends.push(that.data.userInfo._id)
-                wx.cloud.database().collection('chat_user').where({
+                wx.cloud.database().collection('user_info').where({
                     _id : that.data.new_friends[index].userA_id
                 }).update({
                     data : {
@@ -177,9 +177,9 @@ Page({
                 }
             ])
         ).get({
-            success(res){
-                //console.log(res)
-                that.setData({
+            success:(res)=>{
+                console.log("获取数据成功",res)
+                this.setData({
                     my_friends : res.data
                 })
             }
