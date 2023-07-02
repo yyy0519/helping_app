@@ -1,13 +1,12 @@
 // pages/yifabu/yifabu.js
+const app=getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-<<<<<<< Updated upstream
 
-=======
         helpinglist:[
             {
                 tip:null,
@@ -38,21 +37,21 @@ Page({
             nickname:app.globalData.userInfo.nickname,
         }).get({
             success(res){
-                console.log(res.data)
+                console.log("已发布",res.data)
                 helpinglist=res.data
                 that.setData({
                     helpinglist
                 })
             }
         })
->>>>>>> Stashed changes
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+    this.getyifabu();
     },
 
     /**
@@ -66,7 +65,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+      this.getyifabu();
     },
 
     /**

@@ -1,7 +1,4 @@
-<!--pages/yifabu/yifabu.wxml-->
-<<<<<<< Updated upstream
-<text>pages/yifabu/yifabu.wxml</text>
-=======
+
 <view class="big">
     <view></view>
     <view>
@@ -30,4 +27,3 @@
 
 <view style="padding-bottom: 15%;"></view>
 <!-- 为了让最后的一条信息显示出来，否则滑动最后一条不显示 -->
->>>>>>> Stashed changes

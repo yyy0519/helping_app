@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-/* pages/yifabu/yifabu.wxss */
-=======
-/* pages/yifabu/yifabu.wxss */
+
 page{
     background-color: #9b7c9b;
 }
@@ -97,4 +94,3 @@ page{
   position: relative;
   top:63px;
 }
->>>>>>> Stashed changes
