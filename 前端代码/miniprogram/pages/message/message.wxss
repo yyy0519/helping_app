@@ -35,4 +35,9 @@
     color: white;
     border-radius: 98rpx; 
 }
+.img{
+    position: relative; 
+    left: 63rpx; 
+    top: 200rpx;
+}
   
