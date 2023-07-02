@@ -22,21 +22,38 @@
 		<view>常规地址</view>
 		<view>{{info.address}}</view>
 	</view> -->
-	
 </view>
 
 <view>
     <!-- <view wx:if="{{userInfo}}"> -->
-    <view class="box" bindtap="" wx:for="{{helplist}}"wx:key="_id">
+      
+    <view class="Bigbox" bindtap="" wx:for="{{helplist}}"wx:key="_id">   
+    <view class="blank"></view>
+    <navigator url="../helpdetail/helpdetail?_id={{item._id}}" >
+    <view class="box">
+    <view class="loc-end">
+    <view>
       <view class='xinxi'>
         <image class="img" src="{{item.Img}}" ></image>
         <view class="nicheng">{{item.nickname}}</view>
       </view>
-      <view>{{item.date}}</view>
-      <view>{{item.tip}}</view>
-      <view>{{item.details}}</view>
+      <view class="date" >{{item.date}}</view>
     </view>
+      <view >{{item.loc}}</view>
+    </view>
+      <view class="title">{{item.tip}}</view>
+      <view class="detail">{{item.details}}</view>
+    </view>
+</navigator>
+    </view>
+
+
 </view>
+
+
+
 </scroll-view>
+
+
 <view style="padding-bottom: 25%;"></view>
 <!-- 为了让最后的一条信息显示出来，否则滑动最后一条不显示 -->

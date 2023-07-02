@@ -7,12 +7,15 @@
         <view class="nicheng">微信昵称:{{item.nickname}}</view>
         <!--view class="tubiao">+</view>-->
     </view>
-
   </view>
   <view></view>
   </view>
 </view>
 
+<view wx:if="{{!userInfo}}" >
+<!-- <view class="tishi">您还未登录,确认登录？</view> -->
+<image class="img" src="../../asset/no_message.png"></image>
+</view>
 
 <!-- <view class="tishi">
 <view wx:if="{{!userInfo}}" >您还未登录,确认登录？</view>

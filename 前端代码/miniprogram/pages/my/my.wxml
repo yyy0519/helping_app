@@ -34,7 +34,7 @@
     </view>
   </view>
   <!--  求助，勋章 -->
-  <view class="more">
+  <view class="more" style="position: absolute; left: -2rpx; top: 176rpx">
     <block wx:for="{{list}}" wx:key="index">
       <template is="navigate_item" data="{{item}}"></template>
     </block>
