@@ -34,6 +34,8 @@
         "chooseLocation",
         "chooseAddress"
     ],
+    "ignoreDevUnusedFiles": false,
+    "ignoreUploadUnusedFiles": false,
     "style": "v2",
     "sitemapLocation": "sitemap.json",
     "usingComponents": {},
@@ -53,7 +55,7 @@
                 "pagePath": "pages/add/add"
             },
             {
-                "pagePath": "pages/message/message"
+                "pagePath": "pages/friends/friends"
             },
             {
                 "pagePath": "pages/my/my"

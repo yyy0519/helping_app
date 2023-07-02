@@ -25,7 +25,7 @@ Component({
               "text": ""
             },
             {
-              "pagePath": "/pages/message/message",
+              "pagePath": "/pages/friends/friends",
               "iconPath": "../image/_消息 (1).png",
               "selectedIconPath": "../image/_消息.png",
               "text": "消息"

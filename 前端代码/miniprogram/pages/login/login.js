@@ -54,7 +54,7 @@ Page({
                                 app.globalData.userInfo=res.data[0]
                                 setTimeout(()=>{
                                 wx.reLaunch({
-                                  url: '../message/message',
+                                  url: '../friends/friends',
                                 })},800)
                                 app.globalData.selected=3
                     }
