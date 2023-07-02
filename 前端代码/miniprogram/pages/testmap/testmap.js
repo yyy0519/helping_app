@@ -7,7 +7,17 @@ Page({
   data: {
     // centerX: 113.3345211,
     // centerY: 23.10229,
-    markers: [],
+    markers: [
+        {
+            iconPath: "../../asset/location.png",
+      id: 0,
+      name:null,
+      latitude: "32.049534",
+      longitude:"118.669223",
+      width: 30,
+      height: 30
+        }
+    ],
     showDialog: false,
     mapId: "myMap" //wxml中的map的Id值
   },
@@ -26,10 +36,7 @@ Page({
   onLoad: function () {
     // console.log('地图定位！')
     let that = this
-    for(var i=0;i<5;i++){
-        console.log("iii")
-      
-        }
+  
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success: (res) => {
@@ -40,7 +47,7 @@ Page({
         this.setData({
           centerX: longitude,
           centerY: latitude,
-          markers: this.getLingyuanMarkers(),
+          markers: this.getMarkers(),
         })
       }
     });
@@ -63,30 +70,50 @@ Page({
       showDialog: false,
     })
   },
-
+  getMarkers(){
+     let that=this
+   let premarkers = [];
+   let temp=[];
+   wx.cloud.database().collection('forhelp_info').get({
+    success:(res)=>{
+        for(var i=0;i<3;i++){
+            let marker = this.createMarker(res.data[i]);
+            premarkers.push(marker)
+        }
+        that.setData({
+            markers:premarkers
+        })
+        console.log("premarker",this.data.markers)
+        
+}
+   })
+   return premarkers;
+   console.log("premarker",markers)
+    
+},
+   
   getLingyuanMarkers() {
     let markers = [];
+    console.log(lingyuanData)
     for (let item of lingyuanData) {
         console.log("item",item)
       let marker = this.createMarker(item);
       console.log("marker",marker)
       markers.push(marker)
+      
     }
+    console.log("premarker",markers)
     return markers;
   },
-  // moveToLocation: function () {
-  //   this.mapCtx.moveToLocation()
-
-  // },
   createMarker(point) {
-    let latitude = point.latitude;
-    let longitude = point.longitude;
+    //let latitude = point.latitude;
+    //let longitude = point.longitude;
     let marker = {
       iconPath: "../../asset/location.png",
-      id: point.id || 0,
+      id: point.helpno || 0,
       name: point.name || '',
-      latitude: latitude,
-      longitude: longitude,
+      latitude: "32.049534",
+      longitude:"118.669223",
       width: 30,
       height: 30,
       
