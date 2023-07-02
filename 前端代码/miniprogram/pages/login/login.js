@@ -54,9 +54,13 @@ Page({
                                 app.globalData.userInfo=res.data[0]
                                 setTimeout(()=>{
                                 wx.reLaunch({
-                                  url: '../friends/friends',
+
+                                  url: '../message/message',
+
+                                  url: '../map/map',
+
                                 })},800)
-                                app.globalData.selected=3
+                                app.globalData.selected=0
                     }
                 }
             })

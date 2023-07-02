@@ -111,18 +111,18 @@ Page({
                 console.log(res)
                 if (that.data.userInfo._id==res.data.userA_id){
                     
-                    friend_account_id = res.data.userB_ID;
+                    friend_account_id = res.data.userB_account_id;
                     friend_avatarUrl = res.data.userB_avatarUrl;
                     console.log("A")
                     
                 } else {
                     console.log("B")
-                    friend_account_id = res.data.userA_ID
+                    friend_account_id = res.data.userA_account_id
                     friend_avatarUrl = res.data.userA_avatarUrl
                 }
-                wx.setNavigationBarTitle({
-                    title: friend_account_id
-                })
+                // wx.setNavigationBarTitle({
+                //     title: friend_account_id
+                // })
                 that.setData({
                     friend_account_id: friend_account_id,
                     friend_avatarUrl : friend_avatarUrl

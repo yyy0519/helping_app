@@ -41,7 +41,7 @@ Page({
                       success:function () {
                           setTimeout(function () {                        
                                wx.reLaunch({
-                              url: '../message/message',
+                              url: '../friends/friends',
                        });
                       },1000);
                       app.globalData.selected=3

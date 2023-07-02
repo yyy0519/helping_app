@@ -3,6 +3,8 @@
     <view></view>
     <view>
         <view class="box" wx:for="{{helpinglist}}"wx:key="_id">
+        <!-- <view class="column"> -->
+
           <view class="loc-end">
             <view class='xinxi'>
                 <image class="img" src="{{item.Img}}" ></image>
@@ -11,13 +13,19 @@
             <view class="date" >{{item.date}}</view>
             <view class="loc">{{item.loc}}</view>
           </view>
+
           <view class="title">{{item.tip}}</view>
+          <view class="detailbox">
           <view class="detail">{{item.details}}</view>
+          </view>
             <!--<view class="didian">{{item.loc}}</view>-->
             <view class="twobtn">
-              <button class="editbtn" bindtap="">编辑</button>
+              <navigator url="../edit/edit?_id={{item._id}}" >
+              <button class="editbtn" bindtap="" >编辑</button>
+              </navigator>
               <button class="deletebtn" bindtap="delete" data-item="{{item}}">删除</button>
             </view>
+          <!-- </view> -->
         </view>
 
         

@@ -19,14 +19,33 @@ Page({
         ]
     },
     delete(e){
+      let that=this
       console.log(e.target.dataset.item);
       const item=e.target.dataset.item;
-      wx.cloud.database().collection('forhelp_info').where({
-        ID:app.globalData.userInfo.ID,
-        nickname:app.globalData.userInfo.nickname,
-        date:item.date,
-        _id:item._id
-    }).remove({})
+      wx.showModal({
+        title: '提示',
+        content: '是否删除此求助？',
+        success: (res)=>  {
+          if (res.confirm) {//这里是点击了确定以后
+           
+            wx.cloud.database().collection('forhelp_info').where({
+              ID:app.globalData.userInfo.ID,
+              nickname:app.globalData.userInfo.nickname,
+              date:item.date,
+              _id:item._id
+          }).remove({})
+          
+          this.getyifabu();
+
+          } else {//这里是点击了取消以后
+           
+          }
+        }
+      })
+      
+    },
+    edit(e){
+console.log(e.target.dataset.item)
     },
     
     getyifabu(){
@@ -35,7 +54,7 @@ Page({
         wx.cloud.database().collection('forhelp_info').where({
             ID:app.globalData.userInfo.ID,
             nickname:app.globalData.userInfo.nickname,
-        }).get({
+        }).orderBy('date', 'desc').get({
             success(res){
                 console.log("已发布",res.data)
                 helpinglist=res.data

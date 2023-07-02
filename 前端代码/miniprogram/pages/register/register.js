@@ -1,30 +1,26 @@
 // pages/login/login.js
-const app = getApp()
+const app=getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        Img:"/image/登录.png",
-        nickname:"昵称",
-        //userId:'ID'
+        Img:"/image/me.png",
+        nickname:"昵称"
+
     },
     getUserProfile(){
         var that=this
         wx.getUserProfile({
           desc: '展示用户信息',
           success:(res =>{
-            //  console.log(res)
+              console.log(res)
               that.setData({
                   Img:res.userInfo.avatarUrl,
-                  nickname:res.userInfo.nickName,
-                  userInfo: res.userInfo
+                  nickname:res.userInfo.nickName
               })
-              app.globalData.userInfo = res.userInfo
-             // console.log(app.globalData.userInfo)
           })
-          
         })
 
         //获取用户微信的头像
@@ -33,31 +29,14 @@ Page({
         let info
         let that=this
         info=e.detail.value
-        wx.cloud.callFunction({
-            name: 'cloudbase_auth',
-            success: res => {
-               that.setData({
-                   userId:res.result.userID
-               })
-              console.log('id:',that.data.userId)
-            },
-            fail: err => {
-              console.error(err)
-            }
-          })
-        if(info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
+        if(info.ID!=''&&info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
             wx.cloud.database().collection('user_info').add(
                 {
                     data:{
                         time:Date.now(),
                         ...info,
                         Img:that.data.Img,
-                        userid:that.data.userId,
-                        nickname:that.data.nickname,
-                        avatarUrl: that.data.userInfo.avatarUrl,
-                        friends: [],
-                        new_friends: []
-        
+                        nickname:that.data.nickname
                     },success(res){
                         wx.cloud.database().collection('user_info').doc(res._id).get({
                             success(res){
@@ -65,15 +44,21 @@ Page({
                                 app.globalData.userInfo=res.data
                             }
                         })
-
                     }
                 }
             )
             wx.showToast({
                 title: '注册成功！',
-                icon: "none"
+                icon: 'none'
               })
+
+              setTimeout(()=>{
+                wx.reLaunch({
+                  url: '../message/message',
+                })
+              },500)
               
+
         }
         else{
             wx.showToast({
@@ -82,16 +67,15 @@ Page({
             })
         }
       //console.log(e.detail.value)
+      
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        console.log(app.globalData.userInfo);
-        this.setData({
-            userInfo: app.globalData.userInfo
-        })
+
     },
 
     /**
