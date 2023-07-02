@@ -13,7 +13,9 @@
         "pages/yifabu/yifabu",
         "pages/yibangzhu/yibangzhu",
         "pages/xunzhang/xunzhang",
-        "pages/helpdetail/helpdetail"
+        "pages/helpdetail/helpdetail",
+         "pages/chat/chat",
+        "pages/friends/friends"
         
     ],
     "permission": {

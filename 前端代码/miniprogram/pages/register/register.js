@@ -1,5 +1,4 @@
 // pages/login/login.js
-const app=getApp()
 Page({
 
     /**
@@ -18,9 +17,13 @@ Page({
               console.log(res)
               that.setData({
                   Img:res.userInfo.avatarUrl,
-                  nickname:res.userInfo.nickName
+                  nickname:res.userInfo.nickName,
+                  userInfo: res.userInfo
               })
+              app.globalData.userInfo = res.userInfo
+              console.log(app.globalData.userInfo)
           })
+          
         })
 
         //获取用户微信的头像
@@ -36,7 +39,12 @@ Page({
                         time:Date.now(),
                         ...info,
                         Img:that.data.Img,
-                        nickname:that.data.nickname
+
+                        nickname:that.data.nickname,
+                        avatarUrl: that.data.userInfo.avatarUrl,
+                        friends: [],
+                        new_friends: []
+        
                     },success(res){
                         wx.cloud.database().collection('user_info').doc(res._id).get({
                             success(res){
@@ -44,21 +52,15 @@ Page({
                                 app.globalData.userInfo=res.data
                             }
                         })
+
                     }
                 }
             )
             wx.showToast({
                 title: '注册成功！',
-                icon: 'none'
+                icon: "none"
               })
-
-              setTimeout(()=>{
-                wx.reLaunch({
-                  url: '../message/message',
-                })
-              },500)
               
-
         }
         else{
             wx.showToast({
@@ -75,7 +77,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        console.log(app.globalData.userInfo);
+        this.setData({
+            userInfo: app.globalData.userInfo
+        })
     },
 
     /**

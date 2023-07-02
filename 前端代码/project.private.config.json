@@ -3,14 +3,14 @@
     "projectname": "%E5%89%8D%E7%AB%AF%E4%BB%A3%E7%A0%81",
     "setting": {
         "compileHotReLoad": true,
-        "urlCheck": false
+        "urlCheck": true
     },
     "condition": {
         "miniprogram": {
             "list": [
                 {
                     "name": "",
-                    "pathName": "pages/yifabu/yifabu",
+                    "pathName": "pages/liaotian/liaotian",
                     "query": "",
                     "launchMode": "default",
                     "scene": null
@@ -24,35 +24,7 @@
                 },
                 {
                     "name": "",
-                    "pathName": "pages/login/login",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "",
-                    "pathName": "pages/add/add",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "",
-                    "pathName": "pages/map/map",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "",
-                    "pathName": "pages/testmap/testmap",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "",
-                    "pathName": "pages/my/my",
+                    "pathName": "pages/register/register",
                     "query": "",
                     "launchMode": "default",
                     "scene": null
@@ -60,5 +32,5 @@
             ]
         }
     },
-    "libVersion": "2.32.3"
+    "libVersion": "2.19.1"
 }
