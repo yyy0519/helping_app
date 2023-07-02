@@ -1,22 +1,18 @@
 {
     "pages": [
-<<<<<<< Updated upstream
-=======
+
         
         "pages/start/start",
         
         "pages/add/add",
->>>>>>> Stashed changes
+
         "pages/login/login",
         "pages/map/map",
         "pages/register/register",
         "pages/message/message",
         "pages/my/my",
         "pages/index/index",
-<<<<<<< Updated upstream
-        "pages/liaotian/liaotian"
 
-=======
         "pages/liaotian/liaotian",
         "pages/search/search",
         "pages/yifabu/yifabu",
@@ -25,7 +21,7 @@
         "pages/chat/chat",
         "pages/friends/friends"
         
->>>>>>> Stashed changes
+
     ],
     "permission": {
         "scope.userLocation": {
@@ -41,29 +37,18 @@
     "style": "v2",
     "sitemapLocation": "sitemap.json",
     "tabBar": {
+        "custom": true,
         "color": "#616161",
         "selectedColor": "#2E312F",
         "borderStyle": "black",
         "list": [
             {
-                "pagePath": "pages/message/message",
-                "text": "消息",
-                "iconPath": "image/_消息 (1).png",
-                "selectedIconPath": "image/_消息.png"
+                "pagePath": "pages/map/map"
             },
             {
-                "pagePath": "pages/map/map",
-                "text": "地图",
-                "iconPath": "image/_定位小 (1).png",
-                "selectedIconPath": "image/_定位小.png"
+                "pagePath": "pages/search/search"
             },
             {
-<<<<<<< Updated upstream
-                "pagePath": "pages/my/my",
-                "text": "我的",
-                "iconPath": "image/_我的 (1).png",
-                "selectedIconPath": "image/_我的.png"
-=======
                 "pagePath": "pages/add/add"
             },
             {
@@ -71,7 +56,6 @@
             },
             {
                 "pagePath": "pages/my/my"
->>>>>>> Stashed changes
             }
         ]
     }

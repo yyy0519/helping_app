@@ -43,12 +43,11 @@ Page({
      */
     onLoad(options) {
         this.getxinxi()
-<<<<<<< Updated upstream
-=======
+
         this.setData({
             userInfo : app.globalData.userInfo
         })
->>>>>>> Stashed changes
+
     },
 
     /**
@@ -62,9 +61,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-<<<<<<< Updated upstream
+
         this.getxinxi()
-=======
+
         this.getxinxi(),
         this.setData({
             userInfo : app.globalData.userInfo,
@@ -136,7 +135,7 @@ Page({
           url: '/pages/chat/chat?id=' + this.data.my_friends[index]._id
         })
         
->>>>>>> Stashed changes
+
     },
 
     /**

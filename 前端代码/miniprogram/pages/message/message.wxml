@@ -1,7 +1,6 @@
-<<<<<<< Updated upstream
-<button bindtap="register">注册</button>
-<button bindtap="login">登录</button>
-=======
+
+
+
 <!--pages/message/message.wxml-->
 <!--<view class="big">
   <view wx:if="{{userInfo}}">

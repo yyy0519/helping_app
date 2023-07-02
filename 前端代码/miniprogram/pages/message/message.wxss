@@ -1,10 +1,7 @@
-<<<<<<< Updated upstream
-/* pages/message/message.wxss */
-.for {
-=======
+
 
 /*.for {
->>>>>>> Stashed changes
+
     background: blueviolet;
     border: solid 1px blue;
     color: white;
@@ -112,4 +109,3 @@
     margin-top: 200rpx;
   }
   
->>>>>>> Stashed changes

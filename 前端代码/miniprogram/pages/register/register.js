@@ -39,9 +39,7 @@ Page({
                         time:Date.now(),
                         ...info,
                         Img:that.data.Img,
-<<<<<<< Updated upstream
-                        nickname:that.data.nickname
-=======
+
                         nickname:that.data.nickname,
                         avatarUrl: that.data.userInfo.avatarUrl,
                         friends: [],
@@ -54,7 +52,7 @@ Page({
                                 app.globalData.userInfo=res.data
                             }
                         })
->>>>>>> Stashed changes
+
                     }
                 }
             )
