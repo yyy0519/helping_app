@@ -1,6 +1,7 @@
 // pages/add/add.js
 const app = getApp()
 let that = null // 页面this指针变量
+let locationData = require('../../utils/location')
 Page({
 
     /**
@@ -13,7 +14,7 @@ Page({
         latitude: 39.9086, // 地图中心纬度
         longitude: 116.3974, // 地图中心经度
         output: 0,
-        array: ['逸夫图书馆', '第一教学楼', '第二教学楼', '第三教学楼','第四教学楼','南操场','北操场','1号楼','2号楼','天天餐厅','3号楼','4号楼','北门','11号楼','游泳馆','材料楼',],
+        array: ['未选择位置','逸夫图书馆', '第一教学楼', '第二教学楼', '第三教学楼','第四教学楼','南操场','北操场','1号楼','2号楼','天天餐厅','3号楼','4号楼','北门','11号楼','游泳馆','材料楼'],
         currentChoose: 0,
         info: { // 地图点位信息
             address: '-', // 常规地址
@@ -97,13 +98,22 @@ Page({
         const loc=this.data.loc.trim();
         const loction=null;
         const userInfo=app.globalData.userInfo;
-        const latitude=this.data.latitude;
-        const longitude=this.data.longitude;
-            if(loc!=''){
-                location=loc;
+        let latitude1=null;
+        let longitude1=null;
+        let place=null;
+        const chooseplace=this.data.currentChoose;
+        
+            if(chooseplace!=0){
+                for (let item of locationData) {
+                    if(chooseplace==item.id){
+                        latitude1=item.latitude;
+                        longitude1=item.longitude;
+                        place=item.name;
+                    }
+                }
             }
             else{
-                location=this.data.info.formatted;
+                location=this.data.info.formatted.substring(0, 8);
                 console.log(this.data.info.formatted)
             }
         if (tip == '' || details == '') {
@@ -125,15 +135,15 @@ Page({
           wx.cloud.database().collection('forhelp_info').add({
             data: {
               tip: tip,
-              date:new Date().toJSON().substring(0, 10) + ' ' + new Date().toTimeString().substring(0,8),
+              date:new Date().toJSON().substring(5, 10) + ' ' + new Date().toTimeString().substring(0,5),
               details: details,
-              loc:location,
+              loc:place,
               nickname:userInfo.nickname,
               Img:userInfo.Img,
               ID:userInfo.ID,
               time:Date.now(),
-              latitude:latitude,
-              longitude:longitude,
+              latitude:latitude1,
+              longitude:longitude1,
               helpno:app.globalData.helpnum+1
             },
             

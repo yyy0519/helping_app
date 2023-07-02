@@ -7,9 +7,9 @@ Component({
       list: [
           {
                 "pagePath": "/pages/map/map",
-                "text": "地图",
-                "iconPath": "../image/地标(1).png",
-                "selectedIconPath": "../image/地标.png"
+                "text": "首页",
+                "iconPath": "../image/首页(1).png",
+                "selectedIconPath": "../image/首页.png"
             },
             {
               "pagePath": "/pages/search/search",

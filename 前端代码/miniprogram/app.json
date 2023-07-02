@@ -10,7 +10,12 @@
         "pages/index/index",
         "pages/liaotian/liaotian",
         "pages/search/search",
-        "pages/testmap/testmap"
+        "pages/testmap/testmap",
+        "pages/yifabu/yifabu",
+        "pages/yibangzhu/yibangzhu",
+        "pages/xunzhang/xunzhang",
+        "pages/helpdetail/helpdetail"
+
     ],
     "permission": {
         "scope.userLocation": {
