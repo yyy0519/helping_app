@@ -40,8 +40,11 @@ Page({
                that.setData({
                 userlist:res.data
             })
+            console.log("userlist",that.data.userlist)
             }
+
         })
+        console.log("userlist",that.data.userlist)
      
     },
     go_liaotian(){

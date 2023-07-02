@@ -20,12 +20,22 @@
 	</view> -->  
   </view>
 
-  <view class="dingwei" >定位不准确？试试手动输入</view>
- <view class="shuruweizhi">
+  <view class="dingwei" >定位不准确？试试手动选择</view>
+ <!-- <view class="shuruweizhi">
     <view>位置：</view>
     <input class="inputloc" name="loc" bindinput="inputBind3" />
-</view>
-
+</view> -->
+<view style="padding-bottom: 25%;"></view>
+<view class="cu-form-group margin-top">
+        <view class="title d-flex">
+        </view>
+     <picker  class="w-100 h-100 borderBottom flex-1 d-flex jc-start ai-center" style="height: 120rpx; font-size: 35rpx; color: black; width: 720rpx; display: flex; box-sizing: border-box; position: relative; left: -60rpx; top: -167rpx" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+    <view style="position: relative; left: 0rpx; top: 40rpx">当前选择：</view>
+    <view style="position: relative; left: 490rpx; top: 0rpx"> {{array[currentChoose]}}</view>
+    </view>
+  </picker>
+    </view>
 
     <button class="btn" bindtap="submit">发布</button>
 </view>

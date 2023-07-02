@@ -13,7 +13,8 @@ Page({
         latitude: 39.9086, // 地图中心纬度
         longitude: 116.3974, // 地图中心经度
         output: 0,
-       
+        array: ['逸夫图书馆', '第一教学楼', '第二教学楼', '第三教学楼','第四教学楼','南操场','北操场','1号楼','2号楼','天天餐厅','3号楼','4号楼','北门','11号楼','游泳馆','材料楼',],
+        currentChoose: 0,
         info: { // 地图点位信息
             address: '-', // 常规地址
             adinfo: '-', // 行政区
@@ -21,7 +22,12 @@ Page({
             location: '-' // 经纬度
           }
     },
-    
+    bindPickerChange: function (e) {
+        console.log('picker发送选择改变，携带值为', e.detail.value)
+        this.setData({
+          currentChoose: e.detail.value
+        })
+      },
     inputBind1: function (e) {
         this.setData({
           tip:e.detail.value.trim(),

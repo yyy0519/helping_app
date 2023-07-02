@@ -42,7 +42,8 @@
         "showES6CompileOption": false,
         "useSummerCompiler": false,
         "condition": false,
-        "ignoreUploadUnusedFiles": false
+        "ignoreUploadUnusedFiles": false,
+        "ignoreDevUnusedFiles": false
     },
     "compileType": "miniprogram",
     "libVersion": "2.25.3",
