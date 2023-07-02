@@ -1,4 +1,4 @@
-
+<!--pages/my/my.wxml-->
 <import src="../template/template.wxml" />
 <import src="../template/template" />
 <view class="container">
@@ -23,7 +23,7 @@
       </view>
     </view>
     <!-- 反馈，退出 -->
-    <view class="userInfoDialog" style="position: absolute; left: -2rpx; top: 720rpx">
+    <view class="userInfoDialog">
       <block wx:for="{{xinxi}}" wx:key="index">
         <template is="userInfo_item" data="{{item}}">
         </template>
@@ -31,19 +31,19 @@
     </view>
   </view>
   <!--  求助，勋章 -->
-  <view class="more" style="position: absolute; left: -2rpx; top: 186rpx">
+  <view class="more">
     <block wx:for="{{list}}" wx:key="index">
       <template is="navigate_item" data="{{item}}"></template>
     </block>
   </view> 
 </view>
 <!--
-
 <view>
   <view class="box">
     <image src="{{userInfo.Img}}"></image>
   </view>
 </view>
 <view>
-  <view class="nicheng">{{userInfo.nickname}}</view>
+  <view class="nicheng">昵称：{{userInfo.nickname}}</view>
 </view>
+-->

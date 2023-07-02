@@ -12,7 +12,7 @@ page {
   position: relative;
   width: 100%;
   height: 400rpx;
-  background-color: #a28da2;
+  background-color: skyblue;
 }
 
 .userInfo {
@@ -71,7 +71,6 @@ page {
   box-shadow: #ccc  0 0 5rpx 2rpx;
   color: rgb(106, 106, 106);
 }
-
 
 
 

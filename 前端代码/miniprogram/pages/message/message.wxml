@@ -3,10 +3,9 @@
   <view wx:if="{{userInfo}}">
   <view>
     <view class="box" bindtap="go_liaotian" wx:for="{{userlist}}"wx:key="_id">
-      
-        <image src="{{item.Img}}" class="imageformat"></image>
-        <view class="nicheng">{{item.nickname}}</view>
-        <!-- <view class="tubiao">+</view> -->
+        <image src="{{item.Img}}" style="width:30px; height: 30px;"></image>
+        <view class="nicheng">微信昵称:{{item.nickname}}</view>
+        <!--view class="tubiao">+</view>-->
     </view>
 
   </view>
