@@ -35,6 +35,13 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/edit/edit",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

@@ -5,12 +5,15 @@
 </view>
 
 <form bindsubmit="formSubmit">
-    <view >
-      <scroll-view scroll-y="{{isScroll}}">
-        <input bindfocus="onfocus" bindblur="onblur" type="text" placeholder="placeholder"  name="ID" placeholder="请输入账号"/>
-      </scroll-view>
-    <input  name="password" placeholder="请输入密码"/>
-    <button form-type="submit" class="register" style="position: relative; left: 0rpx; top: 206rpx">登录</button>   
+    <view>
+      <view class="input">
+        <view class="font">账号：</view>
+        <input class="inputid" bindfocus="onfocus" bindblur="onblur" type="text" placeholder="placeholder"  name="ID" placeholder="请输入账号"/>
+        <view class="font">密码：</view>
+        <input class="inputpw" name="password" placeholder="请输入密码"/>
+      </view>
+      <button form-type="submit" class="login" style="position: relative; left: 0rpx; top: 150rpx">登录</button>  
     </view>
 </form>
-<button bindtap="register" style="position: relative; left: 0rpx; top: 218rpx">注册</button>
+
+  <button class="register" bindtap="register" style="position: relative; left: 0rpx; top: 175rpx">注册</button>

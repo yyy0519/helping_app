@@ -1,0 +1,98 @@
+.img{
+  width:56px; 
+  height: 56px;
+  border-radius: 30px;
+  position: relative;
+  left:10px;
+}
+.nicheng{
+  position: relative;
+  left:80px;
+  top:-55px;
+  font-size: 20px;
+}
+.date{
+  position: relative;
+  left:80px;
+  top:-50px;
+  font-size: 14px;
+  color:rgb(126, 123, 123);
+}
+.box{
+  margin-top: 10px;
+}
+.loc{
+  font-size: 18px;
+  color:rgb(0, 0, 0);
+  overflow-wrap: break-word;
+}
+.icon{
+  width:20px;
+  height:20px;
+  position: relative;
+  left:-5px;
+  top:3px;
+}
+.iconloc{
+  display: flex;
+  position: relative;
+  top:-100px;
+  justify-content: flex-end;
+}
+.titlecontent{
+  position: relative;
+  top:-60px;
+}
+.title{
+  font-size: 25px;
+  min-height: 30px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 1px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  
+}
+.content{
+  width: 89%;
+  color:rgb(80, 80, 80);
+  min-height: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 1px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+.helpbtn{
+  width: 100%;
+  padding: 8px;
+  background-color: #624466;
+  color: #fff;
+  font-size:40rpx;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  position: relative; 
+  left: 0rpx; 
+  top: 30px;
+}
+.btn {
+  width: 100%;
+  padding: 8px;
+  background-color: #49315c;
+  color: #fff;
+  font-size:40rpx;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  position: relative; 
+  left: 0rpx; 
+  top: -15rpx;
+}

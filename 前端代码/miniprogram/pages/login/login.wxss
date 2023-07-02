@@ -2,13 +2,12 @@
     font-size: 75rpx;
     color:#49315c;
     font-weight: bold;
-    position: relative; 
-    left: 38rpx; 
-    top: 0rpx; 
     width: 154rpx; 
     height: 98rpx; 
     display: block; 
     box-sizing: border-box;
+    margin-left: 40px;
+    margin-top: 10px;
 
 }
 .tishi{
@@ -18,4 +17,64 @@
     height: 46rpx; 
     display: block; 
     box-sizing: border-box
+}
+.input{
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-top: 50px;
+}
+.inputid{
+ 
+  margin-bottom: 20px;
+  width:80%;
+  min-height: 30px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 8px;
+}
+.inputpw{
+  
+  margin-bottom: 10px;
+  width:80%;
+  min-height: 30px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 8px;
+}
+.font{
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #49315c;
+}
+.twobtn{
+  margin-top: 10px;
+}
+.login{
+  width: 100%;
+  padding: 8px;
+  background-color: #49315c;
+  color: #fff;
+  font-size:40rpx;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  position: relative; 
+  left: 0rpx; 
+  top: -15rpx;
+}
+.register{
+  width: 100%;
+  padding: 8px;
+  background-color: #49315c;
+  color: #fff;
+  font-size:40rpx;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  position: relative; 
+  left: 0rpx; 
+  top: -15rpx;
 }

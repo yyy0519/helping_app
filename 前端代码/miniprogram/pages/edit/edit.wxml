@@ -1,0 +1,21 @@
+<view>
+  <view>
+  <view class="box">
+    <image class="img" src="{{help.Img}}"></image>
+    <view class="nicheng">{{help.nickname}}</view>
+    <view class="date">{{help.date}}</view>
+      <view class="iconloc">
+        <image class="icon" src="../../asset/local.png"></image>
+        <view class="loc">{{help.loc}}</view>
+      </view>
+  </view>
+    <view class="titlecontent">
+        <input class="title" name="title" value="{{help.tip}}" bindinput="edittitle"></input>
+        <textarea class="content" name="content" value="{{help.details}}" maxlength="9999" auto-focus="true" bindinput="editcontent"></textarea>
+    </view>
+  </view>
+</view>
+
+<button class="btn" bindtap="editbtn" data-item="{{help}}">修改</button>
+
+
