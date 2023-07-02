@@ -1,2 +1,33 @@
 <!--pages/yifabu/yifabu.wxml-->
+<<<<<<< Updated upstream
 <text>pages/yifabu/yifabu.wxml</text>
+=======
+<view class="big">
+    <view></view>
+    <view>
+        <view class="box" wx:for="{{helpinglist}}"wx:key="_id">
+          <view class="loc-end">
+            <view class='xinxi'>
+                <image class="img" src="{{item.Img}}" ></image>
+                <view class="nicheng">{{item.nickname}}</view>
+            </view>
+            <view class="date" >{{item.date}}</view>
+            <view class="loc">{{item.loc}}</view>
+          </view>
+          <view class="title">{{item.tip}}</view>
+          <view class="detail">{{item.details}}</view>
+            <!--<view class="didian">{{item.loc}}</view>-->
+            <view class="twobtn">
+              <button class="editbtn" bindtap="">编辑</button>
+              <button class="deletebtn" bindtap="delete" data-item="{{item}}">删除</button>
+            </view>
+        </view>
+
+        
+    </view>
+    <view></view>
+</view>
+
+<view style="padding-bottom: 15%;"></view>
+<!-- 为了让最后的一条信息显示出来，否则滑动最后一条不显示 -->
+>>>>>>> Stashed changes

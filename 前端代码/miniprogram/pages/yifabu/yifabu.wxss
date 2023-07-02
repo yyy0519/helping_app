@@ -1,1 +1,100 @@
+<<<<<<< Updated upstream
 /* pages/yifabu/yifabu.wxss */
+=======
+/* pages/yifabu/yifabu.wxss */
+page{
+    background-color: #9b7c9b;
+}
+.big{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around ;
+}
+.box{
+    background-color: rgb(243, 240, 240);
+    border-radius: 30rpx;
+    margin-top: 10rpx;
+    width: 700rpx;
+    height:400rpx;
+    
+    margin-left: 10rpx;
+
+}
+
+.biaoti{
+    font-size: 50rpx;
+    margin-top: 25rpx;
+    margin-left: 20rpx;
+}
+
+.didian{
+    
+    font-size: 30rpx;
+    margin-top: 25rpx;
+    margin-left: 100rpx;
+}
+.img{
+  width:40px; 
+  height: 40px;
+  border-radius: 30px;
+  position: relative;
+  left: 10rpx; 
+  
+}
+.xinxi{
+  display: flex;
+  flex-direction: row;
+}
+.loc-end{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  left: 0rpx; 
+  top: 21rpx;
+}
+.title{
+  position: relative;
+  left:20px;
+  top: 30rpx;
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+}
+.detail{
+  position: relative;
+  left:20px;
+  top:15px;
+}
+
+.nicheng{
+  position: relative;
+  left:13px;
+  font-size: 16px;
+  color: black;
+  width:80px;
+}
+.date{
+  width: 344rpx; 
+  height: 42rpx; 
+  display: block; 
+  position: relative; 
+  left: -140rpx; 
+  top: 20px;
+}
+.loc{
+  width:70px;
+}
+.deletebtn{
+  width: 50%;
+  border-radius: 0%;
+}
+.editbtn{
+  width: 50%;
+  
+}
+.twobtn{
+  display:flex;
+  position: relative;
+  top:63px;
+}
+>>>>>>> Stashed changes

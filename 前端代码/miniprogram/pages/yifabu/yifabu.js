@@ -5,7 +5,47 @@ Page({
      * 页面的初始数据
      */
     data: {
+<<<<<<< Updated upstream
 
+=======
+        helpinglist:[
+            {
+                tip:null,
+                details:null,
+                loc:null,
+                Img:null,
+                nickname:null,
+                helpernickname:null
+            }
+        ]
+    },
+    delete(e){
+      console.log(e.target.dataset.item);
+      const item=e.target.dataset.item;
+      wx.cloud.database().collection('forhelp_info').where({
+        ID:app.globalData.userInfo.ID,
+        nickname:app.globalData.userInfo.nickname,
+        date:item.date,
+        _id:item._id
+    }).remove({})
+    },
+    
+    getyifabu(){
+        let helpinglist
+        let that=this
+        wx.cloud.database().collection('forhelp_info').where({
+            ID:app.globalData.userInfo.ID,
+            nickname:app.globalData.userInfo.nickname,
+        }).get({
+            success(res){
+                console.log(res.data)
+                helpinglist=res.data
+                that.setData({
+                    helpinglist
+                })
+            }
+        })
+>>>>>>> Stashed changes
     },
 
     /**
