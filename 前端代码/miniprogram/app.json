@@ -6,8 +6,17 @@
         "pages/message/message",
         "pages/my/my",
         "pages/index/index",
+<<<<<<< Updated upstream
         "pages/liaotian/liaotian"
 
+=======
+        "pages/liaotian/liaotian",
+        "pages/search/search",
+        "pages/yifabu/yifabu",
+        "pages/yibangzhu/yibangzhu",
+        "pages/xunzhang/xunzhang"
+        
+>>>>>>> Stashed changes
     ],
     "permission": {
         "scope.userLocation": {

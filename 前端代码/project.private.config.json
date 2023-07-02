@@ -20,6 +20,37 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+<<<<<<< Updated upstream
+=======
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/login/login",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/add/add",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/map/map",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/testmap/testmap",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+>>>>>>> Stashed changes
                 }
             ]
         }

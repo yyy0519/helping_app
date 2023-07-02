@@ -2,36 +2,175 @@ const app = getApp() // 获取全局APP对象
 let that = null // 页面this指针变量
 Page({
   data: { // 默认数据
+    markers:[],
     latitude: 39.9086, // 地图中心纬度
     longitude: 116.3974, // 地图中心经度
     location: '', // 经纬度输入框
     address: '', // 地址输入框
     model: 0, // 模式转换 0-地址输入，1-经纬度输入
-    marker: { // 地图当前标记点
-      id: 0, // 标记点ID，不用变更
-      latitude: 39.9086, // 标记点所在纬度
-      longitude: 116.3974, // 标记点所在经度
-      iconPath: '../../asset/local.png', // 标记点图标，png或jpg类型
-      width: '20', // 标记点图标宽度
-      height: '20' // 标记点图标高度
-    },
     info: { // 地图点位信息
       address: '-', // 常规地址
       adinfo: '-', // 行政区
       formatted: '-', // 推荐地址
       location: '-' // 经纬度
+<<<<<<< Updated upstream
     }
+=======
+    },
+    helplist:[
+        {
+            _id:null,
+            ID:null,
+            Img:null,
+            _openid:null,
+            date:null,
+            details:null,
+            loc:null,
+            nickname:null,
+            tip:null
+           
+        }
+    ]
+    
+  },
+  getMarkers(){
+    let markers = [];
+    var total=null;
+    var i=0;
+    wx.cloud.database().collection('forhelp_info').count({
+      success: function (res) {
+        
+        total=res.total
+        console.log("total",total);
+      }
+    })
+    wx.cloud.database().collection('forhelp_info').get({
+       success:(res)=>{
+           console.log("res",res.data)
+           console.log("total2",total)
+for(i=0;i<3;i++){
+    console.log("iii")
+    for (let item of res.data) {
+        
+      let marker = this.createMarker(item);
+      console.log("marker",marker)
+      markers.push(marker)
+    }
+    }
+}
+    })
+    return markers;
+    // var that=this
+    // var total=null
+    // wx.cloud.database().collection('forhelp_info').count({
+    //   success: function (res) {
+    //     console.log("res",res.total);
+    //     total=res.total
+    //     console.log("num",total);
+    //   }
+    // })
+    // wx.cloud.database().collection('forhelp_info').get({
+    //   success:(res)=>{
+    //     var arr=res.data
+    //     var arr2=[];
+    //     console.log("row",total);
+    //     var temp1=[
+    //       {
+    //         id: 0, // 标记点ID，不用变更
+    //         latitude: 39.9086, // 标记点所在纬度
+    //         longitude: 116.3974, // 标记点所在经度
+    //         iconPath: '../../asset/local.png', // 标记点图标，png或jpg类型
+    //         width: '20', // 标记点图标宽度
+    //         height: '20' // 标记点图标高度
+    //       }
+    //     ]
+    //     arr2.push(temp1);
+    //     for(var i=0;i<total;i++){
+    //       console.log("helpno",res.data[i].helpno);
+    //       var temp={
+    //         id: arr[i].helpno,
+    //         iconPath:'../../asset/location.png',
+    //         latitude: arr[i].latitude,
+    //         longitude: arr[i].longitude,
+    //         width: '20',
+    //         height: '20'
+    //       }
+    //       console.log("longitude",res.data[i].latitude);
+    //       arr2.push(temp);
+    //       console.log("longitude",res.data[i].longitude);
+    //       console.log("arr2",arr2);
+    //     }
+    //     that.setData({
+    //       markers:arr2
+    //     })
+
+ 
+    // }
+   
+  },
+  createMarker(point) {
+    let latitude = point.latitude;
+    let longitude = point.longitude;
+    console.log(point.latitude);
+    let marker = {
+      iconPath: "../../asset/location.png",
+      id: point.helpno || 0,
+    //   name: point.name || '',
+      latitude: latitude,
+      longitude: longitude,
+      width: 30,
+      height: 30,
+      
+    };
+    return marker;
+
+>>>>>>> Stashed changes
   },
   /**
    * 页面装载回调
    */
+<<<<<<< Updated upstream
   onLoad () {
     that = this // 设置页面this指针到全局that
+=======
+  onShow() {
+    this.gethelpxinxi()
+
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+
+        this.getTabBar().setData({
+
+            selected: 0
+
+        })
+
+    }
+},
+
+  onLoad () {
+    that = this // 设置页面this指针到全局that
+    this.gethelpxinxi()
+
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+
+        this.getTabBar().setData({
+
+            selected: 0
+
+        })
+    }
+>>>>>>> Stashed changes
     wx.getLocation({ // 获取当前位置
       type: 'gcj02', // gcj02火星坐标系，用于地图标记点位
-      success (res) { // 获取成功
+      success: (res) => { // 获取成功
         that.setInfo([parseFloat(res.latitude), parseFloat(res.longitude)]) // 设置经纬度信息
         that.getLocation() // 获取当前位置点
+        let marker = this.createMarker(res);
+        console.log("marker111",marker)
+        that.setData({
+            markers: this.getMarkers(),
+          })
+          console.log("markers",markers)
       },
       fail (e) { // 获取失败
         if (e.errMsg.indexOf('auth deny') !== -1) { // 如果是权限拒绝
@@ -169,10 +308,10 @@ Page({
   setInfo (pot = [39.9086, 116.3974], type = 0, ext = {}) {
     let data = { ...ext }
     if (type !== 1) { // 如果类型不为1
-      data = Object.assign(data, { // 传入标记点
-        'marker.latitude': pot[0],
-        'marker.longitude': pot[1]
-      })
+    //   data = Object.assign(data, { // 传入标记点
+    //     'marker.latitude': pot[0],
+    //     'marker.longitude': pot[1]
+    //   })
     }
     if (type !== 2) { // 如果类型不为2
       data = Object.assign(data, { // 传入中心点
@@ -182,4 +321,5 @@ Page({
     }
     that.setData(data)
   }
+  
 })

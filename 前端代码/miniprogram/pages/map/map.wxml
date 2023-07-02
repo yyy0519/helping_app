@@ -1,10 +1,20 @@
+<<<<<<< Updated upstream
 <map longitude="{{longitude}}" enable-3D="true" enable-building="true" latitude="{{latitude}}" bindregionchange="changeMap" bindtap="clickMap" show-location="true" markers="{{[marker]}}"></map>
+=======
+<scroll-view class="scroll_view_vertical" scroll-y>
+<map longitude="{{longitude}}" enable-3D="true" enable-building="true" latitude="{{latitude}}" bindregionchange="changeMap" bindtap="clickMap" show-location="true" markers="{{markers}}"></map>
+<!-- markers="{{[markers]}}" -->
+>>>>>>> Stashed changes
 <view class="change_model" bindtap="changemodel">
 	<image src="../../asset/change.svg"></image>
 	<view>{{model==0?'转经纬度':'转地址'}}</view>
 </view>
 <view class="fixed_model">
+<<<<<<< Updated upstream
 	<view class="title">{{model==0?'地址':'经纬度'}}</view>
+=======
+	<view class="title">{{model==0?'输入地址':'输入经纬度'}}</view>
+>>>>>>> Stashed changes
 	<input class="in" bindinput="oninput" value="{{model==0?address:location}}" data-key="{{model==0?'address':'location'}}" placeholder="{{model==0?'拖动地图定位位置或输入地址':'如：22.5401,113.9345'}}" cursor-spacing="20"/>
 	<view class="btn" bindtap="query">
 		<image src="../../asset/local.svg"></image>
