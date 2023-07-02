@@ -12,7 +12,8 @@
         "pages/search/search",
         "pages/yifabu/yifabu",
         "pages/yibangzhu/yibangzhu",
-        "pages/xunzhang/xunzhang"
+        "pages/xunzhang/xunzhang",
+        "pages/helpdetail/helpdetail"
         
     ],
     "permission": {
@@ -22,7 +23,7 @@
     },
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
+        "navigationBarBackgroundColor": "#624466",
         "navigationBarTitleText": "大学生互助小程序",
         "navigationBarTextStyle": "black"
     },

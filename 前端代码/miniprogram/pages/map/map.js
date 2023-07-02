@@ -32,30 +32,18 @@ Page({
   },
   getMarkers(){
     let premarkers = [];
-    var total=null;
     var i=0;
-    wx.cloud.database().collection('forhelp_info').count({
-      success: function (res) {
-        
-        total=res.total
-        console.log("total",total);
-      }
-    })
     wx.cloud.database().collection('forhelp_info').get({
        success:(res)=>{
-           console.log("res",res.data)
-           console.log("total2",total)
-
     for (let item of res.data) {
-        
       let marker = this.createMarker(item);
-      console.log("marker",marker)
+    
       premarkers.push(marker)
     }
     that.setData({
         markers:premarkers
     })
-    console.log("this.data.markers",this.data.markers)
+   
 }
     })
     return premarkers;
@@ -64,7 +52,7 @@ Page({
   createMarker(point) {
     let latitude = point.latitude;
     let longitude = point.longitude;
-    console.log(point.latitude);
+  
     let marker = {
       iconPath: "../../asset/location.png",
       id: point.helpno || 0,
@@ -125,7 +113,7 @@ Page({
         that.setInfo([parseFloat(res.latitude), parseFloat(res.longitude)]) // 设置经纬度信息
         that.getLocation() // 获取当前位置点
         let marker = this.createMarker(res)
-        console.log("marker111",marker)
+    
         this.setData({
             markers: this.getMarkers()
           })
