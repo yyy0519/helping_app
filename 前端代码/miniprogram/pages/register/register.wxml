@@ -8,7 +8,6 @@
     <view></view>
 </view>
 <form bindsubmit="formSubmit">
-    <input name="ID" placeholder="请输入账号"/>
     <input name="password" placeholder="请输入密码"/>
     <input name="confirmpassword" placeholder="请确认密码"/>
     <button wx:if="{{nickname!='昵称'}}" form-type="submit" class="register">注册</button>

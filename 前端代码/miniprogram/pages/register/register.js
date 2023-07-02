@@ -1,4 +1,5 @@
 // pages/login/login.js
+const app = getApp()
 Page({
 
     /**
@@ -6,22 +7,22 @@ Page({
      */
     data: {
         Img:"/image/登录.png",
-        nickname:"昵称"
-
+        nickname:"昵称",
+        //userId:'ID'
     },
     getUserProfile(){
         var that=this
         wx.getUserProfile({
           desc: '展示用户信息',
           success:(res =>{
-              console.log(res)
+            //  console.log(res)
               that.setData({
                   Img:res.userInfo.avatarUrl,
                   nickname:res.userInfo.nickName,
                   userInfo: res.userInfo
               })
               app.globalData.userInfo = res.userInfo
-              console.log(app.globalData.userInfo)
+             // console.log(app.globalData.userInfo)
           })
           
         })
@@ -32,14 +33,26 @@ Page({
         let info
         let that=this
         info=e.detail.value
-        if(info.ID!=''&&info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
+        wx.cloud.callFunction({
+            name: 'cloudbase_auth',
+            success: res => {
+               that.setData({
+                   userId:res.result.userID
+               })
+              console.log('id:',that.data.userId)
+            },
+            fail: err => {
+              console.error(err)
+            }
+          })
+        if(info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
             wx.cloud.database().collection('user_info').add(
                 {
                     data:{
                         time:Date.now(),
                         ...info,
                         Img:that.data.Img,
-
+                        userid:that.data.userId,
                         nickname:that.data.nickname,
                         avatarUrl: that.data.userInfo.avatarUrl,
                         friends: [],
@@ -69,8 +82,6 @@ Page({
             })
         }
       //console.log(e.detail.value)
-      
-
     },
 
     /**
