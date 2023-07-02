@@ -9,12 +9,12 @@ page{
 }
 .box{
     background-color: rgb(243, 240, 240);
-    border-radius: 30rpx;
-    margin-top: 10rpx;
+    border-radius: 20rpx;
+    margin-top: 20rpx;
     width: 700rpx;
     height:400rpx;
+    justify-content: center;
     
-    margin-left: 10rpx;
 
 }
 
@@ -53,14 +53,29 @@ page{
   position: relative;
   left:20px;
   top: 30rpx;
+  width:620rpx;
   font-size: 20px;
   color: black;
   font-weight: bold;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis; 
 }
 .detail{
   position: relative;
   left:20px;
-  top:15px;
+  margin-top: 25px;
+  width:620rpx;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+.detailbox{
+  height:66.7px;
 }
 
 .nicheng{
@@ -83,14 +98,21 @@ page{
 }
 .deletebtn{
   width: 50%;
-  border-radius: 0%;
+  border-radius:20rpx;
+  color:#fff;
+  background-color: #402a58;
 }
 .editbtn{
   width: 50%;
-  
+  border-radius: 20rpx;
+  color:#fff;
+  background-color: #402a58;
 }
 .twobtn{
   display:flex;
-  position: relative;
-  top:63px;
+  
+}
+.column{
+  display:flex;
+  flex-direction: column;
 }

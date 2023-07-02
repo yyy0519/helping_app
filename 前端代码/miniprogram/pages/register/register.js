@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        Img:"/image/登录.png",
+        Img:"/image/me.png",
         nickname:"昵称"
 
     },
