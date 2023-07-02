@@ -12,6 +12,18 @@ Page({
     },
     getUserProfile(){
         var that=this
+        wx.cloud.callFunction({
+            name: 'cloudbase_auth',
+            success: res => {
+               that.setData({
+                   userId:res.result.userID
+               })
+              console.log('id:',that.data.userId)
+            },
+            fail: err => {
+              console.error(err)
+            }
+          });
         wx.getUserProfile({
           desc: '展示用户信息',
           success:(res =>{
@@ -33,18 +45,6 @@ Page({
         let info
         let that=this
         info=e.detail.value
-        wx.cloud.callFunction({
-            name: 'cloudbase_auth',
-            success: res => {
-               that.setData({
-                   userId:res.result.userID
-               })
-              console.log('id:',that.data.userId)
-            },
-            fail: err => {
-              console.error(err)
-            }
-          })
         if(info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
             wx.cloud.database().collection('user_info').add(
                 {
@@ -69,15 +69,21 @@ Page({
                     }
                 }
             )
+            
             wx.showToast({
                 title: '注册成功！',
                 icon: "none"
               })
-              
+            setTimeout(()=>{
+                wx.reLaunch({
+                  url: '../map/map',
+                  icon:'none'
+                })
+            },2000)
         }
         else{
             wx.showToast({
-              title: '账号或密码输入错误，请重新输入',
+              title: '密码不匹配，请重新输入',
               icon: "none"
             })
         }
