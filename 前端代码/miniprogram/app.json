@@ -54,7 +54,7 @@
                 "pagePath": "pages/add/add"
             },
             {
-                "pagePath": "pages/message/message"
+                "pagePath": "pages/friends/friends"
             },
             {
                 "pagePath": "pages/my/my"
