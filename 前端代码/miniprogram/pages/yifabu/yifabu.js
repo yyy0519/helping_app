@@ -6,14 +6,27 @@ Page({
      * 页面的初始数据
      */
     data: {
+
         helpinglist:[
             {
                 tip:null,
                 details:null,
                 loc:null,
-                Img:null
+                Img:null,
+                nickname:null,
+                helpernickname:null
             }
         ]
+    },
+    delete(e){
+      console.log(e.target.dataset.item);
+      const item=e.target.dataset.item;
+      wx.cloud.database().collection('forhelp_info').where({
+        ID:app.globalData.userInfo.ID,
+        nickname:app.globalData.userInfo.nickname,
+        date:item.date,
+        _id:item._id
+    }).remove({})
     },
     
     getyifabu(){
@@ -24,20 +37,21 @@ Page({
             nickname:app.globalData.userInfo.nickname,
         }).get({
             success(res){
-                console.log(res.data)
+                console.log("已发布",res.data)
                 helpinglist=res.data
                 that.setData({
                     helpinglist
                 })
             }
         })
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.getyifabu()
+    this.getyifabu();
     },
 
     /**
@@ -51,11 +65,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.setData({
-            userInfo:app.globalData.userInfo
-            
-        }),
-        this.getyifabu()
+      this.getyifabu();
     },
 
     /**
