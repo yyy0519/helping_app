@@ -36,7 +36,22 @@ Page({
 //获取到求助人信息,从求助详情页点击帮助跳转过来，显示这个求助人的添加好友信息
     onLoad:function(e){
         let that=this
-        const help=JSON.parse(e.help_detail)
+        var help
+        console.log("help_detail",e.help_detail)
+        if(e.help_detail!=undefined){
+            help=JSON.parse(e.help_detail)
+            console.log("help解析后",help)
+            wx.cloud.database().collection('user_info').where({
+                userId:help.userId
+            }).get({
+                success(res) {
+                    console.log("help",res.data)
+                    that.setData({
+                        helper : res.data
+                    })
+                }
+            })
+        }
         console.log("_id",help)
         this.setData({
             userInfo : app.globalData.userInfo
@@ -49,18 +64,7 @@ Page({
 
           })
       }
-      wx.cloud.database().collection('user_info').where({
-        _openid:help._openid,
-        ID:help.ID,
-        nickname:help.nickname
-    }).get({
-        success(res) {
-            console.log("help",res.data)
-            that.setData({
-                helper : res.data
-            })
-        }
-    })
+     
     },
 
 

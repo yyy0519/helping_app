@@ -139,6 +139,7 @@ Page({
               details: details,
               loc:place,
               nickname:userInfo.nickname,
+              userId:userInfo.userId,
               Img:userInfo.Img,
               ID:userInfo.ID,
               time:Date.now(),

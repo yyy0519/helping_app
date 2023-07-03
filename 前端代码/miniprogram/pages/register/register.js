@@ -14,6 +14,11 @@ Page({
     getimgnickname(){
         var that=this
         that.zhuce()
+        setTimeout(function(){
+            console.log("hello world")
+          //  可以自定义300ms后执行的操作 
+          //   这里以打印字符串为例
+        },300)
         wx.getUserProfile({
             desc:'展示用户信息',
             success:(res=>{
@@ -22,19 +27,19 @@ Page({
                     Img:res.userInfo.avatarUrl,
                     nickname:res.userInfo.nickName
                 })
-                wx.cloud.callFunction({
-                    name: 'cloudbase_auth',
-                    success: res => {
-                       that.setData({
-                           userId:res.result.userID,
-                           defaultText:'用户'+res.result.userID
-                       })
-                      console.log('id:',that.data.userId)
-                    },
-                    fail: err => {
-                      console.error(err)
-                    }
-                  });
+                // wx.cloud.callFunction({
+                //     name: 'cloudbase_auth',
+                //     success: res => {
+                //        that.setData({
+                //            userId:res.result.userID,
+                //            defaultText:'用户'+res.result.userID
+                //        })
+                //       console.log('id:',that.data.userId)
+                //     },
+                //     fail: err => {
+                //       console.error(err)
+                //     }
+                //   });
             })
         })
           
@@ -124,7 +129,8 @@ Page({
                         ...info,
                         Img:that.data.Img,
                         nickname:that.data.nickname,
-                        userId:that.data.userId
+                        userId:that.data.userId,
+                        friends:[]
                     },success(res){
                         wx.cloud.database().collection('user_info').doc(res._id).get({
                             success(res){

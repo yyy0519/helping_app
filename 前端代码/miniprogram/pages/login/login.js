@@ -30,12 +30,21 @@ Page({
                 _openid:that.data.openid
             }).get({
                 success(res){
-                    app.globalData.userInfo=res.data[0]
-                  console.log('idid',res.data[0].userid)
-                    that.setData({
-                        userid:res.data[0].userid,
-                        password:res.data[0].password
-                    })
+                    console.log("res.data",res.data)
+                    if(res.data!=''){
+                        app.globalData.userInfo=res.data[0]
+                        console.log('idid',res.data[0].userId)
+                          that.setData({
+                              userid:res.data[0].userId,
+                              password:res.data[0].password
+                          })
+                    }
+                    else{
+                        wx.showToast({
+                            title: '您还未注册，请注册！',
+                            icon:'none'
+                          })
+                    }
                 },
                 fail: err => {
                     console.error(err);
@@ -45,10 +54,7 @@ Page({
             fail:function(err) {
                 console.error(err);
                 // 查询失败，提示未注册
-                wx.showToast({
-                  title: '您还未注册，请注册！',
-                  icon:'none'
-                })
+               
               }
           });
   },
@@ -62,7 +68,7 @@ Page({
             })
             return
         }
-        if(e.detail.value.password!=app.globalData.password){
+        if(e.detail.value.password!=app.globalData.userInfo.password){
             wx.showToast({
               title: '密码错误！',
               icon:'none'

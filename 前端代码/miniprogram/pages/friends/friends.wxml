@@ -45,14 +45,17 @@
 
 
 <view class="label">其他用户</view>
-    <view class="left">
+    <view wx:if="{{helper._id!=null}}">
+     <view class="left">
         <image class="face" src="{{helper.Img}}"></image>    
         <view class="nick-name">{{helper.ID}}</view>
         <view>刚刚看过ta的求助</view>
-    </view>
-    <view class="right">
+     </view>
+     <view class="right">
         <button size="mini" bindtap="addFriend" data-index="{{index}}">添加好友</button>
     </view>
+    </view>
+    
 
 <block wx:for="{{user_list}}">
 <view class="user-list">
