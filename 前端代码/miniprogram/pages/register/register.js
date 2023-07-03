@@ -8,9 +8,40 @@ Page({
     data: {
         Img:"/image/me.png",
         nickname:"昵称",
-        defaultText:'用户ID'
+        defaultText:'用户ID',
+        yizhuce:0
     },
-    getUserProfile(){
+    getimgnickname(){
+        var that=this
+        that.zhuce()
+        wx.getUserProfile({
+            desc:'展示用户信息',
+            success:(res=>{
+                console.log("res",res)
+                that.setData({
+                    Img:res.userInfo.avatarUrl,
+                    nickname:res.userInfo.nickName
+                })
+                wx.cloud.callFunction({
+                    name: 'cloudbase_auth',
+                    success: res => {
+                       that.setData({
+                           userId:res.result.userID,
+                           defaultText:'用户'+res.result.userID
+                       })
+                      console.log('id:',that.data.userId)
+                    },
+                    fail: err => {
+                      console.error(err)
+                    }
+                  });
+            })
+        })
+          
+        
+    },
+    
+    zhuce(){
         var that=this
         wx.cloud.callFunction({
             name: 'cloudbase_auth',
@@ -22,21 +53,26 @@ Page({
               })
               console.log('openid',that.data.openid)  
               wx.cloud.database().collection('user_info').where({
-                _openid:that.data.openid
+                _openid:openid//that.data.openid
             }).get({
                 success(res){
+                    console.log('res.data',res.data) 
+                if(res.data!=''){
                   wx.showToast({
                     title: '您已注册，请直接登录！',
                     icon:'none'
+                  })
+                  that.setData({
+                      yizhuce:1
                   })
                   console.log('已注册')
                   setTimeout(()=>{
                   wx.reLaunch({
                     url: '../login/login',
                   })
-                },2000)
-                },
-                fail:err=>{
+                 },2000)
+                }
+                else{
                     wx.cloud.callFunction({
                         name: 'cloudbase_auth',
                         success: res => {
@@ -50,16 +86,20 @@ Page({
                           console.error(err)
                         }
                       });
-                      wx.getUserProfile({
-                        desc: '展示用户信息',
-                        success:(res =>{
-                            console.log(res)
-                            that.setData({
-                                Img:res.userInfo.avatarUrl,
-                                nickname:res.userInfo.nickName
-                            })
-                        })
-                      })
+                    //   wx.getUserProfile({
+                    //     desc: '展示用户信息',
+                    //     success:(res =>{
+                    //         console.log(res)
+                    //         that.setData({
+                    //             Img:res.userInfo.avatarUrl,
+                    //             nickname:res.userInfo.nickName
+                    //         })
+                    //     })
+                    //   })
+                }
+                },
+                fail:err=>{
+                   
                 }
             })
             },
