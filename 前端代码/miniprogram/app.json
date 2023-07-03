@@ -16,7 +16,8 @@
         "pages/helpdetail/helpdetail",
         "pages/chat/chat",
         "pages/friends/friends",
-        "pages/edit/edit"
+        "pages/edit/edit",
+        "pages/helps/helps"
 
     ],
     "permission": {
