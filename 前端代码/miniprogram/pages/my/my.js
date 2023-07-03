@@ -11,12 +11,12 @@ Page({
               icon: "../../image/class.png",
               title: "反馈",
               /*littleTitle: "访客班级",*/
-              click: "class"
+              click: "go_fankui"
             },{
               icon: "../../image/academy.png",
               title: "退出",
               /*littleTitle: "访客专业",*/
-              click: "academy"
+              click: "go_exit"
             }
         ],
         list:[
@@ -51,7 +51,6 @@ Page({
         }).get({
             success(res){
                 num1=0+res.data.length
-                console.log(res.data.length)
                 that.setData({
                     [numhelped]:num1,
                 })
@@ -63,7 +62,6 @@ Page({
         }).get({
             success(res){
                 num2=0+res.data.length
-                console.log(res.data.length)
                 that.setData({
                     [numpublish]:num2,
                 })
@@ -157,5 +155,13 @@ Page({
         wx.navigateTo({
           url: '../xunzhang/xunzhang',
         })
+    },
+    go_exit(){
+        wx.exitMiniProgram()
+    },
+    go_fankui(){
+        wx.navigateTo({
+            url: '../fankui/fankui',
+          })
     }
 })
