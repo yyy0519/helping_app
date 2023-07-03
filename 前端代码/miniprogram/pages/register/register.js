@@ -37,7 +37,14 @@ Page({
                         ...info,
                         Img:that.data.Img,
                         nickname:that.data.nickname,
+<<<<<<< Updated upstream
                         userId:that.data.userId
+=======
+                        userId:that.data.userId,
+                        friends:[],
+                        new_friends:[],
+                        avatarUrl:that.data.Img
+>>>>>>> Stashed changes
                     },success(res){
                         wx.cloud.database().collection('user_info').doc(res._id).get({
                             success(res){
