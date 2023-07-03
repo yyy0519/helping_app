@@ -108,11 +108,11 @@ Page({
         wx.cloud.database().collection('chat_record').add({
             data:{
                 userA_id : that.data.userInfo._id,
-                userA_ID : that.data.userInfo.ID,
+                userA_ID : that.data.userInfo.nickname,
                 userA_avatarUrl : that.data.userInfo.avatarUrl,
 
                 userB_id : that.data.user_list[index]._id,
-                userB_ID : that.data.user_list[index].ID,
+                userB_ID : that.data.user_list[index].nickname,
                 userB_avatarUrl : that.data.user_list[index].avatarUrl,
 
                 record : [],
@@ -141,11 +141,11 @@ Page({
                     wx.cloud.database().collection('chat_record').add({
                         data:{
                             userA_id : that.data.userInfo._id,
-                            userA_ID : that.data.userInfo.ID,
+                            userA_ID : that.data.userInfo.nickname,
                             userA_avatarUrl : that.data.userInfo.Img,
             
                             userB_id : res.data[0]._id,
-                            userB_ID : res.data[0].ID,
+                            userB_ID : res.data[0].nickname,
                             userB_avatarUrl :res.data[0].avatarUrl,
             
                             record : [],
