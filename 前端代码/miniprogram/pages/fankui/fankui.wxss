@@ -1,1 +1,70 @@
 /* pages/fankui/fankui.wxss */
+/* pages/add/add.wxss */
+
+.page-container {
+    margin-top: 10px;
+    padding: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .label {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .input {
+    width: 93%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .textarea {
+    width: 93%;
+    min-height: 450px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .inputloc {
+      width:400rpx;
+      padding: 1px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 8px;
+    background-color: #49315c;
+    color: #fff;
+    font-size:40rpx;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    position: relative; 
+    left: 0rpx; 
+    top: -15rpx;
+  }
+  .d-flex {
+    display: flex;
+    }
+    .borderBottom {
+      border-bottom: 1rpx solid #eee;
+    }
+     
+    .ai-center {
+    align-items: center;
+     
+    }
+    .jc-start {
+    justify-content: flex-start;
+     
+    }
+    .flex-1 {
+    flex: 1;
+     
+    }
+ 
