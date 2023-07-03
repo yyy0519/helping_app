@@ -45,17 +45,33 @@
 
 
 <view class="label">其他用户</view>
-    <view wx:if="{{helper._id!=null}}">
-     <view class="left">
+<<<<<<< Updated upstream
+    <view class="left">
         <image class="face" src="{{helper.Img}}"></image>    
         <view class="nick-name">{{helper.ID}}</view>
         <view>刚刚看过ta的求助</view>
-     </view>
-     <view class="right">
+    </view>
+    <view class="right">
         <button size="mini" bindtap="addFriend" data-index="{{index}}">添加好友</button>
     </view>
+=======
+
+    <view wx:if="{{helper.userId!=''}}">
+    <view class="user-list">
+     <view class="left">
+        <image class="face" src="{{helper.Img}}"></image>    
+        <view class="nick-name">{{helper.nickname}}</view>
+     </view>
+     
+     <view class="right">
+        <button size="mini" bindtap="addqiuzhu" data-userId="{{helper.userId}}">添加好友</button>
     </view>
     
+    </view>
+    <view class="tishi">刚刚看过ta的求助</view>
+    </view>
+    
+>>>>>>> Stashed changes
 
 <block wx:for="{{user_list}}">
 <view class="user-list">
@@ -65,7 +81,7 @@
     <block wx:if="{{item._id != new_accepted_friend_id}}" wx:key="_id">
 
         <image class="face" src="{{item.avatarUrl}}"></image>    
-        <view class="nick-name">{{item.ID}}</view>
+        <view class="nick-name">{{item.nickname}}</view>
 
     </block>
     </view>

@@ -33,3 +33,24 @@
     margin-top: 20rpx;
     font-weight: bold;
 }
+.leftganggangkanguo{
+    display: flex;
+    flex-direction: row;
+}
+.btnganggangkanguo{
+    display: flex;
+   
+}
+.boxganggangkanguo{
+    display: flex;
+    flex-direction: row;
+    margin : 30rpx 20rpx 0rpx 20rpx;
+    justify-content: space-between;
+}
+.tishi{
+    margin-left: 88px;
+    position: relative;
+    top:-20px;
+    color: rgb(94, 93, 93);
+    height:0px;
+}

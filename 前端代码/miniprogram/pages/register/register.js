@@ -7,121 +7,29 @@ Page({
      */
     data: {
         Img:"/image/me.png",
-        nickname:"昵称",
-        defaultText:'用户ID',
-        yizhuce:0
+        nickname:"昵称"
+
     },
-    getimgnickname(){
+    getUserProfile(){
         var that=this
-        that.zhuce()
-        setTimeout(function(){
-            console.log("hello world")
-          //  可以自定义300ms后执行的操作 
-          //   这里以打印字符串为例
-        },300)
         wx.getUserProfile({
-            desc:'展示用户信息',
-            success:(res=>{
-                console.log("res",res)
-                that.setData({
-                    Img:res.userInfo.avatarUrl,
-                    nickname:res.userInfo.nickName
-                })
-                // wx.cloud.callFunction({
-                //     name: 'cloudbase_auth',
-                //     success: res => {
-                //        that.setData({
-                //            userId:res.result.userID,
-                //            defaultText:'用户'+res.result.userID
-                //        })
-                //       console.log('id:',that.data.userId)
-                //     },
-                //     fail: err => {
-                //       console.error(err)
-                //     }
-                //   });
-            })
-        })
-          
-        
-    },
-    
-    zhuce(){
-        var that=this
-        wx.cloud.callFunction({
-            name: 'cloudbase_auth',
-            success: res => {
-              const openid = res.result.openid;
-              console.log('openid',openid)
+          desc: '展示用户信息',
+          success:(res =>{
+              console.log(res)
               that.setData({
-                openid: openid
+                  Img:res.userInfo.avatarUrl,
+                  nickname:res.userInfo.nickName
               })
-              console.log('openid',that.data.openid)  
-              wx.cloud.database().collection('user_info').where({
-                _openid:openid//that.data.openid
-            }).get({
-                success(res){
-                    console.log('res.data',res.data) 
-                if(res.data!=''){
-                  wx.showToast({
-                    title: '您已注册，请直接登录！',
-                    icon:'none'
-                  })
-                  that.setData({
-                      yizhuce:1
-                  })
-                  console.log('已注册')
-                  setTimeout(()=>{
-                  wx.reLaunch({
-                    url: '../login/login',
-                  })
-                 },2000)
-                }
-                else{
-                    wx.cloud.callFunction({
-                        name: 'cloudbase_auth',
-                        success: res => {
-                           that.setData({
-                               userId:res.result.userID,
-                               defaultText:'用户'+res.result.userID
-                           })
-                          console.log('id:',that.data.userId)
-                        },
-                        fail: err => {
-                          console.error(err)
-                        }
-                      });
-                    //   wx.getUserProfile({
-                    //     desc: '展示用户信息',
-                    //     success:(res =>{
-                    //         console.log(res)
-                    //         that.setData({
-                    //             Img:res.userInfo.avatarUrl,
-                    //             nickname:res.userInfo.nickName
-                    //         })
-                    //     })
-                    //   })
-                }
-                },
-                fail:err=>{
-                   
-                }
-            })
-            },
-          });
-        },
+          })
+        })
+
         //获取用户微信的头像
+    },
     formSubmit(e){
         let info
         let that=this
         info=e.detail.value
-        if(info.password==''||info.confirmpassword==''){
-            wx.showToast({
-              title: '请输入密码!',
-              icon:'none'
-            })
-        }
-        else if(info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
+        if(info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
             wx.cloud.database().collection('user_info').add(
                 {
                     data:{
@@ -129,8 +37,14 @@ Page({
                         ...info,
                         Img:that.data.Img,
                         nickname:that.data.nickname,
+<<<<<<< Updated upstream
+                        userId:that.data.userId
+=======
                         userId:that.data.userId,
-                        friends:[]
+                        friends:[],
+                        new_friends:[],
+                        avatarUrl:that.data.Img
+>>>>>>> Stashed changes
                     },success(res){
                         wx.cloud.database().collection('user_info').doc(res._id).get({
                             success(res){
@@ -141,7 +55,6 @@ Page({
                     }
                 }
             )
-            
             wx.showToast({
                 title: '注册成功！',
                 icon: 'none'
@@ -152,12 +65,13 @@ Page({
                   url: '../map/map',
                 })
               },500)
+              app.globalData.selected=0
               
 
         }
         else{
             wx.showToast({
-              title: '密码不匹配，请重新输入',
+              title: '账号或密码输入错误，请重新输入',
               icon: "none"
             })
         }
@@ -165,7 +79,7 @@ Page({
       
 
     },
-    
+
     /**
      * 生命周期函数--监听页面加载
      */

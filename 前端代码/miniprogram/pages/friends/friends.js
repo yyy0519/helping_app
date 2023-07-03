@@ -13,7 +13,8 @@ Page({
             ID:null,
             Img:null,
             avatarUrl:null,
-            nickname:null
+            nickname:null,
+            userId:''
         },
         
         
@@ -36,22 +37,26 @@ Page({
 //获取到求助人信息,从求助详情页点击帮助跳转过来，显示这个求助人的添加好友信息
     onLoad:function(e){
         let that=this
+<<<<<<< Updated upstream
+        const help=JSON.parse(e.help_detail)
+=======
         var help
         console.log("help_detail",e.help_detail)
         if(e.help_detail!=undefined){
             help=JSON.parse(e.help_detail)
-            console.log("help解析后",help)
+            console.log("help解析后",help.userId)
             wx.cloud.database().collection('user_info').where({
                 userId:help.userId
             }).get({
                 success(res) {
-                    console.log("help",res.data)
+                    console.log("help",res.data[0])
                     that.setData({
-                        helper : res.data
+                        helper : res.data[0]
                     })
                 }
             })
         }
+>>>>>>> Stashed changes
         console.log("_id",help)
         this.setData({
             userInfo : app.globalData.userInfo
@@ -64,7 +69,18 @@ Page({
 
           })
       }
-     
+      wx.cloud.database().collection('user_info').where({
+        _openid:help._openid,
+        ID:help.ID,
+        nickname:help.nickname
+    }).get({
+        success(res) {
+            console.log("help",res.data)
+            that.setData({
+                helper : res.data
+            })
+        }
+    })
     },
 
 
@@ -89,15 +105,15 @@ Page({
     addFriend(e) {
         var index = e.currentTarget.dataset.index;
         var that = this;
-
+        console.log("friend",that.data.userInfo._id)
         wx.cloud.database().collection('chat_record').add({
             data:{
                 userA_id : that.data.userInfo._id,
-                userA_account_id : that.data.userInfo.account_id,
+                userA_account_id : that.data.userInfo.ID,
                 userA_avatarUrl : that.data.userInfo.avatarUrl,
 
                 userB_id : that.data.user_list[index]._id,
-                userB_account_id : that.data.user_list[index].account_id,
+                userB_account_id : that.data.user_list[index].ID,
                 userB_avatarUrl : that.data.user_list[index].avatarUrl,
 
                 record : [],
@@ -112,6 +128,42 @@ Page({
             }
         })
 
+    },
+    addqiuzhu(e){
+        var that = this;
+        //var helperuserId = e.currentTarget.dataset.userId;
+        console.log("helpuserId",this.data.helper.userId)
+        wx.cloud.database().collection('user_info').where({
+            userId:this.data.helper.userId
+        }).get({
+            success(res) {
+                console.log("help好友组",res.data[0])
+                console.log("help好友",res.data[0].ID)
+                    wx.cloud.database().collection('chat_record').add({
+                        data:{
+                            userA_id : that.data.userInfo._id,
+                            userA_account_id : that.data.userInfo.ID,
+                            userA_avatarUrl : that.data.userInfo.avatarUrl,
+            
+                            userB_id : res.data[0]._id,
+                            userB_account_id : res.data[0].ID,
+                            userB_avatarUrl :res.data[0].avatarUrl,
+            
+                            record : [],
+                            friend_status : false,
+                            time: utils.formatTime(new Date())
+                        },
+                        success(res) {
+                            console.log(res)
+                            wx.showToast({
+                              title: '已发送好友申请',
+                            })
+                        }
+                    })
+            }
+        })
+   
+        
     },
     getNewFriends() {
         this.setData({
