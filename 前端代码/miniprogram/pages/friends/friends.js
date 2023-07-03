@@ -37,9 +37,6 @@ Page({
 //获取到求助人信息,从求助详情页点击帮助跳转过来，显示这个求助人的添加好友信息
     onLoad:function(e){
         let that=this
-<<<<<<< Updated upstream
-        const help=JSON.parse(e.help_detail)
-=======
         var help
         console.log("help_detail",e.help_detail)
         if(e.help_detail!=undefined){
@@ -56,7 +53,7 @@ Page({
                 }
             })
         }
->>>>>>> Stashed changes
+
         console.log("_id",help)
         this.setData({
             userInfo : app.globalData.userInfo

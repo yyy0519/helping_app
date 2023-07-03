@@ -49,6 +49,13 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "",
+                    "pathName": "pages/helps/helps",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

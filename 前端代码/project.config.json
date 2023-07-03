@@ -7,7 +7,7 @@
         "include": []
     },
     "setting": {
-        "ignoreDevUnusedFiles": true,
+        "ignoreDevUnusedFiles": false,
         "ignoreUploadUnusedFiles": false,
         "urlCheck": true,
         "es6": true,

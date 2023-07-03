@@ -7,9 +7,40 @@ Page({
      */
     data: {
         Img:"/image/me.png",
-        nickname:"昵称"
+        nickname:"昵称",
+        defaultText:'用户ID'
+    },
+    getimgnickname(){
+        var that=this
+        
+        that.zhuce()
+        wx.getUserProfile({
+            desc:'展示用户信息',
+            success:(res=>{
+                console.log("res",res)
+                that.setData({
+                    Img:res.userInfo.avatarUrl,
+                    nickname:res.userInfo.nickName
+                })
+                wx.cloud.callFunction({
+                    name: 'cloudbase_auth',
+                    success: res => {
+                       that.setData({
+                           userId:res.result.userID,
+                           defaultText:'用户'+res.result.userID
+                       })
+                      console.log('id:',that.data.userId)
+                    },
+                    fail: err => {
+                      console.error(err)
+                    }
+                  });
+            })
+        })
+
 
     },
+    
     getUserProfile(){
         var that=this
         wx.getUserProfile({
@@ -25,6 +56,47 @@ Page({
 
         //获取用户微信的头像
     },
+    zhuce(){
+        var that=this
+        wx.cloud.callFunction({
+            name: 'cloudbase_auth',
+            success: res => {
+              const openid = res.result.openid;
+              console.log('openid',openid)
+              that.setData({
+                openid: openid
+              })
+        console.log('openid',that.data.openid)  
+            wx.cloud.database().collection('user_info').where({
+                // _openid:that.data.openid
+                _openid:openid//that.data.openid
+            }).get({
+                success(res){
+                    console.log('res.data',res.data) 
+                if(res.data!=''){
+                  wx.showToast({
+                    title: '您已注册，请直接登录！',
+                    icon:'none'
+                  })
+                  console.log('已注册')
+                  setTimeout(()=>{
+                  wx.reLaunch({
+                    url: '../login/login',
+                  })
+                },2000)
+                }
+                else{
+                    wx.cloud.callFunction({
+                        name: 'cloudbase_auth',
+                        success: res => {
+                          console.error(err)
+                        }
+                      });
+                }
+                }
+               
+            })
+  },
     formSubmit(e){
         let info
         let that=this
@@ -37,14 +109,10 @@ Page({
                         ...info,
                         Img:that.data.Img,
                         nickname:that.data.nickname,
-<<<<<<< Updated upstream
-                        userId:that.data.userId
-=======
                         userId:that.data.userId,
                         friends:[],
                         new_friends:[],
                         avatarUrl:that.data.Img
->>>>>>> Stashed changes
                     },success(res){
                         wx.cloud.database().collection('user_info').doc(res._id).get({
                             success(res){

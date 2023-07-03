@@ -36,8 +36,7 @@
         "chooseLocation",
         "chooseAddress"
     ],
-    "ignoreDevUnusedFiles": false,
-    "ignoreUploadUnusedFiles": false,
+    
     "style": "v2",
     "sitemapLocation": "sitemap.json",
     "usingComponents": {},
