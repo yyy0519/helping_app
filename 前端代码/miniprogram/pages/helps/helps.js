@@ -12,6 +12,7 @@ Page({
             details:null,
             loc:null,
             Img:null,
+            nickname:null
     },
 
     gethelp(){
@@ -27,7 +28,8 @@ Page({
                     tip:res.data[0].tip,
                     details:res.data[0].details,
                     loc:res.data[0].loc,
-                    Img:res.data[0].Img
+                    Img:res.data[0].Img,
+                    nickname:res.data[0].nickname
                 })
             }
         })

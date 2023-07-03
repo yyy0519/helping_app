@@ -3,9 +3,11 @@ page{
     background-color: orchid;
 }
 .big{
+    padding: 10rpx;
     display:flex;
     flex-direction: row;
-    justify-content: space-around ;
+    justify-content: space-between ;
+    align-items: center;
 }
 .box{
     background-color: orange;
@@ -30,6 +32,11 @@ image{
     font-size: 50rpx;
     margin-top: 25rpx;
     margin-left: 20rpx;
+}
+.nicheng{
+    display: flex;
+    justify-content: flex-end;
+    
 }
 
 .didian{
