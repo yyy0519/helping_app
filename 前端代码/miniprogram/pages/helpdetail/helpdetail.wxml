@@ -13,5 +13,6 @@
     </view>
   </view>
 </view>
-
+<!-- <navigator url="../friends/friends?_openid={{help._openid}}" > -->
 <button class="helpbtn" bindtap="help">帮助ta</button>
+<!-- </navigator> -->

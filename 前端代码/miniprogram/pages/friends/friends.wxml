@@ -24,7 +24,7 @@
 <block wx:for="{{my_friends}}">
 <view class="user-list">
 
-    <block wx:if="{{item.userA_id==userInfo._id}}">
+    <block wx:if="{{item.userA_id==userInfo._id}}" wx:key="_id">
     <view class="left" bindtap="startChat" data-index="{{index}}">
 
         <image class="face" src="{{item.userB_avatarUrl}}"></image>    
@@ -32,7 +32,7 @@
     </view>
     </block>
 
-    <block wx:if="{{item.userB_id==userInfo._id}}">
+    <block wx:if="{{item.userB_id==userInfo._id}}" wx:key="_id">
     <view class="left" bindtap="startChat" data-index="{{index}}">
 
         <image class="face" src="{{item.userA_avatarUrl}}"></image>    
@@ -45,12 +45,21 @@
 
 
 <view class="label">其他用户</view>
+    <view class="left">
+        <image class="face" src="{{helper.Img}}"></image>    
+        <view class="nick-name">{{helper.ID}}</view>
+        <view>刚刚看过ta的求助</view>
+    </view>
+    <view class="right">
+        <button size="mini" bindtap="addFriend" data-index="{{index}}">添加好友</button>
+    </view>
+
 <block wx:for="{{user_list}}">
 <view class="user-list">
 
     <view class="left">
 
-    <block wx:if="{{item._id != new_accepted_friend_id}}">
+    <block wx:if="{{item._id != new_accepted_friend_id}}" wx:key="_id">
 
         <image class="face" src="{{item.avatarUrl}}"></image>    
         <view class="nick-name">{{item.ID}}</view>
@@ -67,3 +76,6 @@
 
 </view>
 </block>
+
+<view style="padding-bottom: 25%;"></view>
+<!-- 为了让最后的一条信息显示出来，否则滑动最后一条不显示 -->

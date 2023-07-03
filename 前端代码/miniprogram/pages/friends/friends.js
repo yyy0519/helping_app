@@ -7,6 +7,15 @@ const utils = require("../../utils/util")
 Page({
 
     data: {
+        help_id:null,
+        helper:{
+            _id:null,
+            ID:null,
+            Img:null,
+            avatarUrl:null,
+            nickname:null
+        },
+        
         
     },
     onShow() {
@@ -24,8 +33,11 @@ Page({
 
       }
     },
-
-    onLoad() {
+//获取到求助人信息,从求助详情页点击帮助跳转过来，显示这个求助人的添加好友信息
+    onLoad:function(e){
+        let that=this
+        const help=JSON.parse(e.help_detail)
+        console.log("_id",help)
         this.setData({
             userInfo : app.globalData.userInfo
         })
@@ -36,18 +48,29 @@ Page({
               selected: 3
 
           })
-
       }
+      wx.cloud.database().collection('user_info').where({
+        _openid:help._openid,
+        ID:help.ID,
+        nickname:help.nickname
+    }).get({
+        success(res) {
+            console.log("help",res.data)
+            that.setData({
+                helper : res.data
+            })
+        }
+    })
     },
+
 
     // 获取所有用户信息
     getAllUser() {
         var that = this;
-
         const _ = wx.cloud.database().command;
         
         wx.cloud.database().collection('user_info').where({
-            _id: _.nin(that.data.userInfo.friends).and(_.neq(that.data.userInfo._id))
+            _id: _.nin(that.data.userInfo.friends).and(_.neq(that.data.userInfo._id))//nin表示不在用户的已加好友中，neq表示不是用户本人
         }).get({
             success(res) {
                 console.log("user_list")
@@ -58,6 +81,7 @@ Page({
             }
         })
     },
+    
     addFriend(e) {
         var index = e.currentTarget.dataset.index;
         var that = this;

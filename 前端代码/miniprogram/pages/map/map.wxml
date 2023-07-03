@@ -41,8 +41,10 @@
     </view>
       <view >{{item.loc}}</view>
     </view>
+      <view class="tiptail">
       <view class="title">{{item.tip}}</view>
       <view class="detail">{{item.details}}</view>
+      </view>
     </view>
 </navigator>
     </view>
