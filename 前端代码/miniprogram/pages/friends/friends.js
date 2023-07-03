@@ -16,7 +16,7 @@ Page({
             nickname:null,
             userId:''
         },
-        
+        friend_status:false,
         
     },
     onShow() {
@@ -41,7 +41,7 @@ Page({
         console.log("help_detail",e.help_detail)
         if(e.help_detail!=undefined){
             help=JSON.parse(e.help_detail)
-            console.log("help解析后",help.userId)
+            console.log("help解析后",help)
             wx.cloud.database().collection('user_info').where({
                 userId:help.userId
             }).get({
@@ -52,6 +52,19 @@ Page({
                     })
                 }
             })
+            wx.cloud.database().collection('user_info').where({
+                userId:app.globalData.userInfo.userId,
+                friends:that.data.helper.userId
+            }).get({
+                success(res) {
+                    console.log("好友",res.data[0])
+                    that.setData({
+                        friend_status:true
+                    })
+                }
+            })
+
+
         }
 
         console.log("_id",help)
@@ -66,18 +79,7 @@ Page({
 
           })
       }
-      wx.cloud.database().collection('user_info').where({
-        _openid:help._openid,
-        ID:help.ID,
-        nickname:help.nickname
-    }).get({
-        success(res) {
-            console.log("help",res.data)
-            that.setData({
-                helper : res.data
-            })
-        }
-    })
+     
     },
 
 
@@ -106,11 +108,11 @@ Page({
         wx.cloud.database().collection('chat_record').add({
             data:{
                 userA_id : that.data.userInfo._id,
-                userA_account_id : that.data.userInfo.ID,
+                userA_ID : that.data.userInfo.ID,
                 userA_avatarUrl : that.data.userInfo.avatarUrl,
 
                 userB_id : that.data.user_list[index]._id,
-                userB_account_id : that.data.user_list[index].ID,
+                userB_ID : that.data.user_list[index].ID,
                 userB_avatarUrl : that.data.user_list[index].avatarUrl,
 
                 record : [],
@@ -135,15 +137,15 @@ Page({
         }).get({
             success(res) {
                 console.log("help好友组",res.data[0])
-                console.log("help好友",res.data[0].ID)
+                console.log("help好友",res.data[0].Img)
                     wx.cloud.database().collection('chat_record').add({
                         data:{
                             userA_id : that.data.userInfo._id,
-                            userA_account_id : that.data.userInfo.ID,
-                            userA_avatarUrl : that.data.userInfo.avatarUrl,
+                            userA_ID : that.data.userInfo.ID,
+                            userA_avatarUrl : that.data.userInfo.Img,
             
                             userB_id : res.data[0]._id,
-                            userB_account_id : res.data[0].ID,
+                            userB_ID : res.data[0].ID,
                             userB_avatarUrl :res.data[0].avatarUrl,
             
                             record : [],
@@ -182,6 +184,7 @@ Page({
     acceptNewFriend(e) {
         var index = e.currentTarget.dataset.index;
         var that =  this;
+        console.log("好友_id",that.data.new_friends[index]._id)
         wx.cloud.database().collection('chat_record').doc(that.data.new_friends[index]._id).update({
             data:{
                 friend_status: true
@@ -199,7 +202,7 @@ Page({
         })
 
         // AB成为朋友
-        wx.cloud.database().collection('chat_user').where({
+        wx.cloud.database().collection('user_info').where({
             _id : that.data.userInfo._id
         }).get({
             success(res) {
@@ -207,7 +210,7 @@ Page({
                 var my_friends = res.data[0].friends;
                 my_friends.push(that.data.new_friends[index].userA_id)
                 app.globalData.userInfo.friends = my_friends                
-                wx.cloud.database().collection('chat_user').where({
+                wx.cloud.database().collection('user_info').where({
                     _id : that.data.userInfo._id
                 }).update({
                     data : {
@@ -219,14 +222,14 @@ Page({
 
     
 
-        wx.cloud.database().collection('chat_user').where({
+        wx.cloud.database().collection('user_info').where({
             _id : that.data.new_friends[index].userA_id
         }).get({
             success(res) {
                 //console.log(res)
                 var A_friends = res.data[0].friends;
                 A_friends.push(that.data.userInfo._id)
-                wx.cloud.database().collection('chat_user').where({
+                wx.cloud.database().collection('user_info').where({
                     _id : that.data.new_friends[index].userA_id
                 }).update({
                     data : {
@@ -254,9 +257,9 @@ Page({
                 }
             ])
         ).get({
-            success(res){
-                //console.log(res)
-                that.setData({
+            success:(res)=>{
+                console.log("myfriends",res)
+                this.setData({
                     my_friends : res.data
                 })
             }

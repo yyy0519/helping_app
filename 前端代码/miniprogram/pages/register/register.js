@@ -74,6 +74,9 @@ Page({
                 success(res){
                     console.log('res.data',res.data) 
                 if(res.data!=''){
+                    that.setData({
+                        defaultText:'用户ID'
+                    })
                   wx.showToast({
                     title: '您已注册，请直接登录！',
                     icon:'none'

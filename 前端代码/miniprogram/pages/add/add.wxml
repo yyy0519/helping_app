@@ -5,6 +5,10 @@
         <input  class="input" name="tip" placeholder="请输入求助标题" bindinput="inputBind1"/>
     </view>
     <view class="form-group">
+        <view class="label">求助物品：</view>
+        <input  class="input" name="tip" placeholder="请输入求助物品" bindinput="inputBind3"/>
+    </view>
+    <view class="form-group">
         <view class="label">求助描述：</view>
         <textarea class="textarea" name="details"placeholder="请输入求助描述" maxlength="9999" bindinput="inputBind2" auto-focus="true"></textarea>
     </view>
@@ -39,4 +43,6 @@
 
     <button class="btn" bindtap="submit">发布</button>
 </view>
+<view style="padding-bottom: 25%;"></view>
+<!-- 为了让最后的一条信息显示出来，否则滑动最后一条不显示 -->
 
