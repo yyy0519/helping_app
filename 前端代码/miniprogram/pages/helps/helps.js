@@ -12,9 +12,28 @@ Page({
             details:null,
             loc:null,
             Img:null,
-            nickname:null
+            nickname:null,
+            status:null
     },
-
+    finish:function(data){
+        if(this.data.status=='已完成'){
+            wx.showToast({
+                title: '已经完成，无需重复提交',
+                icon: 'none'
+              });
+        }
+        else{
+            console.log(1)
+            wx.cloud.database().collection('forhelp_info').where({
+                _id:this.data._id,
+            }).update({
+                data:{
+                    status:'已完成'
+                }
+            })
+        }
+        this.onShow()
+    },
     gethelp(){
         let that=this
         wx.cloud.database().collection('forhelp_info').where({
@@ -29,7 +48,8 @@ Page({
                     details:res.data[0].details,
                     loc:res.data[0].loc,
                     Img:res.data[0].Img,
-                    nickname:res.data[0].nickname
+                    nickname:res.data[0].nickname,
+                    status:res.data[0].status
                 })
             }
         })
