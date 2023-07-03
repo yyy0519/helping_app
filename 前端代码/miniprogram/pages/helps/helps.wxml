@@ -6,6 +6,10 @@
         <view class="nicheng">发布者：{{nickname}}</view>
         <view class="didian">地点：{{loc}}</view>
     </view>
+    <view class="jiaohu">
+        <view class="zhuangtai">状态：{{status}}</view>
+        <button class="anniu" bindtap="finish">完成！</button>
+    </view>
     <view class="neirong">
         <text>{{details}}</text>
     </view>
