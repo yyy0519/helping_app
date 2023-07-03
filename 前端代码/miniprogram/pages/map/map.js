@@ -30,6 +30,18 @@ Page({
     ]
     
   },
+  markertap(e) {
+      console.log(e);
+    var id = e.markerId
+    var loc
+
+    // var name = this.data.markers[id - 1].name
+    // console.log(name)
+    this.setData({
+    //   lingyuanName: name,
+    //   showDialog: true,
+    })
+  },
   getMarkers(){
     let premarkers = [];
     var i=0;
@@ -56,11 +68,24 @@ Page({
     let marker = {
       iconPath: "../../asset/location.png",
       id: point.helpno || 0,
-    //   name: point.name || '',
+      name: point.loc || '',
       latitude: latitude,
       longitude: longitude,
       width: 30,
       height: 30,
+      label: {
+        content: point.loc,
+        color: '#402a58',
+        fontSize: 14,
+        bgColor: "#fff",
+        borderRadius: 30,
+        borderColor: "#402a58",
+        borderWidth: 1,
+        padding: 3
+      },
+      callout: {
+        
+      }
       
     };
     return marker;

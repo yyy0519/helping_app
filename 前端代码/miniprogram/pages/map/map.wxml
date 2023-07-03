@@ -1,5 +1,5 @@
 <scroll-view class="scroll_view_vertical" scroll-y>
-<map longitude="{{longitude}}" enable-3D="true" enable-building="true" latitude="{{latitude}}" bindregionchange="changeMap" bindtap="clickMap" show-location="true" markers="{{markers}}"></map>
+<map longitude="{{longitude}}" enable-3D="true" enable-building="true" latitude="{{latitude}}" bindregionchange="changeMap" bindtap="clickMap" show-location="true" markers="{{markers}}" bindlabeltap="markertap"></map>
 <!-- markers="{{[markers]}}" -->
 <view class="change_model" bindtap="changemodel">
 	<image src="../../asset/change.svg"></image>

@@ -184,13 +184,24 @@ Page({
     acceptNewFriend(e) {
         var index = e.currentTarget.dataset.index;
         var that =  this;
-        console.log("好友_id",that.data.new_friends[index]._id)
-        wx.cloud.database().collection('chat_record').doc(that.data.new_friends[index]._id).update({
+        // console.log("好友_id",that.data.new_friends[index]._id)
+
+        wx.cloud.database().collection('chat_record').doc(that.data.new_friends[index]._id).get({
+           
+            success(res) {
+                console.log("更新好友",res.data.friend_status)
+                
+            }
+        })
+
+
+
+        wx.cloud.database().collection('chat_record').where({_id:that.data.new_friends[index]._id}).update({
             data:{
                 friend_status: true
             },
             success(res) {
-                //console.log(res)
+                
                 wx.showToast({
                   title: '已通过好友',
                 })
@@ -198,6 +209,7 @@ Page({
                 that.setData({
                     new_accepted_friend_id : that.data.new_friends[index].userA_id
                 })
+                console.log("好友id",that.data.new_friends[index].userA_id)
             }
         })
 
