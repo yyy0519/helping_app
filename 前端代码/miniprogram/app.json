@@ -17,8 +17,8 @@
         "pages/chat/chat",
         "pages/friends/friends",
         "pages/edit/edit",
+        "pages/fankui/fankui",
         "pages/helps/helps"
-
     ],
     "permission": {
         "scope.userLocation": {
