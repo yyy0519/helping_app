@@ -10,12 +10,28 @@
       </view>
   </view>
     <view class="titlecontent">
+        <view class="wenzi">标题：</view>
         <input class="title" name="title" value="{{help.tip}}" bindinput="edittitle"></input>
+        <view class="wenzi">求助物品：</view>
+        <input class="title" name="title" value="{{help.item}}" bindinput="edittitle"></input>
+        <view class="wenzi">正文：</view>
         <textarea class="content" name="content" value="{{help.details}}" maxlength="9999" auto-focus="true" bindinput="editcontent"></textarea>
     </view>
   </view>
 </view>
 
-<button class="btn" bindtap="editbtn" data-item="{{help}}">修改</button>
+<view class="cu-form-group margin-top">
+        <view class="title d-flex">
+        </view>
+     <picker  class="w-100 h-100 borderBottom flex-1 d-flex jc-start ai-center" style="height: 120rpx; font-size: 35rpx; color: black; width: 720rpx; display: flex; box-sizing: border-box; position: relative; left: -60rpx; top: -167rpx" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+    <view style="position: relative; left: 0rpx; top: 40rpx">当前选择：</view>
+    <view style="position: relative; left: 490rpx; top: 0rpx"> {{array[currentChoose]}}</view>
+    </view>
+  </picker>
+    </view>
 
+<button class="btn" bindtap="editbtn" data-item="{{help}}">修改</button>
+<view style="padding-bottom: 25%;"></view>
+<!-- 为了让最后的一条信息显示出来，否则滑动最后一条不显示 -->
 
