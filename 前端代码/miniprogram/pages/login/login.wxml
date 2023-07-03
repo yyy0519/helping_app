@@ -8,7 +8,7 @@
     <view>
       <view class="input">
         <view class="font">账号：</view>
-        <input class="inputid" bindfocus="onfocus" bindblur="onblur" type="text" placeholder="placeholder"  name="ID" placeholder="请输入账号"/>
+        <input class="inputid" bindfocus="onfocus" bindblur="onblur" type="text" placeholder="placeholder"  name="ID" placeholder="{{userid}}" bindtap="showID" disabled="true"/>
         <view class="font">密码：</view>
         <input class="inputpw" name="password" placeholder="请输入密码"/>
       </view>

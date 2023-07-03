@@ -7,48 +7,84 @@ Page({
      */
     data: {
         Img:"/image/me.png",
-        nickname:"昵称"
-
+        nickname:"昵称",
+        defaultText:'用户ID'
     },
     getUserProfile(){
         var that=this
         wx.cloud.callFunction({
             name: 'cloudbase_auth',
             success: res => {
-               that.setData({
-                   userId:res.result.userID
-               })
-              console.log('id:',that.data.userId)
-            },
-            fail: err => {
-              console.error(err)
-            }
-          });
-        wx.getUserProfile({
-          desc: '展示用户信息',
-          success:(res =>{
-              console.log(res)
+              const openid = res.result.openid;
+              console.log('openid',openid)
               that.setData({
-                  Img:res.userInfo.avatarUrl,
-                  nickname:res.userInfo.nickName
+                openid: openid
               })
-          })
-        })
-
+              console.log('openid',that.data.openid)  
+              wx.cloud.database().collection('user_info').where({
+                _openid:that.data.openid
+            }).get({
+                success(res){
+                  wx.showToast({
+                    title: '您已注册，请直接登录！',
+                    icon:'none'
+                  })
+                  console.log('已注册')
+                  setTimeout(()=>{
+                  wx.reLaunch({
+                    url: '../login/login',
+                  })
+                },2000)
+                },
+                fail:err=>{
+                    wx.cloud.callFunction({
+                        name: 'cloudbase_auth',
+                        success: res => {
+                           that.setData({
+                               userId:res.result.userID,
+                               defaultText:'用户'+res.result.userID
+                           })
+                          console.log('id:',that.data.userId)
+                        },
+                        fail: err => {
+                          console.error(err)
+                        }
+                      });
+                      wx.getUserProfile({
+                        desc: '展示用户信息',
+                        success:(res =>{
+                            console.log(res)
+                            that.setData({
+                                Img:res.userInfo.avatarUrl,
+                                nickname:res.userInfo.nickName
+                            })
+                        })
+                      })
+                }
+            })
+            },
+          });
+        },
         //获取用户微信的头像
-    },
     formSubmit(e){
         let info
         let that=this
         info=e.detail.value
-        if(info.ID!=''&&info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
+        if(info.password==''||info.confirmpassword==''){
+            wx.showToast({
+              title: '请输入密码!',
+              icon:'none'
+            })
+        }
+        else if(info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
             wx.cloud.database().collection('user_info').add(
                 {
                     data:{
                         time:Date.now(),
                         ...info,
                         Img:that.data.Img,
-                        nickname:that.data.nickname
+                        nickname:that.data.nickname,
+                        userId:that.data.userId
                     },success(res){
                         wx.cloud.database().collection('user_info').doc(res._id).get({
                             success(res){
@@ -67,7 +103,7 @@ Page({
 
               setTimeout(()=>{
                 wx.reLaunch({
-                  url: '../message/message',
+                  url: '../map/map',
                 })
               },500)
               
@@ -83,7 +119,7 @@ Page({
       
 
     },
-
+    
     /**
      * 生命周期函数--监听页面加载
      */

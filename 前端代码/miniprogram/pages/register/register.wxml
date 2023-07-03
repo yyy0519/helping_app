@@ -9,7 +9,7 @@
 </view>
 <form bindsubmit="formSubmit">
   <view class="input">
-    <input class="ID" name="ID" placeholder="请输入账号"/>
+    <input class="ID" value="{{defaultText}}" name="ID" disabled="true"/>
     <input class="pw" name="password" placeholder="请输入密码"/>
     <input class="confirm" name="confirmpassword" placeholder="请确认密码"/>
   </view>

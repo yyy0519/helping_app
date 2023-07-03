@@ -9,9 +9,10 @@ exports.main = async (event, context) => {
   const userID = generateUserID()
   console.log(event)
   console.log(wxContext)
-  console.log('1111111',userID)
   return {
-    userID: userID,
+      event,
+      openid:wxContext.OPENID,
+        userID: userID,
         errCode: 0,
         errMsg: wxContext.FROM_OPENID,
     auth: JSON.stringify({
