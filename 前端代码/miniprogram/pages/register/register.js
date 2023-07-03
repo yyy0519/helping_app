@@ -96,6 +96,9 @@ Page({
                 }
                
             })
+        }
+    })
+
   },
     formSubmit(e){
         let info
