@@ -11,6 +11,7 @@ Page({
         loc:'',
         tip:'',
         details:'',
+        item:'',
         latitude: 39.9086, // 地图中心纬度
         longitude: 116.3974, // 地图中心经度
         output: 0,
@@ -43,9 +44,9 @@ Page({
       },
       inputBind3: function (e) {
         this.setData({
-          loc:e.detail.value.trim(),
+          item:e.detail.value.trim(),
         });
-        console.log('loc:',e.detail.value.trim());
+        console.log('item:',e.detail.value.trim());
       },
       huoqulocation:function (e) {  
           that=this  
@@ -95,6 +96,7 @@ Page({
     submit:function (data){
         const tip = this.data.tip.trim();
         const details = this.data.details.trim();
+        const item=this.data.item.trim();
         const loc=this.data.loc.trim();
         const loction=null;
         const userInfo=app.globalData.userInfo;
@@ -137,6 +139,7 @@ Page({
               tip: tip,
               date:new Date().toJSON().substring(5, 10) + ' ' + new Date().toTimeString().substring(0,5),
               details: details,
+              item:item,
               loc:place,
               nickname:userInfo.nickname,
               userId:userInfo.userId,

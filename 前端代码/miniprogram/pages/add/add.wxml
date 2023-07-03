@@ -6,7 +6,7 @@
     </view>
     <view class="form-group">
         <view class="label">求助物品：</view>
-        <input  class="input" name="tip" placeholder="请输入求助物品" bindinput="inputBind3"/>
+        <input  class="input" name="item" placeholder="请输入求助物品" bindinput="inputBind3"/>
     </view>
     <view class="form-group">
         <view class="label">求助描述：</view>

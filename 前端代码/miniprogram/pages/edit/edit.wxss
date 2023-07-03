@@ -52,7 +52,7 @@
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 1px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border-radius: 4px;
   
 }
@@ -65,8 +65,8 @@
   border-radius: 4px;
   margin-left: 10px;
   margin-right: 10px;
-  margin-top: 1px;
-  margin-bottom: 15px;
+  margin-top: 0px;
+  margin-bottom: 10px;
   border-radius: 4px;
 }
 
@@ -96,3 +96,43 @@
   left: 0rpx; 
   top: -15rpx;
 }
+.wenzi{
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+.d-flex {
+    display: flex;
+    }
+    .cu-form-group .title {
+    text-align: justify;
+    padding-right: 30rpx;
+    font-size: 30rpx;
+    position: relative;
+    height: 60rpx;
+    line-height: 60rpx;
+     
+    }
+    .cu-form-group {
+        background-color: var(--white);
+        padding: 1rpx 30rpx;
+        display: flex;
+        align-items: center;
+        min-height: 100rpx;
+        justify-content: space-between;
+    }
+    .borderBottom {
+      border-bottom: 1rpx solid #eee;
+    }
+     
+    .ai-center {
+    align-items: center;
+     
+    }
+    .jc-start {
+    justify-content: flex-start;
+     
+    }
+    .flex-1 {
+    flex: 1;
+    }
