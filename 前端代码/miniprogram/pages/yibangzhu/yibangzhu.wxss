@@ -29,9 +29,16 @@ image{
 }
 
 .biaoti{
-    font-size: 50rpx;
-    margin-top: 25rpx;
-    margin-left: 20rpx;
+    position: relative;
+  left:20px;
+  top: 30rpx;
+  width:420rpx;
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis; 
 }
 .nicheng{
     display: flex;

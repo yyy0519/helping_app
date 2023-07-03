@@ -24,27 +24,61 @@ Page({
               icon: "../../image/aboutUs.png",
               title: "已发布求助",
               click: "go_yifabu",
-              littleTitle: "0"
+              littleTitle: 0
             }, {
               icon: "../../image/update.png",
               title: "已帮助求助",
               click: "go_yibangzhu",
-              littleTitle: "0"
+              littleTitle: 0
             }, {
               icon: "../../image/login.png",
               title: "勋章",
               click: "go_xunzhang",
-              littleTitle: "0"
+              littleTitle: 0
             }
         ]
     },
-
+    starting(){
+        console.log("starting")
+        let that=this
+        const numhelped = "list[1].littleTitle";
+        const numpublish = "list[0].littleTitle";
+        let num1=numhelped
+        let num2=numpublish
+        wx.cloud.database().collection('forhelp_info').where({
+            helperid:app.globalData.userInfo.ID,
+            helpernickname:app.globalData.userInfo.nickname,
+        }).get({
+            success(res){
+                num1=0+res.data.length
+                console.log(res.data.length)
+                that.setData({
+                    [numhelped]:num1,
+                })
+            }
+        })
+        wx.cloud.database().collection('forhelp_info').where({
+            ID:app.globalData.userInfo.ID,
+            nickname:app.globalData.userInfo.nickname,
+        }).get({
+            success(res){
+                num2=0+res.data.length
+                console.log(res.data.length)
+                that.setData({
+                    [numpublish]:num2,
+                })
+            }
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        
-
+        this.setData({
+            userInfo:app.globalData.userInfo
+            
+        })
+        this.starting()
     },
 
     /**
@@ -62,6 +96,7 @@ Page({
             userInfo:app.globalData.userInfo
             
         })
+        this.starting()
         if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 
             this.getTabBar().setData({
