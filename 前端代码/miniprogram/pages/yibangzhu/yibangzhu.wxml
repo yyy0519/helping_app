@@ -1,2 +1,13 @@
 <!--pages/yibangzhu/yibangzhu.wxml-->
-<text>pages/yibangzhu/yibangzhu.wxml</text>
+<view class="big">
+    <view></view>
+    <view>
+        <view class="box"  wx:for="{{helpedlist}}"wx:key="_id">
+            <image src="{{item.Img}}"></image>
+            <view class="biaoti" bindtap="go_help" data-info="{{item._id}}">{{item.tip}}</view>
+            <!--<view class="nicheng">{{item.nickname}}</view>-->
+            <!--<view class="didian">{{item.loc}}</view>-->
+        </view>
+    </view>
+    <view></view>
+</view>

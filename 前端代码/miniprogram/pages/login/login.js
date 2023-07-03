@@ -6,70 +6,87 @@ Page({
      * 页面的初始数据
      */
     data: {
+        userid:'用户ID',
+        password:''
     },
     register(){
         wx.navigateTo({
           url: '../register/register',
         })
     },
+    showID:function ( ) {
+        var that =this
+        wx.cloud.callFunction({
+            name: 'cloudbase_auth',
+            success: res => {
+              // 登录成功后，获取当前登录用户的openid
+              const openid = res.result.openid;
+              console.log('openid',openid)
+              that.setData({
+                openid: openid
+              })
+              console.log('openid',that.data.openid)  
+              wx.cloud.database().collection('user_info').where({
+                _openid:that.data.openid
+            }).get({
+                success(res){
+                    console.log("res.data",res.data)
+                    if(res.data!=''){
+                        app.globalData.userInfo=res.data[0]
+                        console.log('idid',res.data[0].userId)
+                          that.setData({
+                              userid:res.data[0].userId,
+                              password:res.data[0].password
+                          })
+                    }
+                    else{
+                        wx.showToast({
+                            title: '您还未注册，请注册！',
+                            icon:'none'
+                          })
+                    }
+                },
+                fail: err => {
+                    console.error(err);
+                  }
+            })
+            },
+            fail:function(err) {
+                console.error(err);
+                // 查询失败，提示未注册
+               
+              }
+          });
+  },
 
 
     formSubmit(e){
-        if(!e.detail.value.ID||!e.detail.value.password){
+        if(!e.detail.value.password){
             wx.showToast({
-              title: '请输入账号或密码',
+              title: '请输入密码',
               icon:'none'
             })
             return
         }
-        wx.cloud.database().collection('user_info').where({
-            ID:e.detail.value.ID,
-            //password:e.detail.value.password
-        }).get({
-            success(res){
-                console.log(res)
-                if(res.data.length==0){
-                    wx.showToast({
-                        title: '账号未注册',
-                        icon:'none'
-                    })
-                }
-                else{
-                    wx.cloud.database().collection('user_info').where({
-                        ID:e.detail.value.ID,
-                        password:e.detail.value.password
-                    }).get({
-                        success(res){
-                            if(res.data.length==0){
-                                wx.showToast({
-                                    title: '密码错误',
-                                    icon:'none'
-                                })
-                            }
-                            else{
-                                wx.showToast({
-                                    title: '登录成功!',
-                                    icon:'none'
-                                })
-                                app.globalData.userInfo=res.data[0]
-                                setTimeout(()=>{
-                                wx.reLaunch({
-
-                                  url: '../map/map',
-
-                                })},800)
-                                app.globalData.selected=0
-                    }
-                }
+        if(e.detail.value.password!=app.globalData.userInfo.password){
+            wx.showToast({
+              title: '密码错误！',
+              icon:'none'
             })
         }
-              
-      //console.log(e.detail.value)
-      
+        else{
+             wx.showToast({
+                title: '登录成功!',
+                icon:'none'
+            })
+            setTimeout(()=>{
+                wx.reLaunch({
+                    url: '../map/map',
+                })},800)
+                app.globalData.selected=0
+                    }
 
-    }
-})
-    },
+ },
     onfocus: function() {
         this.setData({isScroll: false})
       },
@@ -79,8 +96,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {
-
+    onLoad:function ( ) {
     },
 
     /**

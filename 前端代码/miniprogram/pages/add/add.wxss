@@ -6,7 +6,7 @@
   }
   
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .label {
@@ -42,10 +42,9 @@
     font-size:40rpx;
     border: none;
     border-radius: 4px;
-    margin-bottom: 10px;
     position: relative; 
     left: 0rpx; 
-    top: -15rpx;
+    top: -50rpx;
   }
   .huoqu{
      font-size: 35rpx;

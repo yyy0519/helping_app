@@ -3,6 +3,10 @@ App({
     flag: false,
     async onLaunch (e) {
       this.initcloud()
+      if(wx.getStorageSync('userInfo')){
+        this.globalData.userInfo = wx.getStorageSync('userInfo')
+        console.log('get storage')
+      }
     },
     /**
      * 初始化云开发环境（支持环境共享和正常两种模式）

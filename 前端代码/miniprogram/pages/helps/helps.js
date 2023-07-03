@@ -1,44 +1,48 @@
+// pages/helps/helps.js
 const app=getApp()
 Page({
-
+    
     /**
      * 页面的初始数据
      */
     data: {
-        helpedlist:[
-            {
-                _id:null,
-                tip:null,
-                details:null,
-                loc:null,
-                Img:null,
-                ID:null
-            }
-        ]
+            _id:null,
+            ID:null,
+            tip:null,
+            details:null,
+            loc:null,
+            Img:null,
+            nickname:null
     },
-    
-    gethelped(){
-        let helpedlist
+
+    gethelp(){
         let that=this
         wx.cloud.database().collection('forhelp_info').where({
-            helperid:app.globalData.userInfo.ID,
-            helpernickname:app.globalData.userInfo.nickname,
+            _id:this.data._id,
         }).get({
             success(res){
-                console.log(res.data)
-                helpedlist=res.data
+                console.log(res.data[0])
+                help=res.data[0]
                 that.setData({
-                    helpedlist:res.data
+                    ID:res.data[0].ID,
+                    tip:res.data[0].tip,
+                    details:res.data[0].details,
+                    loc:res.data[0].loc,
+                    Img:res.data[0].Img,
+                    nickname:res.data[0].nickname
                 })
             }
         })
+        //console.log(this.data.help.tip)
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.gethelped()
+        this.data._id=options._id
+        this.gethelp()
+        console.log(this.data._id)
     },
 
     /**
@@ -52,11 +56,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        this.setData({
-            userInfo:app.globalData.userInfo
-            
-        }),
-        this.gethelped()
+        this.gethelp()
     },
 
     /**
@@ -70,7 +70,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-
+        
     },
 
     /**
@@ -92,10 +92,5 @@ Page({
      */
     onShareAppMessage() {
 
-    },
-    go_help(e){
-        wx.navigateTo({
-          url: '../helps/helps?_id='+e.currentTarget.dataset.info,
-        })
     }
 })

@@ -28,7 +28,7 @@
     <view class="left" bindtap="startChat" data-index="{{index}}">
 
         <image class="face" src="{{item.userB_avatarUrl}}"></image>    
-        <view class="nick-name">{{item.userB_account_id}}</view>
+        <view class="nick-name">{{item.userB_ID}}</view>
     </view>
     </block>
 
@@ -36,7 +36,7 @@
     <view class="left" bindtap="startChat" data-index="{{index}}">
 
         <image class="face" src="{{item.userA_avatarUrl}}"></image>    
-        <view class="nick-name">{{item.userA_account_id}}</view>
+        <view class="nick-name">{{item.userA_ID}}</view>
     </view>
     </block>
 
@@ -45,41 +45,23 @@
 
 
 <view class="label">其他用户</view>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    <view class="left">
-        <image class="face" src="{{helper.Img}}"></image>    
-=======
+    
+    <view wx:if="{{helper.userId!=''&&friend_status!=true}}">
     <view class="user-list">
-    <view wx:if="{{helper.userId!=''}}">
      <view class="left">
         <image class="face" src="{{helper.avatarUrl}}"></image>    
->>>>>>> Stashed changes
-        <view class="nick-name">{{helper.ID}}</view>
-        <view>刚刚看过ta的求助</view>
-    </view>
-    <view class="right">
-        <button size="mini" bindtap="addFriend" data-index="{{index}}">添加好友</button>
-    </view>
-=======
-
-    <view wx:if="{{helper.userId!=''}}">
-    <view class="user-list">
-     <view class="left">
-        <image class="face" src="{{helper.Img}}"></image>    
         <view class="nick-name">{{helper.nickname}}</view>
      </view>
      
      <view class="right">
         <button size="mini" bindtap="addqiuzhu" data-userId="{{helper.userId}}">添加好友</button>
     </view>
-</view>
     
     </view>
     <view class="tishi">刚刚看过ta的求助</view>
     </view>
     
->>>>>>> Stashed changes
+
 
 <block wx:for="{{user_list}}">
 <view class="user-list">
