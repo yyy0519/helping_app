@@ -21,8 +21,17 @@ Page({
         loc:null,
         nickname:null,
         tip:null
-    }
+    },
+    status://完成状态
+    ["未开始","进行中","已完成"],
+    currentChoose: 0,
 
+    },
+    bindPickerChange: function (e) {
+        console.log('picker发送选择改变，携带值为', e.detail.value)
+        this.setData({
+          currentChoose: e.detail.value
+        })
     },
     edittitle: function (e) {
       this.setData({
@@ -71,7 +80,8 @@ Page({
           }).update({
             data:{
               tip: title,
-              details: content
+              details: content,
+              status:this.data.status[this.data.currentChoose]
             },
             success(res){
               
