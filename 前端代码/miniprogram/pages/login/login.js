@@ -55,8 +55,6 @@ Page({
                                 setTimeout(()=>{
                                 wx.reLaunch({
 
-                                  url: '../message/message',
-
                                   url: '../map/map',
 
                                 })},800)

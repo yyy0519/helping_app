@@ -113,7 +113,7 @@ Page({
                 }
             }
             else{
-                location=this.data.info.formatted.substring(0, 8);
+                place=this.data.info.formatted.substring(0, 8);
                 console.log(this.data.info.formatted)
             }
         if (tip == '' || details == '') {
@@ -123,7 +123,7 @@ Page({
           });
           
         } 
-        else if(location=='-'||location==''){
+        else if(place=='-'||place==''){
             wx.showToast({
                 title: '未获取到定位，请点击获取位置或手动输入',
                 icon: 'none'

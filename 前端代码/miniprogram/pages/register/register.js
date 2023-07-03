@@ -29,14 +29,15 @@ Page({
         let info
         let that=this
         info=e.detail.value
-        if(info.ID!=''&&info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
+        if(info.password!=''&&info.confirmpassword!=''&&info.password==info.confirmpassword){
             wx.cloud.database().collection('user_info').add(
                 {
                     data:{
                         time:Date.now(),
                         ...info,
                         Img:that.data.Img,
-                        nickname:that.data.nickname
+                        nickname:that.data.nickname,
+                        userId:that.data.userId
                     },success(res){
                         wx.cloud.database().collection('user_info').doc(res._id).get({
                             success(res){
@@ -54,9 +55,10 @@ Page({
 
               setTimeout(()=>{
                 wx.reLaunch({
-                  url: '../message/message',
+                  url: '../map/map',
                 })
               },500)
+              app.globalData.selected=0
               
 
         }

@@ -22,9 +22,11 @@ Page({
 
     },
     help(){
+        let that=this
         const nickname=app.globalData.userInfo.nickname
         const ID=app.globalData.userInfo.ID
         const helplist_id=this.data.help_id
+        var help_detail=JSON.stringify(this.data.help)
         wx.cloud.database().collection('forhelp_info').where({
             _id:helplist_id
             }).update({
@@ -33,16 +35,16 @@ Page({
                 helpernickname:nickname,
                 helperid:ID
                 },
-                success: function(res) {
+                success: (res) =>{
 
                     wx.showToast({
                       title: '快去和求助人聊聊天吧',
                       icon:'none',
                       success:function () {
                           setTimeout(function () {                        
-                               wx.reLaunch({
-                              url: '../friends/friends',
-                       });
+                            wx.reLaunch({
+                                url: '../friends/friends?help_detail='+ help_detail,
+                            });
                       },1000);
                       app.globalData.selected=3
                   }
