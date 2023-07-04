@@ -5,6 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        tishi:null,
         helpedlist:[
             {
                 _id:null,
@@ -25,11 +26,22 @@ Page({
             helpernickname:app.globalData.userInfo.nickname,
         }).get({
             success(res){
+                if(res.data.length==0){
+                    console.log(res.data)
+                    helpedlist=res.data
+                    that.setData({
+                        helpedlist:res.data,
+                        tishi:"还没有帮助过别人噢，快去看看有谁需要帮助吧！"
+                    })
+                }
+                else{
                 console.log(res.data)
                 helpedlist=res.data
                 that.setData({
-                    helpedlist:res.data
+                    helpedlist:res.data,
+                    tishi:"没有更多了，快去帮助别人吧！"
                 })
+            }
             }
         })
     },

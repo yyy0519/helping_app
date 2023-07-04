@@ -5,7 +5,7 @@ page{
 .big{
     padding: 10rpx;
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between ;
     align-items: center;
 }
@@ -51,4 +51,8 @@ text-overflow: ellipsis;
     font-size: 30rpx;
     margin-top: 25rpx;
     margin-left: 100rpx;
+}
+.tishi{
+    font-size: 30rpx;
+    margin-top: 50rpx;
 }

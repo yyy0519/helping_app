@@ -9,5 +9,6 @@
             <!--<view class="didian">{{item.loc}}</view>-->
         </view>
     </view>
+    <view class="tishi">{{tishi}}</view>
     <view></view>
 </view>
