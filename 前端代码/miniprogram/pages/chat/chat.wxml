@@ -16,7 +16,7 @@
         <view class="bot-right">
         <text>{{item.text}}</text>
         </view>
-        <image class = "face-right" src="{{userInfo.avatarUrl}}"></image>
+        <image class = "face-right" src="{{userInfo.Img}}"></image>
     </view>
     </block>
 </view>

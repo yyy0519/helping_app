@@ -1,5 +1,6 @@
 // pages/my/my.js
 const app=getApp()
+var count=0
 Page({
 
     /**
@@ -40,6 +41,7 @@ Page({
     },
     starting(){
         console.log("starting")
+       // console.log('111',app.globalData.userInfo)
         let that=this
         const numhelped = "list[1].littleTitle";
         const numpublish = "list[0].littleTitle";
@@ -163,5 +165,206 @@ Page({
         wx.navigateTo({
             url: '../fankui/fankui',
           })
-    }
+    },
+    changeUserAvatar() {
+        let a = this;
+        wx.showActionSheet({
+            itemList: [ "从相册中选择", "拍照" ],
+            itemColor: "#f7982a",
+            success: function(e) {
+            //album:相册   //camera拍照
+                e.cancel || (0 == e.tapIndex ? a.chooseWxImageShop("album") : 1 == e.tapIndex && a.chooseWxImageShop("camera"));
+            }
+        });
+      },
+      //a：选择的类型  //album:相册   //camera拍照
+      chooseWxImageShop: function(a) {
+      var e = this;
+      wx.chooseMedia({
+          mediaType : ["image"],
+          sizeType: [ "original", "compressed" ],
+          sourceType: [ a ],//类型
+          count:1,
+          success: function(a) {
+              if(a.tempFiles[0].size> 2097152){
+                  wx.showModal({
+                      title: "提示",
+                      content: "选择的图片过大，请上传不超过2M的图片",
+                      showCancel: !1,
+                      success: function(a) {
+                          a.confirm;
+                      }
+                  })
+              }else{
+                  //把图片上传到服务器
+                  e.upload_file(a.tempFiles[0].tempFilePath)
+              }
+          }
+      });
+      },
+        upload_file: function(e) {
+          console.log('zaizhe',e);
+          var that = this
+          console.log('IDIDI',app.globalData.userInfo.userId)
+          wx.showLoading({
+              title: "上传中"
+          });
+          console.log('IDIDI',app.globalData.userInfo.userId)
+          wx.cloud.uploadFile({
+              filePath: e,//图片路径
+              cloudPath: app.globalData.userInfo.userId +count+ ".png",
+              success(res) {
+                console.log('成功')
+                  count += 1
+                  console.log(res.fileID)
+                  that.updateAvatar(res.fileID)
+                  wx.hideLoading();
+                  wx.showToast({
+                      title: "上传成功",
+                      icon: "success",
+                      duration: 1000
+                  });
+              },
+              fail: function(a) {
+                  wx.hideLoading();
+                  wx.showToast({
+                      title: "上传失败",
+                      icon: "none",
+                      duration: 3000
+                  });
+              }
+          });
+          
+        },
+        updateAvatar(url) {
+          var that = this;
+          console.log('url',url)
+    
+          // 更新聊天记录数据库中头像信息
+          wx.cloud.database().collection('chat_record').where({
+            userA_id : app.globalData.userInfo._id
+          }).update({
+            data : {
+            userA_avatarUrl : url
+            }
+          })
+    console.log('0000',app.globalData.userInfo._id)
+    wx.cloud.database().collection('chat_record').where({
+        userB_id : app.globalData.userInfo._id
+      }).update({
+        data : {
+        userB_avatarUrl : url
+        }
+      })
+    
+          console.log(app.globalData.userInfo.userId)
+        wx.cloud.database().collection('user_info').where({
+            userId : app.globalData.userInfo.userId,
+          }).update({
+            data : {
+            Img : url
+            }
+          })
+          wx.cloud.database().collection('forhelp_info').where({
+            userId : app.globalData.userInfo.userId,
+          }).update({
+            data : {
+            Img : url
+            }
+          })
+          wx.cloud.database().collection('report_info').where({
+            userId : app.globalData.userInfo.userId,
+          }).update({
+            data : {
+            Img : url
+            },
+            success(res) {
+                console.log(res)
+                wx.showToast({
+                  title: '头像更新成功',
+                });
+                that.setData({
+                    Img: url
+                })
+                app.globalData.userInfo.Img = url;
+              }
+          })
+          app.globalData.userInfo.Img = url;
+    
+          this.onShow()
+    
+        },
+    changename:function (){
+        wx.showModal({
+            title: '提示',
+            content: '是否要更改昵称？',
+            success: function(res) {
+            if (res.confirm) {
+                wx.showModal({
+                title: '输入新昵称',
+                success: function(res) {
+                if (res.confirm) {
+                    // 获取用户输入的新昵称
+                    var newNickname = res.inputValue;
+                    // 在这里根据需求进行昵称的更改操作
+                    console.log('新昵称：', newNickname);
+                    wx.cloud.database().collection('chat_record').where({
+                         userA_id : app.globalData.userInfo._id
+                          }).update({
+                    data : {
+                        userA_ID : newNickname
+                        }
+                    })
+                    console.log('0000',app.globalData.userInfo._id)
+                    wx.cloud.database().collection('chat_record').where({
+                        userB_id : app.globalData.userInfo._id
+                      }).update({
+                        data : {
+                        userB_ID : newNickname
+                        }
+                      })
+                    
+                    console.log(app.globalData.userInfo.userId)
+                    wx.cloud.database().collection('user_info').where({
+                            userId : app.globalData.userInfo.userId,
+                          }).update({
+                            data : {
+                            ID : newNickname
+                            }
+                          })
+                          wx.cloud.database().collection('forhelp_info').where({
+                            userId : app.globalData.userInfo.userId,
+                          }).update({
+                            data : {
+                            ID : newNickname
+                            }
+                          })
+                          wx.cloud.database().collection('report_info').where({
+                            userId : app.globalData.userInfo.userId,
+                          }).update({
+                            data : {
+                            ID : newNickname
+                            },
+                            success(res) {
+                                console.log(res)
+                                wx.showToast({
+                                  title: '昵称更新成功',
+                                });
+                                that.setData({
+                                    ID: newNickname
+                                })
+                                app.globalData.userInfo.ID = newNickname;
+                              }
+                          })
+                          app.globalData.userInfo.ID = newNickname;
+                    
+                         // this.onShow()
+                        }
+                      },
+                      showCancel: false  // 隐藏取消按钮
+                    });
+                  }
+                }
+              });
+        }
 })

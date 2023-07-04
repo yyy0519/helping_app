@@ -1,6 +1,5 @@
 const app = getApp() // 获取全局APP对象
 let that = null // 页面this指针变量
-let locData = require('../../utils/location')
 Page({
   data: { // 默认数据
     markers:[],
@@ -29,98 +28,72 @@ Page({
             status:null
            
         }
-    ],
-    markerid:0,
-    loc:null
+    ]
     
-  },
-  cancel(){
-    wx.cloud.database().collection('forhelp_info').orderBy('date', 'desc').get({//按照发布时间从小到大排序，最新发布的在最上面
-        success:(res)=>{
-            console.log("获取数据成功",res.data),
-           that.setData({
-            helplist:res.data,
-            markerid:0
-        })
-        }
-    })
   },
   markertap(e) {
       console.log(e);
-      var that=this
-      that.setData({
-          markerid:e.markerId
-      })
-   
-    for(let item of locData){
-        if(e.markerId==item.id){
-            that.setData({
-                loc:item.name
-            })
-        }
-    }
-    wx.cloud.database().collection('forhelp_info').orderBy('date', 'desc').where({
-        loc:that.data.loc
-    }).get({//按照发布时间从小到大排序，最新发布的在最上面
-        success:(res)=>{
-            console.log("获取数据成功",res.data),
-           that.setData({
-            helplist:res.data
-        })
-        }
+    var id = e.markerId
+    var loc
+
+    // var name = this.data.markers[id - 1].name
+    // console.log(name)
+    this.setData({
+    //   lingyuanName: name,
+    //   showDialog: true,
     })
   },
-  test(){
+  getMarkers(){
     let premarkers = [];
-    var that=this
-    const $ = wx.cloud.database().command.aggregate
-
-    wx.cloud.database().collection('forhelp_info')
-    .aggregate().match({status:"未开始"})
-    .group({
-   
-      _id:null,
-      num:$.addToSet('$loc')
-    }).end().then(res => {
-        console.log("地址统计",res.list[0].num)
-        for (let item of locData) {
-            for(let itemgroup of res.list[0].num){
-                if(itemgroup==item.name){
-                    let marker = {
-                        iconPath: "../../asset/location.png",
-                        id: parseInt(item.id)|| 0,
-                        name: item.name || '',
-                        latitude: item.latitude,
-                        longitude: item.longitude,
-                        width: 30,
-                        height: 30,
-                        label: {
-                          content: item.name,
-                          color: '#402a58',
-                          fontSize: 14,
-                          bgColor: "#fff",
-                          borderRadius: 30,
-                          borderColor: "#402a58",
-                          borderWidth: 1,
-                          padding: 3
-                        },
-                        callout: {
-                            content: '1',
-                        }
-                        
-                      };
-                      premarkers.push(marker)
-                      
-
-                }
-
-            }
-        }
-        that.setData({
-            markers:premarkers
-        })
+    var i=0;
+    wx.cloud.database().collection('forhelp_info').where({
+        status:"未开始"
+    }).get({
+       success:(res)=>{
+           console.log("未开始",res.data)
+    for (let item of res.data) {
+      let marker = this.createMarker(item);
+    
+      premarkers.push(marker)
+    }
+    that.setData({
+        markers:premarkers
     })
    
+}
+    })
+    return premarkers;
+
+  },
+  createMarker(point) {
+    let latitude = point.latitude;
+    let longitude = point.longitude;
+  
+    let marker = {
+      iconPath: "../../asset/location.png",
+      id: point.helpno || 0,
+      name: point.loc || '',
+      latitude: latitude,
+      longitude: longitude,
+      width: 30,
+      height: 30,
+      label: {
+        content: point.loc,
+        color: '#402a58',
+        fontSize: 14,
+        bgColor: "#fff",
+        borderRadius: 30,
+        borderColor: "#402a58",
+        borderWidth: 1,
+        padding: 3
+      },
+      callout: {
+        
+      }
+      
+    };
+    return marker;
+
   },
   gethelpxinxi(){
     var that=this
@@ -139,8 +112,9 @@ Page({
    */
   onShow() {
     this.gethelpxinxi()
-    this.test()
-   
+    this.setData({
+        markers: this.getMarkers()
+      })
 
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 
@@ -156,8 +130,9 @@ Page({
   onLoad () {
     that = this // 设置页面this指针到全局that
     this.gethelpxinxi()
-    this.test()
-   
+    this.setData({
+        markers: this.getMarkers()
+      })
 
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 
@@ -172,7 +147,9 @@ Page({
       success: (res) => { // 获取成功
         that.setInfo([parseFloat(res.latitude), parseFloat(res.longitude)]) // 设置经纬度信息
         that.getLocation() // 获取当前位置点
-     
+        let marker = this.createMarker(res)
+    
+        
       },
       fail (e) { // 获取失败
         if (e.errMsg.indexOf('auth deny') !== -1) { // 如果是权限拒绝
