@@ -49,12 +49,12 @@
     
     <view wx:if="{{helper.userId!=''&&helper.userId!=userInfo.userId&&friend_status!=true}}">
     <view class="user-list">
-     <view class="left">
-        <image class="face" src="{{helper.avatarUrl}}"></image>    
-        <view class="nick-name">{{helper.nickname}}</view>
+     <view class="left1">
+        <image class="face1" src="{{helper.avatarUrl}}"></image>    
+        <view class="nick-name1">{{helper.nickname}}</view>
      </view>
      
-     <view class="right">
+     <view class="right1">
         <button size="mini" bindtap="addqiuzhu" data-userId="{{helper.userId}}">添加好友</button>
     </view>
     
@@ -67,16 +67,16 @@
 <block wx:for="{{user_list}}">
 <view class="user-list">
 
-    <view class="left">
+    <view class="left1">
 
     <block wx:if="{{item._id != new_accepted_friend_id}}" wx:key="_id">
 
-        <image class="face" src="{{item.avatarUrl}}"></image>    
-        <view class="nick-name">{{item.nickname}}</view>
+        <image class="face1" src="{{item.avatarUrl}}"></image>    
+        <view class="nick-name1">{{item.nickname}}</view>
 
     </block>
     </view>
-    <view class="right">
+    <view class="right1">
     
     
     <button size="mini" bindtap="addFriend" data-index="{{index}}">添加好友</button>
@@ -124,3 +124,50 @@
 </view>
 </block>
 </view>
+
+
+
+
+<view class="label">其他用户</view>
+    
+    <view wx:if="{{helper.userId!=''&&helper.userId!=userInfo.userId&&friend_status!=true}}">
+    <view class="user-list">
+     <view class="left1">
+        <image class="face1" src="{{helper.avatarUrl}}"></image>    
+        <view class="nick-name1">{{helper.nickname}}</view>
+     </view>
+     
+     <view class="right1">
+        <button size="mini" bindtap="addqiuzhu" data-userId="{{helper.userId}}">添加好友</button>
+    </view>
+    
+    </view>
+    <view class="tishi">刚刚看过ta的求助</view>
+    </view>
+    
+
+
+<block wx:for="{{user_list}}">
+<view class="user-list">
+
+    <view class="left1">
+
+    <block wx:if="{{item._id != new_accepted_friend_id}}" wx:key="_id">
+
+        <image class="face1" src="{{item.avatarUrl}}"></image>    
+        <view class="nick-name1">{{item.nickname}}</view>
+
+    </block>
+    </view>
+    <view class="right1">
+    
+    
+    <button size="mini" bindtap="addFriend" data-index="{{index}}">添加好友</button>
+    
+    
+    </view>
+
+</view>
+</block>
+
+<view style="padding-bottom: 25%;"></view>
