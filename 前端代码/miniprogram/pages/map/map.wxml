@@ -24,21 +24,6 @@
 	</view> -->
 </view>
 
-<view wx:if="{{markerid!=0}}">
-<!-- 用户点击标记后显示各个建筑的求助 -->
-  <view class='sort'>
-    <view class="sorttxt">您已筛选查看位于{{loc}}内的求助信息</view>
-    <button style="width:130px"  class="sortbtn" bindtap="cancel">
-      <image class='icon' src='../../asset/cancel.png'></image>
-    取消筛选</button>
-  </view>
-</view>
-
-
-
-<view wx:if="{{markerid==0}}">
-  <view class='sorttxt'>点击地图上的标记可根据位置筛选求助~</view>
-</view>
 <view>
     <!-- <view wx:if="{{userInfo}}"> -->
       
