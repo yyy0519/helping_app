@@ -1,12 +1,14 @@
 <view>
   <view>
-    <image class="img" src="{{help.Img}}"></image>
-    <view class="nicheng">{{help.nickname}}</view>
-    <view class="date">{{help.date}}</view>
-      <view class="iconloc">
-        <image class="icon" src="../../asset/local.png"></image>
-        <view class="loc">{{help.loc}}</view>
-      </view>
+    <view class="xinxi">
+      <image class="img" src="{{help.Img}}"></image>
+      <view class="nicheng">{{help.nickname}}</view>
+      <view class="date">{{help.date}}</view>
+        <view class="iconloc">
+          <image class="icon" src="../../asset/local.png"></image>
+          <view class="loc">{{help.loc}}</view>
+        </view>
+    </view>
     <view class="titlecontent">
         <view class="title">{{help.tip}}</view>
         <view class="content">{{help.details}}</view>

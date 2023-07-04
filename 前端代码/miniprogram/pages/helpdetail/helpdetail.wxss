@@ -39,6 +39,8 @@
 .titlecontent{
     position: relative;
     top:-60px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .title{
     font-size: 25px;
@@ -64,4 +66,8 @@
     position: relative; 
     left: 0rpx; 
     top: 30px;
+}
+.xinxi{
+    margin-top: 15px;
+    margin-right: 10px;
 }
