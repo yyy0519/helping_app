@@ -9,7 +9,7 @@
       <!-- 头像 -->
       <view class="userAvatar">
         <view class="box">
-        <image src="{{userInfo.Img}}"></image>
+        <image src="{{userInfo.Img}}" bindtap="changeUserAvatar"></image>
         </view>
         <!--<open-data type="userAvatarUrl"></open-data>-->
       </view>
@@ -17,7 +17,7 @@
       <!-- Txt -->
       <view class="userInfoTxt">
         <!-- 姓名 -->
-        <view class="userName">{{userInfo.nickname}}</view>
+        <view class="userName"bindtap="changename">{{userInfo.nickname}}</view>
         
         <!-- 学院 
         <view class="userAcademy">
