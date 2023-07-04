@@ -7,9 +7,6 @@
   border: none;
   border-radius: 4px;
   margin-bottom: 10px;
-  position: relative; 
-  left: 0rpx; 
-  top: -15rpx;
 }
 .register{
   width: 100%;
@@ -71,7 +68,25 @@ image{
 .input{
   display: flex;
   flex-direction: column;
+  width:325px;
   margin-left: 40px;
   margin-top: 20px;
   margin-bottom: 30px;
+}
+.tishiyu{
+    display: flex;
+    justify-content: center;
+    color:rgb(116, 115, 117);
+    margin-top: 5px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.img{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 9px;
+
 }

@@ -9,11 +9,20 @@
 </view>
 <form bindsubmit="formSubmit">
   <view class="input">
-    <input class="ID" value="{{defaultText}}" name="ID" disabled="true"/>
-    <input class="pw" name="password" placeholder="请输入密码"/>
-    <input class="confirm" name="confirmpassword" placeholder="请确认密码"/>
+    <input wx:if="{{nickname!='昵称'}}" class="ID" value="{{defaultText}}" name="ID" disabled="true"/>
+    <view wx:if="{{nickname!='昵称'}}" class="row">
+      <input  class="pw" name="password" password="{{ps}}" placeholder="请输入密码"/>
+      <image  class='img' wx:if="{{show}}" bindtap="show" src='../../asset/close.png'></image>
+      <image class='img' wx:if="{{hide}}" bindtap="hide" src='../../asset/eye.png'></image>
+    </view>
+    <view wx:if="{{nickname!='昵称'}}" class="row">
+      <input class="confirm" name="confirmpassword" password="{{ps2}}" placeholder="请确认密码"/>
+      <image  class='img' wx:if="{{show2}}" bindtap="show2" src='../../asset/close.png'></image>
+      <image class='img' wx:if="{{hide2}}" bindtap="hide2" src='../../asset/eye.png'></image>
+    </view>
   </view>
     <button wx:if="{{nickname!='昵称'}}" form-type="submit" class="register">注册</button>
    
 </form>
 <button wx:if="{{nickname=='昵称'}}" class="huoqu" bindtap="getimgnickname">获取微信头像</button>
+<view class="tishiyu" wx:if="{{nickname=='昵称'}}">行走江湖，不能没有头像哦~</view>

@@ -8,7 +8,41 @@ Page({
     data: {
         Img:"/image/me.png",
         nickname:"昵称",
-        defaultText:'用户ID'
+        defaultText:'用户ID',
+        show:true,
+        hide:false,
+        ps:true,
+        show2:true,
+        hide2:false,
+        ps2:true,
+    },
+    show(){
+        this.setData({
+          show: false,
+          hide: true,
+          ps: false,
+        }) 
+      },
+      hide(){
+        this.setData({
+          show: true,
+          hide: false,
+          ps: true,
+        })
+    },
+    show2(){
+        this.setData({
+          show2: false,
+          hide2: true,
+          ps2: false,
+        }) 
+      },
+      hide2(){
+        this.setData({
+          show2: true,
+          hide2: false,
+          ps2: true,
+        })
     },
     getimgnickname(){
         var that=this
@@ -92,7 +126,7 @@ Page({
                     wx.cloud.callFunction({
                         name: 'cloudbase_auth',
                         success: res => {
-                          console.error(err)
+                          
                         }
                       });
                 }
