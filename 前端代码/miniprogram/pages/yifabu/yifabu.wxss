@@ -95,6 +95,7 @@ text-overflow: ellipsis;
 }
 .loc{
   width:70px;
+  margin-right: 10px;
 }
 .deletebtn{
   width: 50%;
@@ -115,4 +116,9 @@ text-overflow: ellipsis;
 .column{
   display:flex;
   flex-direction: column;
+}
+.icon{
+   position: relative;
+   left:68px;
+   top:-10px;
 }

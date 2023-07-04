@@ -14,9 +14,11 @@ Page({
                 loc:null,
                 Img:null,
                 nickname:null,
-                helpernickname:null
+                helpernickname:null,
+                status:null
             }
-        ]
+        ],
+        index:0
     },
     delete(e){
       let that=this
@@ -58,6 +60,7 @@ console.log(e.target.dataset.item)
             success(res){
                 console.log("已发布",res.data)
                 helpinglist=res.data
+                                
                 that.setData({
                     helpinglist
                 })

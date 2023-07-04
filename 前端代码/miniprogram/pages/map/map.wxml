@@ -28,17 +28,18 @@
     <!-- <view wx:if="{{userInfo}}"> -->
       
     <view class="Bigbox" bindtap="" wx:for="{{helplist}}"wx:key="_id">   
-    <view class="blank"></view>
-    <navigator url="../helpdetail/helpdetail?_id={{item._id}}" >
-    <view class="box">
-    <view class="loc-end">
-    <view>
-      <view class='xinxi'>
-        <image class="img" src="{{item.Img}}" ></image>
-        <view class="nicheng">{{item.nickname}}</view>
-      </view>
-      <view class="date" >{{item.date}}</view>
-    </view>
+    <view wx:if="{{item.status=='未开始'}}">
+     <view class="blank"></view>
+     <navigator url="../helpdetail/helpdetail?_id={{item._id}}" >
+      <view class="box">
+        <view class="loc-end">
+          <view>
+            <view class='xinxi'>
+              <image class="img" src="{{item.Img}}" ></image>
+              <view class="nicheng">{{item.nickname}}</view>
+            </view>
+          <view class="date" >{{item.date}}</view>
+        </view>
       <view >{{item.loc}}</view>
     </view>
       <view class="tiptail">
@@ -46,8 +47,10 @@
       <view class="detail">{{item.details}}</view>
       </view>
     </view>
+   
 </navigator>
     </view>
+</view>
 
 
 </view>

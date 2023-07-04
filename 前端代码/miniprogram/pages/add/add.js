@@ -148,7 +148,8 @@ Page({
               time:Date.now(),
               latitude:latitude1,
               longitude:longitude1,
-              helpno:app.globalData.helpnum+1
+              helpno:app.globalData.helpnum+1,
+              status:"未开始",
             },
             
              

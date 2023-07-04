@@ -46,7 +46,7 @@
 
 <view class="label">其他用户</view>
     
-    <view wx:if="{{helper.userId!=''&&friend_status!=true}}">
+    <view wx:if="{{helper.userId!=''&&helper.userId!=userInfo.userId&&friend_status!=true}}">
     <view class="user-list">
      <view class="left">
         <image class="face" src="{{helper.avatarUrl}}"></image>    

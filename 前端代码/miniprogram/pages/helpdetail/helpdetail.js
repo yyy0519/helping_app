@@ -25,32 +25,43 @@ Page({
         let that=this
         const nickname=app.globalData.userInfo.nickname
         const ID=app.globalData.userInfo.ID
+        const userId=app.globalData.userInfo.userId
         const helplist_id=this.data.help_id
         var help_detail=JSON.stringify(this.data.help)
-        wx.cloud.database().collection('forhelp_info').where({
-            _id:helplist_id
-            }).update({
-                data:{
-                status:"进行中",
-                helpernickname:nickname,
-                helperid:ID
-                },
-                success: (res) =>{
-
-                    wx.showToast({
-                      title: '快去和求助人聊聊天吧',
-                      icon:'none',
-                      success:function () {
-                          setTimeout(function () {                        
-                            wx.reLaunch({
-                                url: '../friends/friends?help_detail='+ help_detail,
-                            });
-                      },1000);
-                      app.globalData.selected=3
-                  }
-                })
-            }
-        })
+        if(userId!=that.data.help.userId){
+            wx.cloud.database().collection('forhelp_info').where({
+                _id:helplist_id
+                }).update({
+                    data:{
+                    status:"进行中",
+                    helpernickname:nickname,
+                    helperid:ID
+                    },
+                    success: (res) =>{
+    
+                        wx.showToast({
+                          title: '快去和求助人聊聊天吧',
+                          icon:'none',
+                          success:function () {
+                              setTimeout(function () {                        
+                                wx.reLaunch({
+                                    url: '../friends/friends?help_detail='+ help_detail,
+                                });
+                          },1000);
+                          app.globalData.selected=3
+                      }
+                    })
+                }
+            })
+        }
+        else{
+            wx.showToast({
+                title: '不能帮助自己的求助哦！',
+                icon:'none',
+                
+          })
+        }
+        
             
     },
 

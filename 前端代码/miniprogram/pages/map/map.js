@@ -24,7 +24,8 @@ Page({
             details:null,
             loc:null,
             nickname:null,
-            tip:null
+            tip:null,
+            status:null
            
         }
     ]
@@ -45,8 +46,11 @@ Page({
   getMarkers(){
     let premarkers = [];
     var i=0;
-    wx.cloud.database().collection('forhelp_info').get({
+    wx.cloud.database().collection('forhelp_info').where({
+        status:"未开始"
+    }).get({
        success:(res)=>{
+           console.log("未开始",res.data)
     for (let item of res.data) {
       let marker = this.createMarker(item);
     
@@ -108,6 +112,9 @@ Page({
    */
   onShow() {
     this.gethelpxinxi()
+    this.setData({
+        markers: this.getMarkers()
+      })
 
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 
@@ -123,6 +130,9 @@ Page({
   onLoad () {
     that = this // 设置页面this指针到全局that
     this.gethelpxinxi()
+    this.setData({
+        markers: this.getMarkers()
+      })
 
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 
@@ -139,9 +149,7 @@ Page({
         that.getLocation() // 获取当前位置点
         let marker = this.createMarker(res)
     
-        this.setData({
-            markers: this.getMarkers()
-          })
+        
       },
       fail (e) { // 获取失败
         if (e.errMsg.indexOf('auth deny') !== -1) { // 如果是权限拒绝

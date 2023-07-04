@@ -20,7 +20,9 @@ Page({
         
     },
     onShow() {
-
+        this.setData({
+            userInfo : app.globalData.userInfo
+        })
         this.getNewFriends()
         this.getMyfriend()
         this.getAllUser()
@@ -36,6 +38,10 @@ Page({
     },
 //获取到求助人信息,从求助详情页点击帮助跳转过来，显示这个求助人的添加好友信息
     onLoad:function(e){
+        const _ = wx.cloud.database().command;
+        this.setData({
+            userInfo : app.globalData.userInfo
+        })
         let that=this
         var help
         console.log("help_detail",e.help_detail)
@@ -53,14 +59,16 @@ Page({
                 }
             })
             wx.cloud.database().collection('user_info').where({
-                userId:app.globalData.userInfo.userId,
-                friends:that.data.helper.userId
+                userId:that.data.userInfo.userId,
+                friends:that.data.helper._id
             }).get({
                 success(res) {
                     console.log("好友",res.data[0])
+                    if(res.data[0]!=undefined){
                     that.setData({
                         friend_status:true
                     })
+                    }
                 }
             })
 

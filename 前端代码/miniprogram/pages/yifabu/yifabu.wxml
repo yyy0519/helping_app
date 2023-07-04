@@ -4,14 +4,18 @@
     <view>
         <view class="box" wx:for="{{helpinglist}}"wx:key="_id">
         <!-- <view class="column"> -->
-
+            
           <view class="loc-end">
             <view class='xinxi'>
                 <image class="img" src="{{item.Img}}" ></image>
                 <view class="nicheng">{{item.nickname}}</view>
             </view>
             <view class="date" >{{item.date}}</view>
+            <icon class="icon" wx:if="{{item.status=='未开始'}}" type="warn" color="orange" size="20"></icon>
+            <icon class="icon" wx:if="{{item.status=='进行中'}}" type="waiting" size="20"></icon>
+            <icon class="icon" wx:if="{{item.status=='已完成'}}" type="success" size="20"></icon>
             <view class="loc">{{item.loc}}</view>
+             
           </view>
 
           <view class="title">{{item.tip}}</view>

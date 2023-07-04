@@ -89,6 +89,11 @@ Page({
                 title: '修改成功',
                 icon:'success',
               });
+              setTimeout(()=>{    
+               wx.navigateBack({
+                  delta: 1
+                })
+            },800)
             },
           })
 
@@ -113,6 +118,21 @@ Page({
           }).get({
             success(res){
               console.log("res",res.data[0])
+              if(res.data[0].status=="未开始"){//设置picker初始默认值
+                that.setData({
+                    currentChoose:0
+                })
+              }
+              else if(res.data[0].status=="进行中"){
+                that.setData({
+                    currentChoose:1
+                })
+              }
+              else{
+                that.setData({
+                    currentChoose:2
+                })
+              }
           that.setData({
               help:res.data[0]
           })
