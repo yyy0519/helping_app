@@ -8,6 +8,7 @@ Page({
      */
     data: {
         issearch:0,
+        searchtxt:''
 
     },
 
@@ -54,7 +55,16 @@ Page({
       },
       wxSearchInput: function(e){
         var that = this
+        const db = wx.cloud.database();
+        const _ = wx.cloud.database().command
+        const key=that.data.searchtxt
         WxSearch.wxSearchInput(e,that);
+        console.log(e.detail.value)
+        that.setData({
+            searchtxt:e.detail.value
+        })
+        console.log("input",that.data.searchtxt)
+       
       },
       wxSerchFocus: function(e){
         var that = this
@@ -79,6 +89,33 @@ Page({
       wxSearchTap: function(e){
         var that = this
         WxSearch.wxSearchHiddenPancel(that);
+        
+        const db = wx.cloud.database();
+        const _ = wx.cloud.database().command
+        const key=that.data.searchtxt
+        console.log("input",key)
+        wx.cloud.database().collection('forhelp_info').where(_.or([
+            {
+                details: db.RegExp({
+                    regexp: '.*' + key,
+                    options: 'i',
+                  })
+
+            },
+            {
+              tip: db.RegExp({
+                    regexp: '.*' + key,
+                    options: 'i',
+                  })
+            }
+          ])).get({
+            success: res => {
+              console.log(res)
+            },
+            fail: err => {
+              console.log(err)
+            }
+          })
       },
 
     /**
