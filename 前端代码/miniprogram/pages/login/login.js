@@ -7,7 +7,25 @@ Page({
      */
     data: {
         userid:'用户ID',
-        password:''
+        password:'',
+        show:true,
+        hide:false,
+        ps:true,
+       
+    },
+    show(){
+        this.setData({
+          show: false,
+          hide: true,
+          ps: false,
+        }) 
+      },
+      hide(){
+        this.setData({
+          show: true,
+          hide: false,
+          ps: true,
+        })
     },
     register(){
         var that =this

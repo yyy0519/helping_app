@@ -255,7 +255,7 @@ Page({
         let a = this;
         wx.showActionSheet({
             itemList: [ "从相册中选择", "拍照" ],
-            itemColor: "#f7982a",
+            itemColor: "#694c81",
             success: function(e) {
             //album:相册   //camera拍照
                 e.cancel || (0 == e.tapIndex ? a.chooseWxImageShop("album") : 1 == e.tapIndex && a.chooseWxImageShop("camera"));

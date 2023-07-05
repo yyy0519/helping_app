@@ -10,7 +10,11 @@
         <view class="font">账号：</view>
         <input class="inputid" bindfocus="onfocus" bindblur="onblur" type="text" placeholder="placeholder"  name="ID" placeholder="{{userid}}" bindtap="showID" disabled="true"/>
         <view class="font">密码：</view>
-        <input class="inputpw" name="password" placeholder="请输入密码"/>
+        <view class="row">
+          <input class="inputpw" name="password" password="{{ps}}" placeholder="请输入密码"/>
+          <image  class='img' wx:if="{{show}}" bindtap="show" src='../../asset/close.png'></image>
+          <image class='img' wx:if="{{hide}}" bindtap="hide" src='../../asset/eye.png'></image>
+        </view>
       </view>
       <button form-type="submit" class="login" style="position: relative; left: 0rpx; top: 150rpx">登录</button>  
     </view>

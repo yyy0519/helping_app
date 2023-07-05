@@ -111,7 +111,7 @@
     <view class="left" bindtap="startChat" data-index="{{index}}">
 
         <view class="flex-row">
-        <image class="face" bindtap="startChat" src="{{item.userA_avatarUrl}}"></image>    
+        <image class="face" bindtap="startChat" data-index="{{index}}" src="{{item.userA_avatarUrl}}"></image>    
         <view>
             <view class="nick-name">{{item.userA_ID}}</view>
             <view class="msg">{{item.record[item.record.length-1].text}}</view>

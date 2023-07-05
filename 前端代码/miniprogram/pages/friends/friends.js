@@ -100,8 +100,7 @@ Page({
             _id: _.nin(that.data.userInfo.friends).and(_.neq(that.data.userInfo._id))//nin表示不在用户的已加好友中，neq表示不是用户本人
         }).get({
             success(res) {
-                console.log("user_list")
-                console.log(res.data)
+                console.log("user_list",res.data)
                 that.setData({
                     user_list : res.data
                 })
@@ -113,27 +112,47 @@ Page({
         var index = e.currentTarget.dataset.index;
         var that = this;
         console.log("friend",that.data.userInfo._id)
-        wx.cloud.database().collection('chat_record').add({
-            data:{
-                userA_id : that.data.userInfo._id,
-                userA_ID : that.data.userInfo.nickname,
-                userA_avatarUrl : that.data.userInfo.avatarUrl,
-
-                userB_id : that.data.user_list[index]._id,
-                userB_ID : that.data.user_list[index].nickname,
-                userB_avatarUrl : that.data.user_list[index].avatarUrl,
-
-                record : [],
-                friend_status : false,
-                time: utils.formatTime(new Date())
-            },
-            success(res) {
-                console.log(res)
-                wx.showToast({
-                  title: '已发送好友申请',
-                })
+        wx.cloud.database().collection('chat_record').where({
+            userA_id : that.data.userInfo._id,
+            userA_ID : that.data.userInfo.nickname,
+            userB_id : that.data.user_list[index]._id,
+            userB_ID : that.data.user_list[index].nickname,
+        }).get({
+            success(res){
+                if(res.data!=''){
+                    console.log("添加好友",res.data)
+                    wx.showToast({
+                        title: '您已添加过该好友，请勿重复添加',
+                        icon:none,
+                      })
+                }
+                else{
+                    wx.cloud.database().collection('chat_record').add({
+                        data:{
+                            userA_id : that.data.userInfo._id,
+                            userA_ID : that.data.userInfo.nickname,
+                            userA_avatarUrl : that.data.userInfo.avatarUrl,
+            
+                            userB_id : that.data.user_list[index]._id,
+                            userB_ID : that.data.user_list[index].nickname,
+                            userB_avatarUrl : that.data.user_list[index].avatarUrl,
+            
+                            record : [],
+                            friend_status : false,
+                            time: utils.formatTime(new Date())
+                        },
+                        success(res) {
+                            console.log("发送好友请求",res)
+                            wx.showToast({
+                              title: '已发送好友申请',
+                            })
+                        }
+                    })
+                }
             }
+
         })
+        
 
     },
     addqiuzhu(e){
@@ -161,7 +180,7 @@ Page({
                             time: utils.formatTime(new Date())
                         },
                         success(res) {
-                            console.log(res)
+                            console.log("已发送好友申请",res)
                             wx.showToast({
                               title: '已发送好友申请',
                             })
@@ -182,7 +201,7 @@ Page({
             friend_status : false
         }).get({
             success(res) {
-                console.log(res);
+                console.log("new_friends",res);
                 that.setData({
                     new_friends : res.data
                 })
@@ -226,7 +245,7 @@ Page({
             _id : that.data.userInfo._id
         }).get({
             success(res) {
-                console.log(res.data)
+                console.log('成为朋友',res.data)
                 var my_friends = res.data[0].friends;
                 my_friends.push(that.data.new_friends[index].userA_id)
                 app.globalData.userInfo.friends = my_friends                
@@ -236,6 +255,7 @@ Page({
                     data : {
                         friends : my_friends
                     }
+                    
                 })
             }
         })
@@ -246,7 +266,7 @@ Page({
             _id : that.data.new_friends[index].userA_id
         }).get({
             success(res) {
-                //console.log(res)
+             
                 var A_friends = res.data[0].friends;
                 A_friends.push(that.data.userInfo._id)
                 wx.cloud.database().collection('user_info').where({
@@ -291,8 +311,11 @@ Page({
 
     startChat(e) {
         var index = e.currentTarget.dataset.index;
+        var that=this
+        console.log('index',index)
+        console.log('朋友_id',that.data.my_friends[index]._id)
         wx.navigateTo({
-          url: '/pages/chat/chat?id=' + this.data.my_friends[index]._id
+          url: '/pages/chat/chat?id=' + that.data.my_friends[index]._id
         })
     }
 })
