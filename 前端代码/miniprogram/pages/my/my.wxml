@@ -22,7 +22,7 @@
           <image class='editimg' bindtap="editname" src='../../asset/edit.png'></image>
         </view>
         <view wx:if="{{isedit==1}}" class='edit'>
-          <input class='input' value="{{userInfo.nickname}}" />
+          <input class='input' value="{{userInfo.nickname}}"bindinput="changename" />
           <button style="width:36px;height:23px;" bindtap="save" class='savebtn'>保存</button>
         </view>
         

@@ -140,7 +140,9 @@ Page({
   onShow() {
     this.gethelpxinxi()
     this.test()
-   
+   this.setData({
+    userInfo:app.globalData.userInfo
+   })
 
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 

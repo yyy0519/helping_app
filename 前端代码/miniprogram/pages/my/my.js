@@ -38,19 +38,91 @@ Page({
               littleTitle: 0
             }
         ],
-        isedit:0
+        isedit:0,
+        newNickname:''
     },
-    editname(){
+    editname:function (e){
         var that=this
+        wx.showModal({
+          title: '',
+          content: '是否要更改昵称？',
+          complete: (res) => {
+            if (res.cancel) {
+              
+            }        
+            if (res.confirm) {
+                that.setData({
+                    isedit:1,
+                })
+            }
+          }
+        })
+       // console.log(that.data.uname)
+    },
+    changename:function (e) {
+        var that=this
+        console.log('xinNAME',e.detail.value.trim())
         that.setData({
-            isedit:1
+            newNickname:e.detail.value.trim()
         })
     },
     save(){
         var that=this
-        that.setData({
-            isedit:0
+        console.log('xinNAME1',that.data.newNickname)
+        app.globalData.userInfo.nickname=that.data.newNickname
+        console.log('在这')
+        console.log('xinNAME1',app.globalData.userInfo.nickname, app.globalData.userInfo._id)
+        wx.cloud.database().collection('chat_record').where({
+            userA_id : app.globalData.userInfo._id
+          }).update({
+            data : {
+            userA_ID : that.data.newNickname
+            }
+          })
+        wx.cloud.database().collection('chat_record').where({
+            userB_id : app.globalData.userInfo._id
+          }).update({
+            data : {
+            userB_ID : that.data.newNickname
+            }
+          })
+          console.log('在这2')
+        console.log(app.globalData.userInfo.userId)
+        wx.cloud.database().collection('user_info').where({
+                userId : app.globalData.userInfo.userId,
+        }).update({
+            data : {
+                nickname : that.data.newNickname
+            }
         })
+        console.log('在这3')
+        wx.cloud.database().collection('forhelp_info').where({
+            userId : app.globalData.userInfo.userId,
+        }).update({
+            data : {
+                helpernickname : that.data.newNickname,
+                nickname:that.data.newNickname
+            }
+            })
+            console.log('在这4')
+        wx.cloud.database().collection('report_info').where({
+            userId : app.globalData.userInfo.userId,
+            }).update({
+                data : {
+                    nickname : that.data.newNickname
+                },success(res){
+                wx.showToast({
+                  title: '更新成功！',
+                  icon:'none',
+                  duration:1000
+                }),
+                that.setData({
+                    isedit:0
+                }) 
+            }
+        })
+            console.log('在这5')     
+            this.onShow()
     },
     starting(){
         console.log("starting")
@@ -307,77 +379,4 @@ Page({
           this.onShow()
     
         },
-    changename:function (){
-        wx.showModal({
-            title: '提示',
-            content: '是否要更改昵称？',
-            success: function(res) {
-            if (res.confirm) {
-                wx.showModal({
-                title: '输入新昵称',
-                success: function(res) {
-                if (res.confirm) {
-                    // 获取用户输入的新昵称
-                    var newNickname = res.inputValue;
-                    // 在这里根据需求进行昵称的更改操作
-                    console.log('新昵称：', newNickname);
-                    wx.cloud.database().collection('chat_record').where({
-                         userA_id : app.globalData.userInfo._id
-                          }).update({
-                    data : {
-                        userA_ID : newNickname
-                        }
-                    })
-                    console.log('0000',app.globalData.userInfo._id)
-                    wx.cloud.database().collection('chat_record').where({
-                        userB_id : app.globalData.userInfo._id
-                      }).update({
-                        data : {
-                        userB_ID : newNickname
-                        }
-                      })
-                    
-                    console.log(app.globalData.userInfo.userId)
-                    wx.cloud.database().collection('user_info').where({
-                            userId : app.globalData.userInfo.userId,
-                          }).update({
-                            data : {
-                            ID : newNickname
-                            }
-                          })
-                          wx.cloud.database().collection('forhelp_info').where({
-                            userId : app.globalData.userInfo.userId,
-                          }).update({
-                            data : {
-                            ID : newNickname
-                            }
-                          })
-                          wx.cloud.database().collection('report_info').where({
-                            userId : app.globalData.userInfo.userId,
-                          }).update({
-                            data : {
-                            ID : newNickname
-                            },
-                            success(res) {
-                                console.log(res)
-                                wx.showToast({
-                                  title: '昵称更新成功',
-                                });
-                                that.setData({
-                                    ID: newNickname
-                                })
-                                app.globalData.userInfo.ID = newNickname;
-                              }
-                          })
-                          app.globalData.userInfo.ID = newNickname;
-                    
-                         // this.onShow()
-                        }
-                      },
-                      showCancel: false  // 隐藏取消按钮
-                    });
-                  }
-                }
-              });
-        }
 })
