@@ -1,34 +1,18 @@
-<van-search value="{{ inputValue }}" maxlength="15" placeholder="请输入搜索关键词" show-action bind:search="onSearch" bind:cancel="onCancel" bind:change="onChange" />
+<!--index.wxml-->
 
-<view class='{{isShowResultView?"normalBgView-hidden":"normalBgView"}}'>
-	<view class="hotSearchBgView">
-		<view class="hotSearchTitleView">
-			<view class="hotSearchTitle">热门搜索</view>
-			<van-icon name="delete" class="hotSearchCleanBtn" bindtap='CleanHotSearch' />
-		</view>
-		<view class="hotSearchTagBgView">
-			<view class="hotSearchTag" wx:for="{{hotSearchArr}}" wx:key="index" bindtap='ClickHotSearchItem' data-text='{{item}}'>{{item}}</view>
-		</view>
-	</view>
-	<view class="historyBgView">
-		<view class="historyTitleView">
-			<view class="historyTitle">搜索历史</view>
-			<van-icon name="delete" class="historyCleanBtn" bindtap='CleanHistory' />
-		</view>
-		<view class="historyTagBgView">
-			<view class="historyTag" wx:for="{{searchHistoryArr}}" wx:key="index" bindtap='ClickHistoryItem' data-text='{{item}}'>
-				<van-icon class="historyIconLeft" name="clock-o" color="#969696" size="20px" />
-				<view class="historyText"> {{item}}</view>
-				<van-icon class="historyIconRight" name="cross" color="#969696" size="20px" catchtap='CleanHistoryItem' data-text='{{item}}' />
-			</view>
-		</view>
-	</view>
+<import src="/wxSearch/wxSearch.wxml"/>
+
+<view class="wxSearch-section">
+  <view class="wxSearch-pancel">
+    <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" class="wxSearch-input" placeholder="搜索" />
+    <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">搜索</button>
+  </view>
 </view>
-
-<view class='{{isShowResultView?"resultBgView":"resultBgView-hidden"}}'>
-	<view class="resultCell" wx:for="{{searchResultArr}}" wx:key="index" bindtap='ClickResultItem' data-text='{{item}}'>
-		<van-icon name="search" color="#969696" size="20px" />
-		<view class="resultText"> {{searchResultArr[index]}}</view>
-	</view>
+<template is="wxSearch" data="{{wxSearchData}}"/>
+<view class="container">
+  <!-- <image style="width:90%;" src="/images/qr.png" mode="aspectFit" />
+  <image style="width:70%;" src="/images/logo.png" mode="aspectFit" /> -->
 </view>
-
+<view wx:if="{{issearch==0}}">
+  <image class="icon" src='../../asset/icon.png'></image>
+</view>

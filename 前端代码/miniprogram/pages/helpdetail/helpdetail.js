@@ -8,15 +8,15 @@ Page({
     data: {
         help_id:null,
         help:{
-            _id:null,
-            ID:null,
-            Img:null,
-            _openid:null,
-            date:null,
-            details:null,
-            loc:null,
-            nickname:null,
-            tip:null
+            _id:'',
+            ID:'',
+            Img:'',
+            _openid:'',
+            date:'',
+            details:'',
+            loc:'',
+            nickname:'',
+            tip:''
         }
 
 
