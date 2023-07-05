@@ -10,9 +10,76 @@ Page({
         password:''
     },
     register(){
-        wx.navigateTo({
-          url: '../register/register',
-        })
+        var that =this
+        wx.cloud.callFunction({
+            name: 'cloudbase_auth',
+            success: res => {
+              // 登录成功后，获取当前登录用户的openid
+              const openid = res.result.openid;
+              console.log('openid',openid)
+              that.setData({
+                openid: openid
+              })
+              console.log('openid',that.data.openid)  
+              wx.cloud.database().collection('user_info').where({
+                _openid:that.data.openid
+            }).get({
+                success(res){
+                    console.log("res.data",res.data)
+                    if(res.data!=''){//注册过了
+                        wx.showToast({
+                            title: '您已注册，请登录',
+                            icon:'none'
+                          })
+                    }
+                    else{
+                        wx.navigateTo({
+                            url: '../register/register',
+                          })
+                    }
+                },
+                fail: err => {
+                    console.error(err);
+                  }
+            })
+            }
+          });
+        
+    },
+    autoshowID(){
+        var that =this
+        wx.cloud.callFunction({
+            name: 'cloudbase_auth',
+            success: res => {
+              // 登录成功后，获取当前登录用户的openid
+              const openid = res.result.openid;
+              console.log('openid',openid)
+              that.setData({
+                openid: openid
+              })
+              console.log('openid',that.data.openid)  
+              wx.cloud.database().collection('user_info').where({
+                _openid:that.data.openid
+            }).get({
+                success(res){
+                    console.log("res.data",res.data)
+                    if(res.data!=''){
+                        app.globalData.userInfo=res.data[0]
+                        console.log('idid',res.data[0].userId)
+                          that.setData({
+                              userid:res.data[0].userId,
+                              password:res.data[0].password
+                          })
+                    }
+                    else{
+                       
+                    }
+                }
+               
+            })
+            }
+           
+          });
     },
     showID:function ( ) {
         var that =this
@@ -61,14 +128,23 @@ Page({
 
 
     formSubmit(e){
-        if(!e.detail.value.password){
+        var that=this
+        if(that.data.userid=='用户ID'){
+            wx.showToast({
+                title: '您还未注册，请注册！',
+                icon:'none'
+              })
+
+        }
+
+        else if(!e.detail.value.password){
             wx.showToast({
               title: '请输入密码',
               icon:'none'
             })
             return
         }
-        if(e.detail.value.password!=app.globalData.userInfo.password){
+        else if(e.detail.value.password!=app.globalData.userInfo.password){
             wx.showToast({
               title: '密码错误！',
               icon:'none'
@@ -97,6 +173,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad:function ( ) {
+        this.autoshowID()
     },
 
     /**
@@ -110,7 +187,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        this.autoshowID()
     },
 
     /**

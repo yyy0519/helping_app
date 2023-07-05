@@ -1,5 +1,6 @@
 <!--pages/yibangzhu/yibangzhu.wxml-->
-<view class="big">
+
+<view wx:if="{{helpedlist[0].tip!=null}}" class="big">
     <view></view>
     <view>
         <view class="box"  wx:for="{{helpedlist}}"wx:key="_id">
@@ -9,6 +10,7 @@
             <!--<view class="didian">{{item.loc}}</view>-->
         </view>
     </view>
-    <view class="tishi">{{tishi}}</view>
+   
     <view></view>
 </view>
+<view  class="tishi">{{tishi}}</view>

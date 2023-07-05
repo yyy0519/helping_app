@@ -9,6 +9,7 @@
 </view>
 <form bindsubmit="formSubmit">
   <view class="input">
+    <view wx:if="{{nickname!='昵称'}}" class='idtishi'>此ID为系统ID，不用于展示个人信息</view>
     <input wx:if="{{nickname!='昵称'}}" class="ID" value="{{defaultText}}" name="ID" disabled="true"/>
     <view wx:if="{{nickname!='昵称'}}" class="row">
       <input  class="pw" name="password" password="{{ps}}" placeholder="请输入密码"/>
@@ -22,6 +23,7 @@
     </view>
   </view>
     <button wx:if="{{nickname!='昵称'}}" form-type="submit" class="register">注册</button>
+    
    
 </form>
 <button wx:if="{{nickname=='昵称'}}" class="huoqu" bindtap="getimgnickname">获取微信头像</button>

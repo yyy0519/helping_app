@@ -1,5 +1,6 @@
 
-<view class="big">
+
+<view wx:if="{{helpinglist[0].tip!=null}}" class="big">
     <view></view>
     <view>
         <view class="box" wx:for="{{helpinglist}}"wx:key="_id">

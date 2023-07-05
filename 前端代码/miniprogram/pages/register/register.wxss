@@ -90,3 +90,8 @@ image{
     margin-top: 9px;
 
 }
+.idtishi{
+    color:#694c81;
+    font-size: 14px;
+   
+}

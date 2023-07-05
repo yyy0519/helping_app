@@ -1,6 +1,6 @@
 /* pages/yibangzhu/yibangzhu.wxss */
 page{
-    background-color: orchid;
+    background-color: #9b7c9b;
 }
 .big{
     padding: 10rpx;
@@ -10,7 +10,7 @@ page{
     align-items: center;
 }
 .box{
-    background-color: orange;
+    background-color: rgb(243, 240, 240);
     border-radius: 30rpx;
     margin-top: 10rpx;
     width: 700rpx;
@@ -55,4 +55,6 @@ text-overflow: ellipsis;
 .tishi{
     font-size: 30rpx;
     margin-top: 50rpx;
+    display: flex;
+    justify-content: center;
 }
