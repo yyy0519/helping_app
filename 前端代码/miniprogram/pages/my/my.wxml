@@ -17,7 +17,14 @@
       <!-- Txt -->
       <view class="userInfoTxt">
         <!-- 姓名 -->
-        <view class="userName"bindtap="changename">{{userInfo.nickname}}</view>
+        <view wx:if="{{isedit==0}}" class='edit'>
+          <view class="userName"bindtap="changename">{{userInfo.nickname}}</view>
+          <image class='editimg' bindtap="editname" src='../../asset/edit.png'></image>
+        </view>
+        <view wx:if="{{isedit==1}}" class='edit'>
+          <input class='input' value="{{userInfo.nickname}}" />
+          <button style="width:36px;height:23px;" bindtap="save" class='savebtn'>保存</button>
+        </view>
         
         <!-- 学院 
         <view class="userAcademy">

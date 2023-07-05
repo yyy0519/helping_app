@@ -37,7 +37,20 @@ Page({
               click: "go_xunzhang",
               littleTitle: 0
             }
-        ]
+        ],
+        isedit:0
+    },
+    editname(){
+        var that=this
+        that.setData({
+            isedit:1
+        })
+    },
+    save(){
+        var that=this
+        that.setData({
+            isedit:0
+        })
     },
     starting(){
         console.log("starting")

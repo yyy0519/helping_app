@@ -34,11 +34,12 @@ page {
 /* 角色信息text */
 .userInfoTxt {
   margin: 10rpx 0 0 20rpx;
-  color: rgb(233, 253, 253);
+  color: rgb(253, 255, 255);
   letter-spacing: 3rpx;
 }
 .userName {
   margin-bottom: 10rpx;
+
 }
 .userAcademy {
   font-size: 20rpx;
@@ -85,4 +86,30 @@ image{
 .nicheng{
     font-size: 50rpx;
     color:black;
+}
+.editimg{
+    width:18px;
+    height: 18px;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+.edit{
+    display: flex;
+    flex-direction: row;
+}
+.savebtn{
+    font-size: 13px;
+    padding: 2px;
+    position: relative;
+    top:1px;
+    border: 1px solid #694c81 ;
+    color:#694c81  ;
+}
+.input{
+    background-color: #ffffff;
+    border: 1px solid #694c81 ;
+    color: #694c81;
+    border-radius: 5px;
+    width:80px;
+    margin-right: 5px;
 }
