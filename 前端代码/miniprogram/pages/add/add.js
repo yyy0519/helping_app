@@ -118,13 +118,25 @@ Page({
                 place=this.data.info.formatted.substring(0, 8);
                 console.log(this.data.info.formatted)
             }
-        if (tip == '' || details == '') {
+        if (tip == '' ) {
           wx.showToast({
-            title: '请输入标题或详情',
+            title: '请输入标题',
             icon: 'none'
           });
           
         } 
+        else if(details == ''){
+            wx.showToast({
+                title: '请输入详情描述',
+                icon: 'none'
+              });
+        }
+        else if(item==''){
+            wx.showToast({
+                title: '请输入求助物品',
+                icon: 'none'
+              });
+        }
         else if(place=='-'||place==''){
             wx.showToast({
                 title: '未获取到定位，请点击获取位置或手动输入',

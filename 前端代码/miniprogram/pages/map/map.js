@@ -17,21 +17,21 @@ Page({
     },
     helplist:[
         {
-            _id:null,
-            ID:null,
-            Img:null,
-            _openid:null,
-            date:null,
-            details:null,
-            loc:null,
-            nickname:null,
-            tip:null,
-            status:null
+            _id:'',
+            ID:'',
+            Img:'',
+            _openid:'',
+            date:'',
+            details:'',
+            loc:'',
+            nickname:'',
+            tip:'',
+            status:''
            
         }
     ],
     markerid:0,
-    loc:null
+    loc:''
     
   },
   cancel(){

@@ -11,6 +11,7 @@
     </view>
     <view class="titlecontent">
         <view class="title">{{help.tip}}</view>
+        <view class='item'>{{"求助物品："+help.item}}</view>
         <view class="content">{{help.details}}</view>
     </view>
   </view>

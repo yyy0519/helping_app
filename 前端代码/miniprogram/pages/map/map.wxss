@@ -113,7 +113,7 @@ map{
     
 }
 .box{
-    height:150px;
+    height:180px;
     box-shadow: #ccc  0 0 0rpx 0rpx;
     color: rgb(106, 106, 106);
     border: 2rpx solid #ccc;
@@ -126,30 +126,35 @@ map{
 .loc-end{
     display: flex;
     justify-content: space-between;
-    position: relative;
-    left: 0rpx; 
-    top: 21rpx;
+    margin-top: 5px;
     margin-right: 5px;
 }
 .title{
-    position: relative;
-    left:5px;
-    top: -21rpx;
-    font-size: 20px;
+   margin-top: -15px;
+   margin-bottom: 5px;
+    font-size: 21px;
     color: black;
     font-weight: bold;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; 
 }
+.item{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+    margin-left:0px;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
 .detail{
-    position: relative;
-    left:5px;
-    margin-top: -8px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: -12px;
     display: -webkit-box;
     word-break: break-all;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     overflow: hidden;
     text-overflow: ellipsis; 
 }
@@ -172,7 +177,8 @@ map{
 .tiptail{
     margin-right: 5px;
     margin-left: 2px;
-    margin-top: 5px;
+    margin-top: 0px;
+    margin-bottom: 5px;
 }
 .sorttxt{
     margin-left: 18px;

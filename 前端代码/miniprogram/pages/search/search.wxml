@@ -8,11 +8,48 @@
     <button class="wxSearch-button" bindtap="wxSearchFn" size="mini" plain="true">搜索</button>
   </view>
 </view>
+
 <template is="wxSearch" data="{{wxSearchData}}"/>
 <view class="container">
   <!-- <image style="width:90%;" src="/images/qr.png" mode="aspectFit" />
   <image style="width:70%;" src="/images/logo.png" mode="aspectFit" /> -->
 </view>
 <view wx:if="{{issearch==0}}">
-  <image class="icon" src='../../asset/icon.png'></image>
+  <image class="icon1" src='../../asset/icon.png'></image>
 </view>
+
+<view style="padding-bottom: 5%;"></view>
+<view wx:if="{{issearch==1}}">
+    <view  wx:for="{{helplist}}"wx:key="_id">   
+    <view wx:if="{{item.status=='未开始'}}">
+     <view class="blank"></view>
+     <navigator url="../helpdetail/helpdetail?_id={{item._id}}" >
+      <view class="box">
+        <view class="loc-end">
+         
+            <view class='xinxi'>
+              <image class="img" src="{{item.Img}}" ></image>
+              <view class='column'>
+                <view class="nicheng">{{item.nickname}}</view>
+                <view class="date" >{{item.date}}</view>
+              </view>
+        </view>
+      <view >{{item.loc}}</view>
+    </view>
+      <view class="tiptail">
+      <view class="title">{{item.tip}}</view>
+      <view class='item'>{{"求助物品："+item.item}}</view>
+      <view class="detail">{{item.details}}</view>
+      </view>
+    </view>
+   
+</navigator>
+    </view>
+</view>
+</view>
+
+<view style="padding-bottom: 35%;"></view>
+<!-- 为了让最后的一条信息显示出来，否则滑动最后一条不显示 -->
+
+
+

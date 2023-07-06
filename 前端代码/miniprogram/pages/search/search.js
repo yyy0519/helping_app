@@ -8,7 +8,24 @@ Page({
      */
     data: {
         issearch:0,
-        searchtxt:''
+        searchtxt:'',
+        isinput:0,
+        helplist:[
+            {
+                _id:'',
+                ID:'',
+                Img:'',
+                _openid:'',
+                date:'',
+                details:'',
+                loc:'',
+                nickname:'',
+                tip:'',
+                status:''
+               
+            }
+        ],
+        histap:0
 
     },
 
@@ -35,6 +52,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        var that = this
         if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 
             this.getTabBar().setData({
@@ -44,6 +62,7 @@ Page({
             })
 
         }
+       
     },
     wxSearchFn: function(e){
         var that = this
@@ -51,6 +70,58 @@ Page({
         that.setData({
             issearch:1
         })
+        const db = wx.cloud.database();
+        const _ = wx.cloud.database().command
+        var key=that.data.searchtxt
+        console.log("input",key)
+        if(key==''&&that.data.histap==0){
+            that.setData({
+                issearch:0
+            })
+        }
+        
+        else if(that.data.history!=''&&that.data.histap==1){
+            key=that.data.history
+        }
+        wx.cloud.database().collection('forhelp_info').where(_.or([
+            {
+                details: db.RegExp({
+                    regexp:  key,
+                    options: 'i',
+                  })
+
+            },
+            {
+              tip: db.RegExp({
+                    regexp: key,
+                    options: 'i',
+                  })
+            },
+            {
+                item: db.RegExp({
+                      regexp: key,
+                      options: 'i',
+                    })
+              },
+              {
+               loc : db.RegExp({
+                      regexp: key,
+                      options: 'i',
+                    })
+              },
+          ])).get({
+            success: res => {
+              console.log(res)
+              that.setData({
+                  helplist:res.data,
+                  issearch:1,
+                  histap:0
+              })
+            },
+            fail: err => {
+              console.log(err)
+            }
+          })
         
       },
       wxSearchInput: function(e){
@@ -64,6 +135,9 @@ Page({
             searchtxt:e.detail.value
         })
         console.log("input",that.data.searchtxt)
+        that.setData({
+            isinput:1
+        })
        
       },
       wxSerchFocus: function(e){
@@ -90,32 +164,7 @@ Page({
         var that = this
         WxSearch.wxSearchHiddenPancel(that);
         
-        const db = wx.cloud.database();
-        const _ = wx.cloud.database().command
-        const key=that.data.searchtxt
-        console.log("input",key)
-        wx.cloud.database().collection('forhelp_info').where(_.or([
-            {
-                details: db.RegExp({
-                    regexp: '.*' + key,
-                    options: 'i',
-                  })
-
-            },
-            {
-              tip: db.RegExp({
-                    regexp: '.*' + key,
-                    options: 'i',
-                  })
-            }
-          ])).get({
-            success: res => {
-              console.log(res)
-            },
-            fail: err => {
-              console.log(err)
-            }
-          })
+        
       },
 
     /**

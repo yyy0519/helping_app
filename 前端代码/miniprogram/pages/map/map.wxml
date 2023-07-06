@@ -59,6 +59,7 @@
     </view>
       <view class="tiptail">
       <view class="title">{{item.tip}}</view>
+      <view class='item'>{{"求助物品："+item.item}}</view>
       <view class="detail">{{item.details}}</view>
       </view>
     </view>

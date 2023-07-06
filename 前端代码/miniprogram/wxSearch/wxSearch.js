@@ -17,9 +17,11 @@
  * 
  * 
  */
+
 var __keysColor = [];
 
 var __mindKeys = [];
+
 
 function initColors(colors){
     __keysColor = colors;
@@ -129,12 +131,17 @@ function wxSearchKeyTap(e, that, callBack) {
     //回调
     var temData = that.data.wxSearchData;
     temData.value = e.target.dataset.key;
+    console.log("e.target.dataset.key",e.target.dataset.key)
+
     that.setData({
-        wxSearchData: temData
+        wxSearchData: temData,
+        history:e.target.dataset.key,
+        histap:1
     });
     if (typeof (callBack) == "function") {
         callBack();
     }
+    
 }
 function getHisKeys(that) {
     var value = [];
