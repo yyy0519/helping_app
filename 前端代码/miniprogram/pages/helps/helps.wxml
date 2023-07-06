@@ -1,18 +1,42 @@
 <!--pages/helps/helps.wxml-->
-<view class="big">
+
+<view>
+    <view class="xinxi">
+      <image class="img" src="{{Img}}"></image>
+      <view class="nicheng">{{nickname}}</view>
+      <view class="date">{{date}}</view>
+        <view class="iconloc">
+          <image class="icon" src="../../asset/local.png"></image>
+          <view class="loc">{{loc}}</view>
+        </view>
+    </view>
+    <view class="titlecontent">
+        <view class="title">{{tip}}</view>
+        <view class='item'>{{"求助物品："+item}}</view>
+        <view class="content">{{details}}</view>
+    </view>
+  </view>
+  <button class="anniu1" bindtap="finish">完成！</button>
+
+
+
+<!-- <view class="big1">
     <view></view>
-    <text class="biaoti">{{tip}}</text>
-    <view class="miaoshu">
+    
+    <view class="miaoshu1">
+        <image src="{{Img}}"></image>
         <view class="nicheng">发布者：{{nickname}}</view>
+        <view>{{}}</view>
         <view class="didian">地点：{{loc}}</view>
     </view>
-    <view class="jiaohu">
-        <view class="zhuangtai">状态：{{status}}</view>
-        <button class="anniu" bindtap="finish">完成！</button>
+    <view class="jiaohu1">
+        <view class="zhuangtai1">状态：{{status}}</view>
+        <button class="anniu1" bindtap="finish">完成！</button>
     </view>
-    <view class="neirong">
+    <view class="neirong1">
         <text>{{details}}</text>
-    </view>
+        <text class="biaoti1">{{tip}}</text>
+    </view> -->
     <!--<view>
         <view class="box"  wx:for="{{help}}"wx:key="_id">
             <image src="{{item.Img}}"></image>
@@ -24,5 +48,5 @@
             <view class="didian">{{item.loc}}</view>-
         </view>
     </view>-->
-    <view></view>
-</view>
+    <!-- <view></view>
+</view> -->

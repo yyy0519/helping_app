@@ -6,33 +6,47 @@ Page({
      * 页面的初始数据
      */
     data: {
-            _id:null,
-            ID:null,
-            tip:null,
-            details:null,
-            loc:null,
-            Img:null,
-            nickname:null,
-            status:null
+            _id:'',
+            ID:'',
+            tip:'',
+            details:'',
+            loc:'',
+            Img:'',
+            nickname:'',
+            status:'',
+            item:''
     },
     finish:function(data){
-        if(this.data.status=='已完成'){
-            wx.showToast({
-                title: '已经完成，无需重复提交',
-                icon: 'none'
-              });
-        }
-        else{
-            console.log(1)
-            wx.cloud.database().collection('forhelp_info').where({
-                _id:this.data._id,
-            }).update({
-                data:{
-                    status:'已完成'
+        var that=this
+        wx.showModal({
+            title: '提示',
+            content: '确认此求助完成了吗？',
+            success (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+                if(that.data.status=='已完成'){
+                    wx.showToast({
+                        title: '已经完成，无需重复提交',
+                        icon: 'none'
+                      });
                 }
-            })
-        }
-        this.onShow()
+                else{
+                    console.log(1)
+                    wx.cloud.database().collection('forhelp_info').where({
+                        _id:that.data._id,
+                    }).update({
+                        data:{
+                            status:'已完成'
+                        }
+                    })
+                }
+                that.onShow()
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        
     },
     gethelp(){
         let that=this
@@ -49,7 +63,9 @@ Page({
                     loc:res.data[0].loc,
                     Img:res.data[0].Img,
                     nickname:res.data[0].nickname,
-                    status:res.data[0].status
+                    status:res.data[0].status,
+                    date:res.data[0].date,
+                    item:res.data[0].item
                 })
             }
         })

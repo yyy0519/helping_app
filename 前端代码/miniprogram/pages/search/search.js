@@ -67,9 +67,9 @@ Page({
     wxSearchFn: function(e){
         var that = this
         WxSearch.wxSearchAddHisKey(that);
-        that.setData({
-            issearch:1
-        })
+        // that.setData({
+        //     issearch:1
+        // })
         const db = wx.cloud.database();
         const _ = wx.cloud.database().command
         var key=that.data.searchtxt
@@ -83,6 +83,13 @@ Page({
         else if(that.data.history!=''&&that.data.histap==1){
             key=that.data.history
         }
+        if(key==''){
+            wx.showToast({
+                title: '搜索栏为空',
+                icon:'cancel'
+              })
+        }
+        else{
         wx.cloud.database().collection('forhelp_info').where(_.or([
             {
                 details: db.RegExp({
@@ -122,6 +129,7 @@ Page({
               console.log(err)
             }
           })
+        }
         
       },
       wxSearchInput: function(e){
