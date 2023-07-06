@@ -146,3 +146,10 @@
   .no-message image {
     margin-top: 200rpx;
   }
+  .tishi{
+    margin-left: 88px;
+    position: relative;
+    top:-20px;
+    color: rgb(94, 93, 93);
+    height:0px;
+}

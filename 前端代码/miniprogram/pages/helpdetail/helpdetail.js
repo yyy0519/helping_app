@@ -16,7 +16,8 @@ Page({
             details:'',
             loc:'',
             nickname:'',
-            tip:''
+            tip:'',
+            item:''
         }
 
 

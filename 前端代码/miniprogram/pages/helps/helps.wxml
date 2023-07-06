@@ -16,7 +16,7 @@
         <view class="content">{{details}}</view>
     </view>
   </view>
-  <button class="anniu1" bindtap="finish">完成！</button>
+  <button class="helpbtn" bindtap="finish">完成！</button>
 
 
 

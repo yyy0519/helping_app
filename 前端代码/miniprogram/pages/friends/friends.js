@@ -7,13 +7,13 @@ const utils = require("../../utils/util")
 Page({
 
     data: {
-        help_id:null,
+        help_id:'',
         helper:{
-            _id:null,
-            ID:null,
-            Img:null,
-            avatarUrl:null,
-            nickname:null,
+            _id:'',
+            ID:'',
+            Img:'',
+            avatarUrl:'',
+            nickname:'',
             userId:''
         },
         friend_status:false,
@@ -23,9 +23,8 @@ Page({
         this.setData({
             userInfo : app.globalData.userInfo
         })
-        this.getNewFriends()
-        this.getMyfriend()
-        this.getAllUser()
+        
+        
         if (typeof this.getTabBar === 'function' && this.getTabBar()) {
 
           this.getTabBar().setData({
@@ -56,22 +55,30 @@ Page({
                     that.setData({
                         helper : res.data[0]
                     })
+                    
                 }
             })
             wx.cloud.database().collection('user_info').where({
-                userId:that.data.userInfo.userId,
-                friends:that.data.helper._id
+                _id: _.in(that.data.userInfo.friends).and(_.eq(that.data.helper._id))
             }).get({
                 success(res) {
-                    console.log("好友",res.data[0])
-                    if(res.data[0]!=undefined){
-                    that.setData({
-                        friend_status:true
-                    })
+                    console.log("用户",res)
+                    if(res!=''){
+                        that.setData({
+                            friend_status:true
+                        })
                     }
+                    
+                    // if(res.data[0].friends.indexOf(that.data.helper._id)>=0){
+                    
+                    // }
+                    // console.log("friend_status",res.data[0].friends.indexOf(that.data.helper._id))
                 }
             })
-
+            
+            this.getNewFriends()
+            this.getMyfriend()
+            this.getAllUser()
 
         }
 
@@ -97,34 +104,40 @@ Page({
         const _ = wx.cloud.database().command;
         
         wx.cloud.database().collection('user_info').where({
-            _id: _.nin(that.data.userInfo.friends).and(_.neq(that.data.userInfo._id))//nin表示不在用户的已加好友中，neq表示不是用户本人
+            _id: _.nin(that.data.userInfo.friends).and(_.neq(that.data.userInfo._id)).and(_.neq(that.data.helper._id))//nin表示不在用户的已加好友中，neq表示不是用户本人
         }).get({
             success(res) {
                 console.log("user_list",res.data)
                 that.setData({
                     user_list : res.data
                 })
+
             }
         })
     },
     
     addFriend(e) {
-        var index = e.currentTarget.dataset.index;
+        // var index = e.currentTarget.dataset.index;
         var that = this;
         console.log("friend",that.data.userInfo._id)
         wx.cloud.database().collection('chat_record').where({
             userA_id : that.data.userInfo._id,
             userA_ID : that.data.userInfo.nickname,
-            userB_id : that.data.user_list[index]._id,
-            userB_ID : that.data.user_list[index].nickname,
+            userB_id : that.data.helper._id,
+            userB_ID : that.data.helper.nickname,
         }).get({
             success(res){
+                console.log("添加好友",res)
+                
+                  console.log("data",res.data)
                 if(res.data!=''){
-                    console.log("添加好友",res.data)
+                    console.log("data111",res.data[0]._id)
                     wx.showToast({
-                        title: '您已添加过该好友，请勿重复添加',
-                        icon:none,
+                        title: '请勿重复添加好友!',
+                        icon: 'none',
+                        duration: 2000
                       })
+                    
                 }
                 else{
                     wx.cloud.database().collection('chat_record').add({
@@ -133,9 +146,9 @@ Page({
                             userA_ID : that.data.userInfo.nickname,
                             userA_avatarUrl : that.data.userInfo.avatarUrl,
             
-                            userB_id : that.data.user_list[index]._id,
-                            userB_ID : that.data.user_list[index].nickname,
-                            userB_avatarUrl : that.data.user_list[index].avatarUrl,
+                            userB_id : that.data.helper._id,
+                            userB_ID : that.data.helper.nickname,
+                            userB_avatarUrl : that.data.helper.avatarUrl,
             
                             record : [],
                             friend_status : false,
@@ -160,7 +173,7 @@ Page({
         //var helperuserId = e.currentTarget.dataset.userId;
         console.log("helpuserId",this.data.helper.userId)
         wx.cloud.database().collection('user_info').where({
-            userId:this.data.helper.userId
+            userId:that.data.helper.userId
         }).get({
             success(res) {
                 console.log("help好友组",res.data[0])

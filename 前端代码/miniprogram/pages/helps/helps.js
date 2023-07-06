@@ -20,7 +20,7 @@ Page({
         var that=this
         wx.showModal({
             title: '提示',
-            content: '确认此求助完成了吗？',
+            content: '已完成此求助？',
             success (res) {
               if (res.confirm) {
                 console.log('用户点击确定')
@@ -39,6 +39,11 @@ Page({
                             status:'已完成'
                         }
                     })
+                    wx.showToast({
+                        title: '助人为乐！再接再厉！',
+                        icon: 'none',
+                        duration: 2000
+                      })
                 }
                 that.onShow()
               } else if (res.cancel) {

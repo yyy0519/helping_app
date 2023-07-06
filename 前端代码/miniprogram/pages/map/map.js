@@ -82,43 +82,46 @@ Page({
       _id:null,
       num:$.addToSet('$loc')
     }).end().then(res => {
-        console.log("地址统计",res.list[0].num)
-        for (let item of locData) {
-            for(let itemgroup of res.list[0].num){
-                if(itemgroup==item.name){
-                    let marker = {
-                        iconPath: "../../asset/location.png",
-                        id: parseInt(item.id)|| 0,
-                        name: item.name || '',
-                        latitude: item.latitude,
-                        longitude: item.longitude,
-                        width: 30,
-                        height: 30,
-                        label: {
-                          content: item.name,
-                          color: '#402a58',
-                          fontSize: 14,
-                          bgColor: "#fff",
-                          borderRadius: 30,
-                          borderColor: "#402a58",
-                          borderWidth: 1,
-                          padding: 3
-                        },
-                        callout: {
-                            content: '1',
-                        }
-                        
-                      };
-                      premarkers.push(marker)
-                      
-
+        if(res!=''){
+            console.log("地址统计",res.list[0].num)
+            for (let item of locData) {
+                for(let itemgroup of res.list[0].num){
+                    if(itemgroup==item.name){
+                        let marker = {
+                            iconPath: "../../asset/location.png",
+                            id: parseInt(item.id)|| 0,
+                            name: item.name || '',
+                            latitude: item.latitude,
+                            longitude: item.longitude,
+                            width: 30,
+                            height: 30,
+                            label: {
+                              content: item.name,
+                              color: '#402a58',
+                              fontSize: 14,
+                              bgColor: "#fff",
+                              borderRadius: 30,
+                              borderColor: "#402a58",
+                              borderWidth: 1,
+                              padding: 3
+                            },
+                            callout: {
+                                content: '1',
+                            }
+                            
+                          };
+                          premarkers.push(marker)
+                          
+    
+                    }
+    
                 }
-
             }
+            that.setData({
+                markers:premarkers
+            })
         }
-        that.setData({
-            markers:premarkers
-        })
+        
     })
    
   },
