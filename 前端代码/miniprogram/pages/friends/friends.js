@@ -34,6 +34,9 @@ Page({
           })
 
       }
+      this.getNewFriends()
+            this.getMyfriend()
+            this.getAllUser()
     },
 //获取到求助人信息,从求助详情页点击帮助跳转过来，显示这个求助人的添加好友信息
     onLoad:function(e){
