@@ -37,7 +37,7 @@ Page({
               _id:item._id
           }).remove({})
           
-          this.getyifabu();
+          that.getyifabu();
 
           } else {//这里是点击了取消以后
            
@@ -59,10 +59,9 @@ console.log(e.target.dataset.item)
         }).orderBy('date', 'desc').get({
             success(res){
                 console.log("已发布",res.data)
-                helpinglist=res.data
                                 
                 that.setData({
-                    helpinglist
+                    helpinglist:res.data
                 })
             }
         })

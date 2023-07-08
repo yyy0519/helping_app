@@ -1,15 +1,15 @@
 <!--pages/add/add.wxml-->
 <view class="page-container">
     <view class="form-group">
-        <view class="label">求助标题：</view>
+        <view class="label">求助标题 (必填*) ：</view>
         <input  class="input" name="tip" placeholder="请输入求助标题" bindinput="inputBind1"/>
     </view>
     <view class="form-group">
-        <view class="label">求助物品：</view>
+        <view class="label">求助物品 (必填*) ：</view>
         <input  class="input" name="item" placeholder="请输入求助物品" bindinput="inputBind3"/>
     </view>
     <view class="form-group">
-        <view class="label">求助描述：</view>
+        <view class="label">求助描述 (必填*) ：</view>
         <textarea class="textarea" name="details"placeholder="请输入求助描述" maxlength="9999" bindinput="inputBind2" auto-focus="true"></textarea>
     </view>
     
