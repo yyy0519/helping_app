@@ -1,1 +1,22 @@
 /* pages/xunzhang/xunzhang.wxss */
+page{
+    background-color: green;
+}
+.big{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hang{
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10rpx;
+}
+.xunzhang{
+    display:flex;
+    flex-direction: column;
+    margin:5rpx
+}
