@@ -35,7 +35,7 @@ Page({
     
   },
   cancel(){
-    wx.cloud.database().collection('forhelp_info').orderBy('date', 'desc').get({//按照发布时间从小到大排序，最新发布的在最上面
+    wx.cloud.database().collection('forhelp_info').orderBy('time', 'desc').get({//按照发布时间从小到大排序，最新发布的在最上面
         success:(res)=>{
             console.log("获取数据成功",res.data),
            that.setData({
@@ -59,7 +59,7 @@ Page({
             })
         }
     }
-    wx.cloud.database().collection('forhelp_info').orderBy('date', 'desc').where({
+    wx.cloud.database().collection('forhelp_info').orderBy('time', 'desc').where({
         loc:that.data.loc
     }).get({//按照发布时间从小到大排序，最新发布的在最上面
         success:(res)=>{
@@ -127,7 +127,7 @@ Page({
   },
   gethelpxinxi(){
     var that=this
-    wx.cloud.database().collection('forhelp_info').orderBy('date', 'desc').get({//按照发布时间从小到大排序，最新发布的在最上面
+    wx.cloud.database().collection('forhelp_info').orderBy('time', 'desc').get({//按照发布时间从小到大排序，最新发布的在最上面
         success:(res)=>{
             console.log("获取数据成功",res.data),
            that.setData({
