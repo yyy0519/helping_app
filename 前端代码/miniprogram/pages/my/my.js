@@ -9,12 +9,12 @@ Page({
     data: {
         xinxi:[
             {
-              icon: "../../image/class.png",
+              icon: "../../asset/feedback.png",
               title: "反馈",
               /*littleTitle: "访客班级",*/
               click: "go_fankui"
             },{
-              icon: "../../image/academy.png",
+              icon: "../../asset/quit.png",
               title: "退出",
               /*littleTitle: "访客专业",*/
               click: "go_exit"
@@ -22,17 +22,17 @@ Page({
         ],
         list:[
             {
-              icon: "../../image/aboutUs.png",
+              icon: "../../asset/Floppy Disk.png",
               title: "已发布求助",
               click: "go_yifabu",
               littleTitle: 0
             }, {
-              icon: "../../image/update.png",
+              icon: "../../asset/Smartphone.png",
               title: "已帮助求助",
               click: "go_yibangzhu",
               littleTitle: 0
             }, {
-              icon: "../../image/login.png",
+              icon: "../../asset/Disco.png",
               title: "勋章",
               click: "go_xunzhang",
               littleTitle: 0
@@ -41,6 +41,7 @@ Page({
         isedit:0,
         newNickname:''
     },
+   
     editname:function (e){
         var that=this
         wx.showModal({
@@ -244,7 +245,9 @@ Page({
         })
     },
     go_exit(){
-        wx.exitMiniProgram()
+        wx.reLaunch({
+          url: '../login/login',
+        })
     },
     go_fankui(){
         wx.navigateTo({
