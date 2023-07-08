@@ -179,7 +179,7 @@ Page({
         }
         else{
             wx.showToast({
-              title: '账号或密码输入错误，请重新输入',
+              title: '密码输入错误，请重新输入',
               icon: "none"
             })
         }

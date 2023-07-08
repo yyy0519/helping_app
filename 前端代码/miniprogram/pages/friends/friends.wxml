@@ -3,13 +3,13 @@
 <block wx:for="{{new_friends}}">
     <view class="user-list">
 
-    <view class="left1">
+    <view class="left">
 
-        <image class="face1" src="{{item.userA_avatarUrl}}"></image>    
-        <view class="nick-name1">{{item.userA_ID}}</view>
+        <image class="face" src="{{item.userA_avatarUrl}}"></image>    
+        <view class="nick-name">{{item.userA_ID}}</view>
     </view>
 
-    <view class="right1">
+    <view class="right">
 
     <button size="mini" bindtap="acceptNewFriend" data-index="{{index}}">同意</button>
 
@@ -19,8 +19,7 @@
 
 
 </block>
-<view class="label">我的好友</view>
-<!--
+
 <view class="label">我的好友</view>
 <block wx:for="{{my_friends}}">
 <view class="user-list">
@@ -45,67 +44,12 @@
 </block>
 
 
-<view class="label">其他用户</view>
-    
-    <view wx:if="{{helper.userId!=''&&helper.userId!=userInfo.userId&&friend_status!=true}}">
-    <view class="user-list">
-     <view class="left1">
-        <image class="face1" src="{{helper.avatarUrl}}"></image>    
-        <view class="nick-name1">{{helper.nickname}}</view>
-     </view>
-     
-     <view class="right1">
-        <button size="mini" bindtap="addqiuzhu" data-userId="{{helper.userId}}">添加好友</button>
-    </view>
-    
-    </view>
-    <view class="tishi">刚刚看过ta的求助</view>
-    </view>
-    
 
-
-<block wx:for="{{user_list}}">
-<view class="user-list">
-
-    <view class="left1">
-
-    <block wx:if="{{item._id != new_accepted_friend_id}}" wx:key="_id">
-
-        <image class="face1" src="{{item.avatarUrl}}"></image>    
-        <view class="nick-name1">{{item.nickname}}</view>
-
-    </block>
-    </view>
-    <view class="right1">
-    
-    
-    <button size="mini" bindtap="addFriend" data-index="{{index}}">添加好友</button>
-    
-    
-    </view>
-
-</view>
-</block>
-
-<view style="padding-bottom: 25%;"></view>-->
-<!-- 为了让最后的一条信息显示出来，否则滑动最后一条不显示 -->
 
 <view>
 <block wx:for="{{my_friends}}">
 <view class="user-list">
 
-    <block wx:if="{{item.userA_id==userInfo._id}}">
-    <view class="left" bindtap="startChat" data-index="{{index}}">
-        <view class="flex-row">
-            <image class="face" src="{{item.userB_avatarUrl}}"></image>  
-                <view>
-                <view class="nick-name">{{item.userB_ID}}</view>
-                <view class="msg">{{item.record[item.record.length-1].text}}</view>
-            </view>  
-        </view>
-        <view class="time">{{item.record[item.record.length-1].time}}</view>
-    </view>
-    </block>
 
     <block wx:if="{{item.userB_id==userInfo._id}}">
     <view class="left" bindtap="startChat" data-index="{{index}}">
@@ -130,7 +74,7 @@
 
 <view class="label">其他用户</view>
     
-    <view wx:if="{{helper.userId!=''&&friend_status!=true}}">
+    <view wx:if="{{helper.userId!=''&&friend_status!=true&&nothelp==0}}">
     <view class="user-list">
      <view class="left1">
         <image class="face1" src="{{helper.avatarUrl}}"></image>    

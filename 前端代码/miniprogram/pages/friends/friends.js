@@ -17,9 +17,12 @@ Page({
             userId:''
         },
         friend_status:false,
+        nothelp:0
         
     },
-    onShow() {
+    onShow(e) {
+        const _ = wx.cloud.database().command;
+        var that=this
         this.setData({
             userInfo : app.globalData.userInfo
         })
@@ -34,6 +37,20 @@ Page({
           })
 
       }
+      wx.cloud.database().collection('user_info').where({
+        _id: _.in(that.data.userInfo.friends).and(_.eq(that.data.helper._id))
+    }).get({
+        success(res) {
+            console.log("用户",res.data)
+            if(res.data!=''){
+                that.setData({
+                    friend_status:true
+                })
+            }
+            console.log("friend_status",that.data.friend_status)
+          
+        }
+    })
       this.getNewFriends()
             this.getMyfriend()
             this.getAllUser()
@@ -65,24 +82,28 @@ Page({
                 _id: _.in(that.data.userInfo.friends).and(_.eq(that.data.helper._id))
             }).get({
                 success(res) {
-                    console.log("用户",res)
-                    if(res!=''){
+                    console.log("用户",res.data)
+                    if(res.data!=''){
                         that.setData({
                             friend_status:true
                         })
                     }
-                    
-                    // if(res.data[0].friends.indexOf(that.data.helper._id)>=0){
-                    
-                    // }
-                    // console.log("friend_status",res.data[0].friends.indexOf(that.data.helper._id))
+                    console.log("friend_status",that.data.friend_status)
+                  
                 }
             })
+            
+
             
             this.getNewFriends()
             this.getMyfriend()
             this.getAllUser()
 
+        }
+        else{
+            that.setData({
+                nothelp:1
+            })
         }
 
         console.log("_id",help)
