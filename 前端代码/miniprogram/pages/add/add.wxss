@@ -58,11 +58,11 @@
   }
   .dingwei{
       font-size: 30rpx;
-      display:flex;
-      position: relative; 
-      left: 0rpx; 
-      top: 26rpx;
-      justify-content: flex-start;
+      position: relative;
+      right: 162px;
+     top:-40px;
+      
+      
       color:rgb(145, 143, 143);
   }
   .shuruweizhi{

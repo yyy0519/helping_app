@@ -24,7 +24,7 @@
 	</view> -->  
   </view>
 
-  <view class="dingwei" >定位不准确？试试手动选择</view>
+  
  <!-- <view class="shuruweizhi">
     <view>位置：</view>
     <input class="inputloc" name="loc" bindinput="inputBind3" />
@@ -39,8 +39,9 @@
     <view style="position: relative; left: 490rpx; top: 0rpx"> {{array[currentChoose]}}</view>
     </view>
   </picker>
+  <view class="dingwei" >定位不准确？试试手动选择</view>
     </view>
-
+    
     <button class="btn" bindtap="submit">发布</button>
 </view>
 <view style="padding-bottom: 25%;"></view>

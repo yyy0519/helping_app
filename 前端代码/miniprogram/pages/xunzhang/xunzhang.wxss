@@ -1,6 +1,6 @@
 /* pages/xunzhang/xunzhang.wxss */
 page{
-    background-color: green;
+    background-color: #9b7c9b;
 }
 .big{
     display: flex;

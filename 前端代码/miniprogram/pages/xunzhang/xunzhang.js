@@ -27,7 +27,7 @@ Page({
         let that=this
         wx.cloud.database().collection('forhelp_info').where({
             helperid:app.globalData.userInfo.ID,
-            helpernickname:app.globalData.userInfo.nickname,
+            // helpernickname:app.globalData.userInfo.nickname,
             status:"已完成"
         }).get({
             success(res){
@@ -73,6 +73,7 @@ Page({
                 }
             }
         })
+       
     },
 
     /**

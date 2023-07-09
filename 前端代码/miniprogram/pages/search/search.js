@@ -119,11 +119,19 @@ Page({
           ])).get({
             success: res => {
               console.log(res)
-              that.setData({
-                  helplist:res.data,
-                  issearch:1,
-                  histap:0
-              })
+              if(res.data==''){
+                  wx.showToast({
+                    title: '未搜到相关求助，换个关键词试试吧！',
+                    icon:'none'
+                  })
+              }
+              else{
+                  that.setData({
+                helplist:res.data,
+                issearch:1,
+                histap:0
+            })}
+              
             },
             fail: err => {
               console.log(err)

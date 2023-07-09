@@ -135,7 +135,7 @@ Page({
         let num2=numpublish
         wx.cloud.database().collection('forhelp_info').where({
             helperid:app.globalData.userInfo.ID,
-            helpernickname:app.globalData.userInfo.nickname,
+            // helpernickname:app.globalData.userInfo.nickname,
         }).get({
             success(res){
                 num1=0+res.data.length

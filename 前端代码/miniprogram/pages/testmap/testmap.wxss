@@ -1,8 +1,0 @@
-/* pages/testmap/testmap.wxss */
-page{
-    height:100%
-}
-.big{
-    width: 500px;
-    height:500px;
-}

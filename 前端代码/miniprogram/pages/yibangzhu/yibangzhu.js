@@ -23,7 +23,7 @@ Page({
         let that=this
         wx.cloud.database().collection('forhelp_info').where({
             helperid:app.globalData.userInfo.ID,
-            helpernickname:app.globalData.userInfo.nickname,
+            
         }).get({
             success(res){
                 if(res.data.length==0){
