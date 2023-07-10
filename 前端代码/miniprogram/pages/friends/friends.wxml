@@ -21,7 +21,7 @@
 </block>
 
 <view class="label">我的好友</view>
-<!--<block wx:for="{{my_friends}}">
+<block wx:for="{{my_friends}}">
 <view class="user-list">
 
     <block wx:if="{{item.userA_id==userInfo._id}}" wx:key="_id">
@@ -41,11 +41,11 @@
     </block>
 
 </view>
-</block>-->
+</block>
 
 
 
-
+<!-- 
 <view>
 <block wx:for="{{my_friends}}">
 <view class="user-list">
@@ -67,7 +67,7 @@
 
 </view>
 </block>
-</view>
+</view> -->
 
 
 
