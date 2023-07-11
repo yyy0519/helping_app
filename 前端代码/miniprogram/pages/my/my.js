@@ -69,6 +69,10 @@ Page({
             console.log("1",res.data.length)
                app.globalData.numxunzhang=1
             }
+            else if(res.data.length==0){
+                console.log("1",res.data.length)
+                   app.globalData.numxunzhang=0
+                }
         }
     })
    },

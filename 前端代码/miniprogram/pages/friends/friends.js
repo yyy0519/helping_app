@@ -156,35 +156,56 @@ Page({
                   console.log("data",res.data)
                 if(res.data!=''){
                     console.log("data111",res.data[0]._id)
-                    wx.showToast({
-                        title: '请勿重复添加好友!',
-                        icon: 'none',
-                        duration: 2000
-                      })
+                                wx.showToast({
+                                    title: '请勿重复添加好友!',
+                                    icon: 'none',
+                                    duration: 2000
+                                  })
                     
                 }
                 else{
-                    wx.cloud.database().collection('chat_record').add({
-                        data:{
-                            userA_id : that.data.userInfo._id,
-                            userA_ID : that.data.userInfo.nickname,
-                            userA_avatarUrl : that.data.userInfo.avatarUrl,
-            
-                            userB_id : that.data.helper._id,
-                            userB_ID : that.data.helper.nickname,
-                            userB_avatarUrl : that.data.helper.avatarUrl,
-            
-                            record : [],
-                            friend_status : false,
-                            time: utils.formatTime(new Date())
-                        },
-                        success(res) {
-                            console.log("发送好友请求",res)
-                            wx.showToast({
-                              title: '已发送好友申请',
-                            })
+                    wx.cloud.database().collection('chat_record').where({
+                        userB_id : that.data.userInfo._id,
+                        userB_ID : that.data.userInfo.nickname,
+                        userA_id : that.data.helper._id,
+                        userA_ID : that.data.helper.nickname,
+                    }).get({
+                        success(res){
+                            if(res.data!=''){
+                                console.log("data111",res.data[0]._id)
+                                wx.showToast({
+                                    title: '请勿重复添加好友!',
+                                    icon: 'none',
+                                    duration: 2000
+                                  })
+                            }
+                            else{
+                                wx.cloud.database().collection('chat_record').add({
+                                    data:{
+                                        userA_id : that.data.userInfo._id,
+                                        userA_ID : that.data.userInfo.nickname,
+                                        userA_avatarUrl : that.data.userInfo.avatarUrl,
+                        
+                                        userB_id : that.data.helper._id,
+                                        userB_ID : that.data.helper.nickname,
+                                        userB_avatarUrl : that.data.helper.avatarUrl,
+                        
+                                        record : [],
+                                        friend_status : false,
+                                        time: utils.formatTime(new Date())
+                                    },
+                                    success(res) {
+                                        console.log("发送好友请求",res)
+                                        wx.showToast({
+                                          title: '已发送好友申请',
+                                        })
+                                    }
+                                })
+                            }
                         }
+
                     })
+                    
                 }
             }
 
