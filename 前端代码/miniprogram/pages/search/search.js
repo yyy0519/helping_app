@@ -86,7 +86,7 @@ Page({
         if(key==''){
             wx.showToast({
                 title: '搜索栏为空',
-                icon:'cancel'
+                icon:"error"
               })
         }
         else{
@@ -124,6 +124,12 @@ Page({
                     title: '未搜到相关求助，换个关键词试试吧！',
                     icon:'none'
                   })
+                  that.setData({
+                    issearch:0,
+                    histap:0
+                  })
+                 
+                  that.onLoad()
               }
               else{
                   that.setData({
