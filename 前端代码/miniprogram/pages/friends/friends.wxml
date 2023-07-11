@@ -6,12 +6,12 @@
     <view class="left">
 
         <image class="face" src="{{item.userA_avatarUrl}}"></image>    
-        <view class="nick-name">{{item.userA_ID}}</view>
+        <view class="nick-name2">{{item.userA_ID}}</view>
     </view>
 
     <view class="right">
 
-    <button size="mini" bindtap="acceptNewFriend" data-index="{{index}}">同意</button>
+    <button class='btn'  bindtap="acceptNewFriend" data-index="{{index}}">同意</button>
 
 </view>
 

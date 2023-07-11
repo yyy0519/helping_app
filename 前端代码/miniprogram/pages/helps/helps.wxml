@@ -2,18 +2,18 @@
 
 <view>
     <view class="xinxi">
-      <image class="img" src="{{Img}}"></image>
-      <view class="nicheng">{{nickname}}</view>
-      <view class="date">{{date}}</view>
+      <image class="img" src="{{help.Img}}"></image>
+      <view class="nicheng">{{help.nickname}}</view>
+      <view class="date">{{help.date}}</view>
         <view class="iconloc">
           <image class="icon" src="../../asset/local.png"></image>
-          <view class="loc">{{loc}}</view>
+          <view class="loc">{{help.loc}}</view>
         </view>
     </view>
     <view class="titlecontent">
-        <view class="title">{{tip}}</view>
-        <view class='item'>{{"求助物品："+item}}</view>
-        <view class="content">{{details}}</view>
+        <view class="title">{{help.tip}}</view>
+        <view class='item'>{{"求助物品："+help.item}}</view>
+        <view class="content">{{help.details}}</view>
     </view>
   </view>
   <button class="helpbtn" bindtap="finish">完成！</button>

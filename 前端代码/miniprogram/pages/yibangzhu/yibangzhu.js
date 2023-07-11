@@ -106,6 +106,7 @@ Page({
 
     },
     go_help(e){
+        console.log(e.currentTarget.dataset.info)
         wx.navigateTo({
           url: '../helps/helps?_id='+e.currentTarget.dataset.info,
         })

@@ -6,15 +6,18 @@ Page({
      * 页面的初始数据
      */
     data: {
-            _id:'',
-            ID:'',
-            tip:'',
-            details:'',
-            loc:'',
-            Img:'',
-            nickname:'',
-            status:'',
-            item:''
+        help_id:"",
+        help:{
+            _id:"",
+            ID:"",
+            tip:"",
+            details:"",
+            loc:"",
+            Img:"",
+            nickname:"",
+            status:"",
+            item:""
+        }
     },
     finish:function(data){
         var that=this
@@ -54,26 +57,30 @@ Page({
         
     },
     gethelp(){
-        let that=this
+        var that=this
         wx.cloud.database().collection('forhelp_info').where({
-            _id:this.data._id,
+            _id:this.data.help_id,
         }).get({
             success(res){
-                console.log(res.data[0])
-                help=res.data[0]
+                console.log("res",res)
+                
                 that.setData({
-                    ID:res.data[0].ID,
-                    tip:res.data[0].tip,
-                    details:res.data[0].details,
-                    loc:res.data[0].loc,
-                    Img:res.data[0].Img,
-                    nickname:res.data[0].nickname,
-                    status:res.data[0].status,
-                    date:res.data[0].date,
-                    item:res.data[0].item
+                    help:res.data[0]
+                    // ID:res.data[0].ID,
+                    // tip:res.data[0].tip,
+                    // details:res.data[0].details,
+                    // loc:res.data[0].loc,
+                    // Img:res.data[0].Img,
+                    // nickname:res.data[0].nickname,
+                    // status:res.data[0].status,
+                    // date:res.data[0].date,
+                    // item:res.data[0].item
                 })
+                
             }
+            
         })
+        console.log("111",that.data.help)
         //console.log(this.data.help.tip)
     },
 
@@ -81,9 +88,12 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-        this.data._id=options._id
-        this.gethelp()
-        console.log(this.data._id)
+        this.setData({
+            help_id:options._id
+        })
+        
+        // this.gethelp()
+        console.log("_id",this.data.help_id)
     },
 
     /**

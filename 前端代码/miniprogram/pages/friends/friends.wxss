@@ -62,8 +62,21 @@
 }
 .nick-name1 {
     margin-top:20rpx;
+   
 }
-
+.nick-name2{
+    position: relative;
+    right: 145px;
+    margin-top: 5px;
+}
+.nick-name{
+    margin-top:20rpx;
+}
+.btn{
+    font-size: 14px;
+    max-height: 40px;
+    max-width: 80px;
+}
 .left1 {
     display: flex;
     flex-direction: row;
@@ -86,9 +99,7 @@
     justify-content: space-between;
   }
   
-  .nick-name {
-    margin-top:20rpx;
-  }
+  
   
   .left {
     display: flex;

@@ -41,7 +41,37 @@ Page({
         isedit:0,
         newNickname:''
     },
-   
+   xunzhang(){
+       var that=this
+    wx.cloud.database().collection('forhelp_info').where({
+        helperid:app.globalData.userInfo.ID,
+        // helpernickname:app.globalData.userInfo.nickname,
+        status:"已完成"
+    }).get({
+        success(res){
+            if(res.data.length>=50){
+                console.log("50",res.data.length)
+                app.globalData.numxunzhang=5
+            }
+            else if(res.data.length>=20){
+                console.log("20",res.data.length)
+               app.globalData.numxunzhang=4
+            }
+            else if(res.data.length>=10){
+                console.log("10",res.data.length)
+                app.globalData.numxunzhang=3
+            }
+            else if(res.data.length>=5){
+                console.log("5",res.data.length)
+               app.globalData.numxunzhang=2
+            }
+           else if(res.data.length>=1){
+            console.log("1",res.data.length)
+               app.globalData.numxunzhang=1
+            }
+        }
+    })
+   },
     editname:function (e){
         var that=this
         wx.showModal({
@@ -131,8 +161,13 @@ Page({
         let that=this
         const numhelped = "list[1].littleTitle";
         const numpublish = "list[0].littleTitle";
+        const numxunzhang="list[2].littleTitle"
         let num1=numhelped
         let num2=numpublish
+        let num3=numxunzhang
+        that.setData({
+            [numxunzhang]:app.globalData.numxunzhang
+        })
         wx.cloud.database().collection('forhelp_info').where({
             helperid:app.globalData.userInfo.ID,
             // helpernickname:app.globalData.userInfo.nickname,
@@ -160,11 +195,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        // this.xunzhang()
         this.setData({
             userInfo:app.globalData.userInfo
             
         })
-        this.starting()
+        
+        // this.starting()
+        
     },
 
     /**
@@ -178,6 +216,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        this.xunzhang()
         this.setData({
             userInfo:app.globalData.userInfo
             
@@ -350,7 +389,8 @@ Page({
             userId : app.globalData.userInfo.userId,
           }).update({
             data : {
-            Img : url
+            Img : url,
+            avatarUrl:url
             }
           })
           wx.cloud.database().collection('forhelp_info').where({
@@ -375,10 +415,11 @@ Page({
                     Img: url
                 })
                 app.globalData.userInfo.Img = url;
+                app.globalData.userInfo.avatarUrl = url;
               }
           })
           app.globalData.userInfo.Img = url;
-    
+          app.globalData.userInfo.avatarUrl = url;
           this.onShow()
     
         },

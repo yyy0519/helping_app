@@ -38,38 +38,43 @@ Page({
                         tishi5:"恭喜您已完成五十个帮助",
                         a5:1
                     })
+                    app.globalData.numxunzhang=5
                 }
-                if(res.data.length>=20){
+                else if(res.data.length>=20){
                     console.log(res.data.length)
                     that.setData({
                         achievement4:"../../image/achieved4.png",
                         tishi4:"恭喜您已完成二十个帮助",
                         a4:1
                     })
+                    app.globalData.numxunzhang=4
                 }
-                if(res.data.length>=10){
+                else if(res.data.length>=10){
                     console.log(res.data.length)
                     that.setData({
                         achievement3:"../../image/achieved3.png",
                         tishi3:"恭喜您已完成十个帮助",
                         a3:1
                     })
+                    app.globalData.numxunzhang=3
                 }
-                if(res.data.length>=5){
+                else if(res.data.length>=5){
                     console.log(res.data.length)
                     that.setData({
                         achievement2:"../../image/achieved2.png",
                         tishi2:"恭喜您已完成五个帮助",
                         a2:1
                     })
+                    app.globalData.numxunzhang=2
                 }
-                if(res.data.length>=1){
+                else if(res.data.length>=1){
                     console.log(res.data.length)
                     that.setData({
                         achievement1:"../../image/achieved1.png",
                         tishi1:"恭喜您已完成一个帮助",
                         a1:1
                     })
+                    app.globalData.numxunzhang=1
                 }
             }
         })
@@ -81,6 +86,7 @@ Page({
      */
     onLoad(options) {
         this.getxunzhang()
+        
     },
 
     /**
@@ -99,6 +105,7 @@ Page({
             
         }),
         this.getxunzhang()
+        
     },
 
     /**
